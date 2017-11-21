@@ -10,7 +10,7 @@ class EsClient:
     .query("match", title=title_match, text=text_match)   \
     .exclude("match", title=exclude_title, text=exclude_text)
 
-    return s.execeute()
+    return s.execute()
 
 esclient = EsClient()
 print(esclient.search("arnold", "arnold", "", "", ""))
