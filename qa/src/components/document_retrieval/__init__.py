@@ -1,1 +1,1 @@
-__all__ = ["receive_docs"]
+from components.document_retrieval.main import receive_docs

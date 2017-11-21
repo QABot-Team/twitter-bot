@@ -1,1 +1,1 @@
-__all__ = ["process_answer"]
+from components.answer_processing.main import process_answer
