@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search
 
 class EsClient:
   INDEX_NAME = "wiki"
