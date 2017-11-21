@@ -1,8 +1,7 @@
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
-
-class EsClient:
-  INDEX_NAME = "wiki"
+INDEX_NAME = "wiki"
+class EsClient: 
   def __init__(self):
     self.client = Elasticsearch()
 
