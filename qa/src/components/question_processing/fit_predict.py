@@ -7,22 +7,6 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, accuracy_score
 
-def get_data(file):
-    labeled_questions = select_questions(file, [])
-    data = get_questions_and_labels(labeled_questions)
-
-    questions = []
-    for question in data["questions"]:
-        doc = get_doc(question)
-        head_word = get_head_word(doc)
-        if str(head_word) == "":
-            head_word_pos = ""
-        else:
-            head_word_pos = head_word.pos
-        question = question #+ " " + ' '.join(get_named_enitity_types(doc)) + " " + str(get_root_token(doc)) + str(head_word) + " " + str(head_word) + " " + str(head_word_pos)
-        questions.append(question)
-
-    return {"questions": questions, "labels": data["labels"]}
 
 def fit_svm(train_qu, train_lb):
     clf = svm.SVC(kernel='linear')
@@ -41,17 +25,18 @@ def score_naive_bayes(nb, test_qu, test_lb):
     y_predicted = nb.predict(test_qu)
     print("Naive Bayes Accuracy: ", accuracy_score(y_true=test_lb, y_pred=y_predicted))
 
-def get_questions_from_file(filepath):
+def prepare_questions_from_file(filepath):
     file = open(filepath, "r")
     file = list(file)
-    data = get_data(file)
-    return [data["questions"], data["labels"]]
+    labeled_questions = select_questions(file, [])
+    data = get_questions_and_labels(labeled_questions)
+    feature_enriched_questions = get_features(data["questions"])
+    return [feature_enriched_questions, data["labels"]]
     
-
-train_qu, train_lb = get_questions_from_file("labeled_questions/train_5500_first_lvl.label")
+train_qu, train_lb = prepare_questions_from_file("labeled_questions/train_5500_first_lvl.label")
 train_qu = vectorize_train(train_qu)
 
-test_qu, test_lb = get_questions_from_file("labeled_questions/test_first_lvl.label")
+test_qu, test_lb = prepare_questions_from_file("labeled_questions/test_first_lvl.label")
 test_qu = vectorize_test(test_qu)
 
 svm_clf = fit_svm(train_qu, train_lb)

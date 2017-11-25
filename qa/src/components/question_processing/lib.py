@@ -4,28 +4,31 @@ from sklearn.feature_extraction.text import CountVectorizer
 vectorizer = CountVectorizer()
 nlp = spacy.load('en')
 
-def get_features(wh_word, doc, question):
-    if wh_word == "how":
-        return [question]
-    elif wh_word == "who":
-        return [question]
-        #return wh_word
-    elif wh_word == "why":
-        return [question]
-        #return wh_word        
-    elif wh_word == "when":
-        return [question]
-        #return wh_word        
-    elif wh_word == "where":
-        return [question]
-        #return wh_word        
-    elif wh_word == "which":
-        return [question]
-    elif wh_word == "what":
-        return [question]
-        #return get_bigrams(question)
-    else:
-        return wh_word
+def get_features(questions):
+    feature_enriched_questions = []
+    for question in questions:
+        doc = get_doc(question)
+        wh_word = str(get_wh_word(doc))
+        enriched_question = question
+        if wh_word == "how":
+            pass
+        elif wh_word == "who":
+            pass
+        elif wh_word == "why":
+            pass
+        elif wh_word == "when":
+            pass
+        elif wh_word == "where":
+            pass
+        elif wh_word == "which":
+            pass
+        elif wh_word == "what":
+            #enriched_question = enriched_question + question + " " + ' '.join(get_named_enitity_types(doc)) + " " + str(get_root_token(doc)) + str(get_head_word(doc)) + " " + str(get_head_word(doc))
+            pass
+        else:
+            pass
+        feature_enriched_questions.append(enriched_question)
+    return feature_enriched_questions
 
 def get_label(question):
     words = question.split()
