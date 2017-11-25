@@ -1,4 +1,4 @@
-from pipeline import get_doc, get_wh_word
+from lib import get_doc, get_wh_word
 
 
 def prepare_coarse():
@@ -8,13 +8,10 @@ def prepare_coarse():
     for line in file:
         words = line.split()
         first_lvl_label, second_lvl_label = words[0].split(":")
-        #print(first_lvl_label)
         words.pop(0)
         words = [first_lvl_label] + words
-        #print(words)
         line_first_lvl = ' '.join(words)
         file_first_lvl.write(line_first_lvl + "\n")
-        #break
 
 def prepare_fine(wh_words):
     for wh_word in wh_words:

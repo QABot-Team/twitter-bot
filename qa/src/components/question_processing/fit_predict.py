@@ -1,6 +1,6 @@
 #http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html
 from sklearn import svm
-from pipeline import *
+from lib import *
 from patterns import *
 from random import shuffle
 from sklearn.naive_bayes import MultinomialNB
