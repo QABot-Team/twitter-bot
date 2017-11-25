@@ -1,12 +1,8 @@
 #http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html
 from sklearn import svm
 from lib import *
-from patterns import *
-from random import shuffle
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, accuracy_score
-
+from sklearn.metrics import accuracy_score
 
 def fit_svm(train_qu, train_lb):
     clf = svm.SVC(kernel='linear')
