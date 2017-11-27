@@ -3,19 +3,25 @@ from sklearn import svm
 from lib import select_questions, get_questions_and_labels, get_features, vectorize_test, vectorize_train
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
+from sklearn.externals import joblib
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import CountVectorizer
+
+SVM_CLF_NAME = "svm_clf"
+NB_CLF_NAME = "nb_clf"
 
 def fit_svm(train_qu, train_lb):
-    clf = svm.SVC(kernel='linear')
-    clf.fit(train_qu, train_lb)
-    return clf
+    vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', svm.SVC(kernel='linear'))])
+    vec_clf.fit(train_qu, train_lb)
+    return vec_clf
 
 def score_svm(clf, test_qu, test_lb):
     print("SVM Accuracy: ", clf.score(test_qu, test_lb))
     
 def fit_naive_bayes(train_qu, train_lb):
-    nb = MultinomialNB(alpha=1.0)
-    nb.fit(train_qu, train_lb)
-    return nb
+    vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', MultinomialNB(alpha=1.0))])
+    vec_clf.fit(train_qu, train_lb)
+    return vec_clf
 
 def score_naive_bayes(nb, test_qu, test_lb):
     y_predicted = nb.predict(test_qu)
@@ -28,18 +34,33 @@ def prepare_questions_from_file(filepath):
     data = get_questions_and_labels(labeled_questions)
     feature_enriched_questions = get_features(data["questions"])
     return [feature_enriched_questions, data["labels"]]
-    
-train_qu, train_lb = prepare_questions_from_file("labeled_questions/train_5500_first_lvl.label")
-train_qu = vectorize_train(train_qu)
 
-test_qu, test_lb = prepare_questions_from_file("labeled_questions/test_first_lvl.label")
-test_qu = vectorize_test(test_qu)
+def write_clf_2_disk(clf, name):
+    joblib.dump(clf, name + '.pkl', compress=9)
 
-svm_clf = fit_svm(train_qu, train_lb)
-nb_clf = fit_naive_bayes(train_qu, train_lb)
+def get_clf_from_disk(name):
+    clf = joblib.load(name + '.pkl')
+    return clf
 
-score_svm(svm_clf, test_qu, test_lb)
-score_naive_bayes(nb_clf, test_qu, test_lb)
+def get_predicted_label(question, clf):
+    feature_enriched_question = get_features([question])
+    return clf.predict(feature_enriched_question)
+
+def main():
+    train_qu, train_lb = prepare_questions_from_file("labeled_questions/train_5500_first_lvl.label")
+    test_qu, test_lb = prepare_questions_from_file("labeled_questions/test_first_lvl.label")
+
+    svm_clf = fit_svm(train_qu, train_lb)
+    nb_clf = fit_naive_bayes(train_qu, train_lb)
+
+    score_svm(svm_clf, test_qu, test_lb)
+    score_naive_bayes(nb_clf, test_qu, test_lb)
+
+    write_clf_2_disk(svm_clf, SVM_CLF_NAME)
+    write_clf_2_disk(nb_clf, NB_CLF_NAME)
+
+if __name__ == "__main__":
+    main()
 
 #SVM:
 #Bag of Words

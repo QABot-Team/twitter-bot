@@ -1,7 +1,5 @@
 import spacy
 from spacy.symbols import nsubj, attr, NOUN, PROPN
-from sklearn.feature_extraction.text import CountVectorizer
-vectorizer = CountVectorizer()
 nlp = spacy.load('en')
 
 def get_features(questions):
@@ -47,12 +45,6 @@ def get_questions_and_labels(questions):
         _labels.append(get_label(question))
         _questions.append(get_question(question))
     return {"questions": _questions , "labels": _labels}
-
-def vectorize_train(questions):
-    return vectorizer.fit_transform(questions)
-
-def vectorize_test(questions):
-    return vectorizer.transform(questions)
 
 def select_questions(questions, wh_words = []):
     selected_questions = []
