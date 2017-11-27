@@ -1,6 +1,6 @@
 #http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html
 from sklearn import svm
-from lib import select_questions, get_questions_and_labels, get_features, vectorize_test, vectorize_train
+from lib import select_questions, get_questions_and_labels, get_features
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
