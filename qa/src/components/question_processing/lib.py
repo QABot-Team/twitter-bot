@@ -8,6 +8,7 @@ def get_features(questions):
         doc = get_doc(question)
         wh_word = str(get_wh_word(doc))
         enriched_question = question
+        get_hypernym(question)
         if wh_word == "how":
             pass
         elif wh_word == "who":
@@ -92,3 +93,26 @@ def get_bigrams(question):
         bigrams.append(words[idx] + "-" + words[idx+1])
         idx += 1
     return bigrams
+
+def get_head_word_noun_phrase(doc):
+    noun_chunks = list(doc.noun_chunks)
+    first = ""
+    if len(noun_chunks) > 0:
+        first = noun_chunks[0]
+        print("\n first: " + str(first))
+        print("question: " + str(doc))
+
+    for token in reversed(first):
+        if token.pos_ == "NOUN":
+            print("head word: " + str(token))
+            return token
+
+def get_hypernym(question):
+    head_word = get_head_word_noun_phrase(get_doc(question))
+    answer = None
+    #if head_word:
+        #print("question: " + question)
+        #print("head word: " + head_word)
+        #answer = simple_lesk(question, str(head_word), pos=head_word.pos)
+    if answer:
+        print(answer)
