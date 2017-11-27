@@ -45,7 +45,6 @@ def get_pattern_accuracy(questions, labels):
     right = 0
     for question, label in zip(questions, labels):
         _label = get_category(question)
-        _label = get_label_repr(_label)
         if _label == label:
             right += 1
-    print(float(right)/float(len(data["questions"])))
+    print(float(right)/float(len(questions)))
