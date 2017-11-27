@@ -47,8 +47,8 @@ def get_predicted_label(question, clf):
     return clf.predict(feature_enriched_question)
 
 def main():
-    train_qu, train_lb = prepare_questions_from_file("labeled_questions/train_5500_first_lvl.label")
-    test_qu, test_lb = prepare_questions_from_file("labeled_questions/test_first_lvl.label")
+    train_qu, train_lb = prepare_questions_from_file("labeled_questions/NUM_questions_train.label")
+    test_qu, test_lb = prepare_questions_from_file("labeled_questions/NUM_questions_test.label")
 
     svm_clf = fit_svm(train_qu, train_lb)
     nb_clf = fit_naive_bayes(train_qu, train_lb)
@@ -56,8 +56,8 @@ def main():
     score_svm(svm_clf, test_qu, test_lb)
     score_naive_bayes(nb_clf, test_qu, test_lb)
 
-    write_clf_2_disk(svm_clf, SVM_CLF_NAME)
-    write_clf_2_disk(nb_clf, NB_CLF_NAME)
+    #write_clf_2_disk(svm_clf, SVM_CLF_NAME)
+    #write_clf_2_disk(nb_clf, NB_CLF_NAME)
 
 if __name__ == "__main__":
     main()
@@ -125,6 +125,17 @@ if __name__ == "__main__":
 #Anmerkungen:
 #hinzufügen von headword pos verringert accuracy um ~0.001
 #2 maliges hinzufügen von head word steigert accuracy von SVM um ~0.1, bei SVM um ~0.001
+
+
+#feine taxonomie
+#SVM:
+#nur BoW:
+#ABBR: 0.88
+#DESC: 0.992
+#ENTY: 0.595
+#HUM: 0.953
+#LOC: 0.95
+#NUM: 0.858
 
 #passage retrieval:
 
