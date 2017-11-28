@@ -1,0 +1,1 @@
+from components.document_retrieval.main import receive_docs
