@@ -4,4 +4,4 @@ from models.question_model import QuestionModel
 
 
 def receive_passages(docs: Documents, question_model: QuestionModel) -> Passages:
-    return Passages([])
+    return Passages([docs.docs[0].title])
