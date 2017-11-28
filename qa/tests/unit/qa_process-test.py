@@ -17,10 +17,10 @@ def process_question(question: str):
 def receive_docs(question_model: QuestionModel):
     if not isinstance(question_model, QuestionModel):
         raise Exception("receive_docs expects parameter of type QuestionModel")
-    return Documents([])
+    return Documents()
 
 
-def receive_passages(docs: Documents):
+def receive_passages(docs: Documents, question_model: QuestionModel):
     if not isinstance(docs, Documents):
         raise Exception("receive_passages expects parameter of type Documents")
     return Passages([])
