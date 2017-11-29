@@ -1,5 +1,8 @@
 import spacy
 from spacy.symbols import nsubj, attr, NOUN, PROPN
+from pywsd.lesk import simple_lesk
+from nltk.corpus import wordnet as wn
+
 nlp = spacy.load('en')
 
 def get_features(questions):
@@ -25,6 +28,8 @@ def get_features(questions):
             pass
         else:
             pass
+       #head_word = get_head_word_noun_phrase(doc)
+       #enriched_question = enriched_question + " " + str(head_word) + " " + str(get_hypernym(doc, head_word))
         feature_enriched_questions.append(enriched_question)
     return feature_enriched_questions
 
@@ -92,3 +97,33 @@ def get_bigrams(question):
         bigrams.append(words[idx] + "-" + words[idx+1])
         idx += 1
     return bigrams
+
+def get_head_word_noun_phrase(doc):
+    noun_chunks = list(doc.noun_chunks)
+    first = ""
+    if len(noun_chunks) > 0:
+        first = noun_chunks[0]
+        #print("\n question: " + str(doc))
+        for noun_chunk in noun_chunks:
+            #print("\n chunk: " + str(noun_chunk))
+            for token in reversed(noun_chunk):
+                if token.pos_ == "NOUN" and not token_is_wh_w(token):
+                    #print("head word: " + str(token))
+                    return token
+
+def get_hypernym(doc, head_word):
+    hypernyms = []
+    if head_word:
+        #print("question: " + str(doc))
+        #print("head word: " + str(head_word) + " pos=" + str(head_word.pos_))
+        synset = simple_lesk(str(doc), str(head_word))
+        if synset:
+            unvisited_hypernyms = synset.hypernyms()
+            for i in range(5):
+                for hypernym in unvisited_hypernyms:
+                    unvisited_hypernyms = unvisited_hypernyms + hypernym.hypernyms()
+                    unvisited_hypernyms.remove(hypernym)
+                    hypernyms.append(hypernym)
+            hypernyms.append(synset)
+            #print(str(hypernyms))
+    return hypernyms
