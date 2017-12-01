@@ -1,6 +1,6 @@
 import unittest
 
-from models.Passages import Passages
+from models.passages import Passages
 from models.answer_type import AnswerType
 from models.documents import Documents
 from models.qp_result import QPResult
@@ -23,7 +23,7 @@ def receive_docs(question_model: QuestionModel):
 def receive_passages(docs: Documents, question_model: QuestionModel):
     if not isinstance(docs, Documents):
         raise Exception("receive_passages expects parameter of type Documents")
-    return Passages([])
+    return Passages()
 
 
 def process_answer(passages: Passages, answer_type: AnswerType):
