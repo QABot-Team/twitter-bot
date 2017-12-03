@@ -1,4 +1,4 @@
-from models.Passages import Passages
+from models.passages import Passages
 from models.documents import Documents
 
 

@@ -46,8 +46,7 @@ def get_features(questions):
         else:
             pass
         #head_word = get_head_word_noun_phrase(doc)
-        #similarity_class = get_word_similarity(doc, head_word)
-        #enriched_question = enriched_question + " " + str(head_word) #+ " " + str(similarity_class) #+ " " + str(get_hypernym(doc, head_word))
+        #enriched_question = enriched_question + " " + str(head_word) + " " + str(get_head_word(doc))# + " " + str(get_hypernym(doc, head_word))
         feature_enriched_questions.append(enriched_question)
     return feature_enriched_questions
 
