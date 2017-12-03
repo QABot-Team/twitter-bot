@@ -1,5 +1,5 @@
-#http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html
-from lib import select_questions, get_questions_and_labels, get_features
+import os
+from .lib import select_questions, get_questions_and_labels, get_features
 from sklearn import svm
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
@@ -7,25 +7,29 @@ from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer
 
+SVM_CLASS = svm.SVC(kernel='linear')
+NB_CLASS = MultinomialNB(alpha=1.0)
+
 SVM_CLF_NAME = "svm_clf"
 NB_CLF_NAME = "nb_clf"
 
-def fit_svm(train_qu, train_lb):
-    vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', svm.SVC(kernel='linear'))])
+DIR = os.path.dirname(__file__)
+
+TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500_first_lvl.label")
+TEST_FILE =  os.path.join(DIR, "labeled_questions", "test_first_lvl.label")
+
+def fit_clf(clf_class, train_qu, train_lb):
+    vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', clf_class)])
     vec_clf.fit(train_qu, train_lb)
     return vec_clf
 
-def score_svm(clf, test_qu, test_lb):
-    print("SVM Accuracy: ", clf.score(test_qu, test_lb))
-    
-def fit_naive_bayes(train_qu, train_lb):
-    vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', MultinomialNB(alpha=1.0))])
-    vec_clf.fit(train_qu, train_lb)
-    return vec_clf
+def create_clf(clf_class):
+    train_qu, train_lb = prepare_questions_from_file(TRAIN_FILE)
+    clf = fit_clf(clf_class, train_qu, train_lb)
+    return clf
 
-def score_naive_bayes(nb, test_qu, test_lb):
-    y_predicted = nb.predict(test_qu)
-    print("Naive Bayes Accuracy: ", accuracy_score(y_true=test_lb, y_pred=y_predicted))
+def score_clf(clf, test_qu, test_lb, clf_name):
+    print("{} Accuracy: {}".format(clf_name, clf.score(test_qu, test_lb)))
 
 def prepare_questions_from_file(filepath):
     file = open(filepath, "r")
@@ -36,28 +40,32 @@ def prepare_questions_from_file(filepath):
     return [feature_enriched_questions, data["labels"]]
 
 def write_clf_2_disk(clf, name):
-    joblib.dump(clf, name + '.pkl', compress=9)
+    joblib.dump(clf, os.path.join(DIR, name + '.pkl'), compress=9)
 
-def get_clf_from_disk(name):
-    clf = joblib.load(name + '.pkl')
+def get_clf_from_disk(name) -> Pipeline:
+    clf = None
+    try:
+        clf = joblib.load(os.path.join(DIR, name + '.pkl'))
+    except:
+        if name == NB_CLF_NAME:
+            clf = create_clf(NB_CLASS)
+        elif name == SVM_CLF_NAME:
+            clf = create_clf(SVM_CLASS)
+        write_clf_2_disk(clf, name)
     return clf
 
 def get_predicted_label(question, clf):
     feature_enriched_question = get_features([question])
-    return clf.predict(feature_enriched_question)
+    return clf.predict(feature_enriched_question)[0]
 
 def main():
-    train_qu, train_lb = prepare_questions_from_file("labeled_questions/NUM_questions_train.label")
-    test_qu, test_lb = prepare_questions_from_file("labeled_questions/NUM_questions_test.label")
+    svm_clf = create_clf(SVM_CLASS)
+    nb_clf = create_clf(NB_CLASS)
 
-    svm_clf = fit_svm(train_qu, train_lb)
-    nb_clf = fit_naive_bayes(train_qu, train_lb)
+    test_qu, test_lb = prepare_questions_from_file(TEST_FILE)
 
-    score_svm(svm_clf, test_qu, test_lb)
-    score_naive_bayes(nb_clf, test_qu, test_lb)
-
-    #write_clf_2_disk(svm_clf, SVM_CLF_NAME)
-    #write_clf_2_disk(nb_clf, NB_CLF_NAME)
+    score_clf(svm_clf, test_qu, test_lb, "SVM")
+    score_clf(nb_clf, test_qu, test_lb, "NB")
 
 if __name__ == "__main__":
     main()

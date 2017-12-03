@@ -1,3 +1,3 @@
 class QuestionModel:
-    def __init__(self, headwords: list) -> None:
-        self.headwords = headwords
+    def __init__(self, keywords: list) -> None:
+        self.keywords = keywords

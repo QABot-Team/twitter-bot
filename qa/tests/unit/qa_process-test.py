@@ -1,6 +1,13 @@
 import unittest
+import sys
+import os
+DIR = os.path.dirname(__file__)
 
-from models.Passages import Passages
+#make sure the imported modules can be found
+#alternatively change python env var on every machine
+sys.path.append(os.path.join(DIR, "..", "..", "src"))
+
+from models.passages import Passages
 from models.answer_type import AnswerType
 from models.documents import Documents
 from models.qp_result import QPResult
@@ -11,7 +18,7 @@ from qa_process import answer_question
 def process_question(question: str):
     if not isinstance(question, str):
         raise Exception("process_question expects parameter of type str")
-    return QPResult(QuestionModel([]), AnswerType.PERSON)
+    return QPResult(QuestionModel([]), AnswerType.HUM)
 
 
 def receive_docs(question_model: QuestionModel):
