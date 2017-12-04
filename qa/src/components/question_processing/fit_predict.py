@@ -1,5 +1,5 @@
 import os
-from .lib import select_questions, get_questions_and_labels, get_features
+from .lib import select_questions, get_questions_and_labels, get_features, get_doc, get_wh_word
 from sklearn import svm
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score
@@ -56,6 +56,24 @@ def get_clf_from_disk(name) -> Pipeline:
             clf = create_clf(SVM_CLASS)
         write_clf_2_disk(clf, name)
     return clf
+
+def get_clf_name(question):
+    doc = get_doc(question)
+    wh_word = str(get_wh_word(doc))
+    if wh_word == "how":
+        return SVM_CLF_NAME
+    elif wh_word == "who":
+        return SVM_CLF_NAME
+    elif wh_word == "why":
+        return NB_CLF_NAME
+    elif wh_word == "when":
+        return NB_CLF_NAME
+    elif wh_word == "where":
+        return NB_CLF_NAME
+    elif wh_word == "which":
+        return NB_CLF_NAME
+    elif wh_word == "what":
+        return SVM_CLF_NAME
 
 def get_predicted_label(question, clf):
     feature_enriched_question = get_features([question])

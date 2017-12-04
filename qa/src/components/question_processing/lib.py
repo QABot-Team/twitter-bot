@@ -2,12 +2,13 @@ import spacy
 from spacy.symbols import nsubj, attr, NOUN, PROPN
 from pywsd.lesk import simple_lesk
 from nltk.corpus import wordnet as wn
+from functools import wraps
 
 FINE_CLASSES = ["abbreviation", "expression", "animal", "body", "color", "creative", "currency",
                 "diseases and medicine", "event", "food", "instrument", "language", "letter", "other entities",
                 "plant", "product", "religion", "sport", "substance", "symbol", "technique", "term", 
                 "vehicle", "word", "definition", "description", "manner", "reason", "group", "individual",
-                "title of a person", "description of a person", "city", "country", "mountain", "other location"
+                "title of a person", "description of a person", "city", "country", "mountain", "other location",
                 "state", "code", "count", "date", "distance", "money", "order", "other numbers", "period", 
                 "percent", "speed", "temperature", "size", "weight" ]
 FINE_CLASSES_SYNSETS = ['abbreviation.n.01', 'formula.n.01', 'animal.n.01', 'body.n.01', 'color.n.01',
@@ -31,7 +32,7 @@ def get_features(questions):
         if wh_word == "how":
             pass
         elif wh_word == "who":
-            pass
+            enriched_question = enriched_question + " " + str(get_head_word_noun_phrase(doc))
         elif wh_word == "why":
             pass
         elif wh_word == "when":
@@ -39,14 +40,11 @@ def get_features(questions):
         elif wh_word == "where":
             pass
         elif wh_word == "which":
-            pass
+            enriched_question = enriched_question + " " + str(get_head_word(doc)) + " " + str(get_head_word_noun_phrase(doc))  
         elif wh_word == "what":
-            #enriched_question = enriched_question question + " " + ' '.join(get_named_enitity_types(doc)) + " " + str(get_root_token(doc)) + str(get_head_word(doc)) + " " + str(get_head_word(doc))
-            pass
+            enriched_question = enriched_question + " " + str(get_head_word(doc)) + " " + str(get_head_word_noun_phrase(doc))  
         else:
             pass
-        #head_word = get_head_word_noun_phrase(doc)
-        #enriched_question = enriched_question + " " + str(head_word) + " " + str(get_head_word(doc))# + " " + str(get_hypernym(doc, head_word))
         feature_enriched_questions.append(enriched_question)
     return feature_enriched_questions
 
@@ -84,8 +82,8 @@ def get_doc(str):
 def token_is_wh_w(token):
     return token.tag_ == "WDT" or token.tag_ == "WP" or token.tag_ == "WP$" or token.tag_ == "WRB"
 
-def get_wh_word(sent):
-    for token in sent:
+def get_wh_word(doc):
+    for token in doc:
         if token_is_wh_w(token):
             return token
 
@@ -128,33 +126,45 @@ def get_head_word_noun_phrase(doc):
                     #print("head word: " + str(token))
                     return token
 
-def get_hypernym(doc, head_word):
-    hypernyms = []
-    if head_word:
-        #print("question: " + str(doc))
-        #print("head word: " + str(head_word) + " pos=" + str(head_word.pos_))
-        synset = simple_lesk(str(doc), str(head_word))
-        if synset:
-            unvisited_hypernyms = synset.hypernyms()
-            for i in range(5):
-                for hypernym in unvisited_hypernyms:
-                    unvisited_hypernyms = unvisited_hypernyms + hypernym.hypernyms()
-                    unvisited_hypernyms.remove(hypernym)
-                    hypernyms.append(hypernym)
-            hypernyms.append(synset)
-            #print(str(hypernyms))
-    return hypernyms
+def get_hypernym(func):
 
-def get_word_similarity(doc, head_word):
-    head_word_synset = simple_lesk(str(doc), str(head_word))
-    if not head_word_synset:
-        return ""
-    max_similarity = -1
-    max_class_synset = ""
-    for category in FINE_CLASSES_SYNSETS:
-        class_synset = wn.synset(category)
-        similarity = wn.path_similarity(head_word_synset, class_synset)
-        if similarity and similarity > max_similarity:
-            max_class_synset = class_synset
-            max_similarity = similarity
-    return max_class_synset
+    func.__name__ = "get_hypernym(" + func.__name__ + ")"
+    @wraps(func)
+    def wrapper(doc):
+        head_word = func(doc)
+        hypernyms = []
+        if head_word:
+            #print("question: " + str(doc))
+            #print("head word: " + str(head_word) + " pos=" + str(head_word.pos_))
+            synset = simple_lesk(str(doc), str(head_word))
+            if synset:
+                unvisited_hypernyms = synset.hypernyms()
+                for i in range(5):
+                    for hypernym in unvisited_hypernyms:
+                        unvisited_hypernyms = unvisited_hypernyms + hypernym.hypernyms()
+                        unvisited_hypernyms.remove(hypernym)
+                        hypernyms.append(hypernym)
+                hypernyms.append(synset)
+                #print(str(hypernyms))
+        return hypernyms
+    return wrapper
+
+def get_word_similarity(func):
+    func.__name__ = "get_word_similarity(" + func.__name__ + ")"
+    @wraps(func)
+    def wrapper(doc):
+        head_word = func(doc)
+        head_word_synset = simple_lesk(str(doc), str(head_word))
+        if not head_word_synset:
+            return ""
+        max_similarity = -1
+        max_class_synset = ""
+        for category in FINE_CLASSES_SYNSETS:
+            class_synset = wn.synset(category)
+            similarity = wn.path_similarity(head_word_synset, class_synset)
+            if similarity and similarity > max_similarity:
+                max_class_synset = class_synset
+                max_similarity = similarity
+        return max_class_synset
+    
+    return wrapper

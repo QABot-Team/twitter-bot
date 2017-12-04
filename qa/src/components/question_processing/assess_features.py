@@ -3,7 +3,7 @@ from itertools import chain, combinations
 import pandas as pd
 from pandas import DataFrame
 
-from .lib import get_root_token, get_named_enitity_types, get_head_word, get_bigrams, get_head_word_noun_phrase, get_doc
+from .lib import get_root_token, get_named_enitity_types, get_head_word, get_bigrams, get_head_word_noun_phrase, get_hypernym, get_word_similarity, get_doc
 from .fit_predict import SVM_CLASS, NB_CLASS, TEST_FILE, create_clf, prepare_questions_from_file
 
 DIR = os.path.dirname(__file__)
@@ -11,7 +11,6 @@ DIR = os.path.dirname(__file__)
 clfs = [NB_CLASS, SVM_CLASS]
 feature_funcs = [get_root_token, get_named_enitity_types, get_head_word, get_bigrams, get_head_word_noun_phrase]
 wh_words = ["how", "who", "when", "where", "which", "what"]
-#wh_words = ["how", "who", "why", "when", "where", "which", "what"]
 
 def subsets(_list):
     xs = list(_list)
@@ -80,10 +79,13 @@ def calc_acc(df):
     true_positive += 4
     return true_positive/total_questions
 
-#assessed = assess_features()
-#assessed = DataFrame(assessed, columns=columns)
-#assessed.to_csv(os.path.join(DIR, "feature_assessment", "fine"))
-#get_best_combinations(assessed)
+assessed = assess_features()
+assessed = DataFrame(assessed, columns=columns)
+assessed.to_csv(os.path.join(DIR, "feature_assessment", "fine"))
+get_best_combinations(assessed)
 
-assessed = pd.read_csv(os.path.join(DIR, "feature_assessment", "coarse_best"))
-print(calc_acc(assessed))
+#coarse_best = 0.888663967611336
+#fine_best = 0.8433734939759037
+
+#assessed = pd.read_csv(os.path.join(DIR, "feature_assessment", "fine_best"))
+#print(calc_acc(assessed))
