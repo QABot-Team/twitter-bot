@@ -3,6 +3,23 @@ from spacy.symbols import nsubj, attr, NOUN, PROPN
 from pywsd.lesk import simple_lesk
 from nltk.corpus import wordnet as wn
 
+FINE_CLASSES = ["abbreviation", "expression", "animal", "body", "color", "creative", "currency",
+                "diseases and medicine", "event", "food", "instrument", "language", "letter", "other entities",
+                "plant", "product", "religion", "sport", "substance", "symbol", "technique", "term", 
+                "vehicle", "word", "definition", "description", "manner", "reason", "group", "individual",
+                "title of a person", "description of a person", "city", "country", "mountain", "other location"
+                "state", "code", "count", "date", "distance", "money", "order", "other numbers", "period", 
+                "percent", "speed", "temperature", "size", "weight" ]
+FINE_CLASSES_SYNSETS = ['abbreviation.n.01', 'formula.n.01', 'animal.n.01', 'body.n.01', 'color.n.01',
+                        'creative.a.01', 'currency.n.01', 'event.n.01', 'food.n.01', 'musical_instrument.n.01',
+                        'speech.n.02', 'letter.n.02', 'plant.n.02', 'merchandise.n.01', 'religion.n.01',
+                        'sport.n.01', 'substance.n.01', 'symbol.n.01', 'technique.n.01', 'term.n.01', 'vehicle.n.01',
+                        'word.n.01', 'definition.n.01', 'description.n.01', 'manner.n.01', 'reason.n.02', 'group.n.01',
+                        'person.n.01', 'city.n.01', 'state.n.04', 'mountain.n.01', 'code.v.02', 'count.n.01', 'date.n.01',
+                        'distance.n.01', 'money.n.01', 'rate.v.01','period.n.05', 'percentage.n.01', 'speed.n.01', 'temperature.n.01',
+                        'size.n.01', 'weight.n.01', 'disease.n.01',  'entity.n.01', 'title.n.06', 'description.n.02', 'location.n.01',
+                        'state.n.01', 'numeral.n.01']
+
 nlp = spacy.load('en')
 
 def get_features(questions):
@@ -24,7 +41,7 @@ def get_features(questions):
         elif wh_word == "which":
             pass
         elif wh_word == "what":
-            #enriched_question = enriched_question + question + " " + ' '.join(get_named_enitity_types(doc)) + " " + str(get_root_token(doc)) + str(get_head_word(doc)) + " " + str(get_head_word(doc))
+            #enriched_question = enriched_question question + " " + ' '.join(get_named_enitity_types(doc)) + " " + str(get_root_token(doc)) + str(get_head_word(doc)) + " " + str(get_head_word(doc))
             pass
         else:
             pass
@@ -127,3 +144,17 @@ def get_hypernym(doc, head_word):
             hypernyms.append(synset)
             #print(str(hypernyms))
     return hypernyms
+
+def get_word_similarity(doc, head_word):
+    head_word_synset = simple_lesk(str(doc), str(head_word))
+    if not head_word_synset:
+        return ""
+    max_similarity = -1
+    max_class_synset = ""
+    for category in FINE_CLASSES_SYNSETS:
+        class_synset = wn.synset(category)
+        similarity = wn.path_similarity(head_word_synset, class_synset)
+        if similarity and similarity > max_similarity:
+            max_class_synset = class_synset
+            max_similarity = similarity
+    return max_class_synset
