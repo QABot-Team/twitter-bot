@@ -15,28 +15,31 @@ NB_CLF_NAME = "nb_clf"
 
 DIR = os.path.dirname(__file__)
 
-TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500_first_lvl.label")
-TEST_FILE =  os.path.join(DIR, "labeled_questions", "test_first_lvl.label")
+TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500_second_lvl.label")
+TEST_FILE =  os.path.join(DIR, "labeled_questions", "test_second_lvl.label")
 
 def fit_clf(clf_class, train_qu, train_lb):
     vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', clf_class)])
     vec_clf.fit(train_qu, train_lb)
     return vec_clf
 
-def create_clf(clf_class):
-    train_qu, train_lb = prepare_questions_from_file(TRAIN_FILE)
+def create_clf(clf_class, feature_func = get_features, wh_words=[]):
+    train_qu, train_lb = prepare_questions_from_file(TRAIN_FILE, feature_func, wh_words)
     clf = fit_clf(clf_class, train_qu, train_lb)
     return clf
 
 def score_clf(clf, test_qu, test_lb, clf_name):
     print("{} Accuracy: {}".format(clf_name, clf.score(test_qu, test_lb)))
 
-def prepare_questions_from_file(filepath):
+def prepare_questions_from_file(filepath, feature_func = get_features, wh_words = []):
     file = open(filepath, "r")
     file = list(file)
-    labeled_questions = select_questions(file, [])
+    labeled_questions = select_questions(file, wh_words)
     data = get_questions_and_labels(labeled_questions)
-    feature_enriched_questions = get_features(data["questions"])
+    if callable(feature_func):
+        feature_enriched_questions = feature_func(data["questions"])
+    else:
+        feature_enriched_questions = data["questions"]
     return [feature_enriched_questions, data["labels"]]
 
 def write_clf_2_disk(clf, name):

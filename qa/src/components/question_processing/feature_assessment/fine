@@ -1,0 +1,385 @@
+,wh_word,accuracy,classifier,features,#_test_questions
+0,how,0.38235294117647056,MultinomialNB,,34
+1,how,0.4411764705882353,MultinomialNB,get_root_token,34
+2,how,0.4117647058823529,MultinomialNB,get_named_enitity_types,34
+3,how,0.4117647058823529,MultinomialNB,get_head_word,34
+4,how,0.6470588235294118,MultinomialNB,get_bigrams,34
+5,how,0.38235294117647056,MultinomialNB,get_head_word_noun_phrase,34
+6,how,0.4411764705882353,MultinomialNB,get_root_token get_named_enitity_types,34
+7,how,0.4411764705882353,MultinomialNB,get_root_token get_head_word,34
+8,how,0.6764705882352942,MultinomialNB,get_root_token get_bigrams,34
+9,how,0.47058823529411764,MultinomialNB,get_root_token get_head_word_noun_phrase,34
+10,how,0.4117647058823529,MultinomialNB,get_named_enitity_types get_head_word,34
+11,how,0.6470588235294118,MultinomialNB,get_named_enitity_types get_bigrams,34
+12,how,0.4117647058823529,MultinomialNB,get_named_enitity_types get_head_word_noun_phrase,34
+13,how,0.6470588235294118,MultinomialNB,get_head_word get_bigrams,34
+14,how,0.4411764705882353,MultinomialNB,get_head_word get_head_word_noun_phrase,34
+15,how,0.6764705882352942,MultinomialNB,get_bigrams get_head_word_noun_phrase,34
+16,how,0.4411764705882353,MultinomialNB,get_root_token get_named_enitity_types get_head_word,34
+17,how,0.6470588235294118,MultinomialNB,get_root_token get_named_enitity_types get_bigrams,34
+18,how,0.47058823529411764,MultinomialNB,get_root_token get_named_enitity_types get_head_word_noun_phrase,34
+19,how,0.6764705882352942,MultinomialNB,get_root_token get_head_word get_bigrams,34
+20,how,0.47058823529411764,MultinomialNB,get_root_token get_head_word get_head_word_noun_phrase,34
+21,how,0.7058823529411765,MultinomialNB,get_root_token get_bigrams get_head_word_noun_phrase,34
+22,how,0.6470588235294118,MultinomialNB,get_named_enitity_types get_head_word get_bigrams,34
+23,how,0.4411764705882353,MultinomialNB,get_named_enitity_types get_head_word get_head_word_noun_phrase,34
+24,how,0.6470588235294118,MultinomialNB,get_named_enitity_types get_bigrams get_head_word_noun_phrase,34
+25,how,0.6764705882352942,MultinomialNB,get_head_word get_bigrams get_head_word_noun_phrase,34
+26,how,0.6470588235294118,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams,34
+27,how,0.47058823529411764,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,34
+28,how,0.7058823529411765,MultinomialNB,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,34
+29,how,0.7058823529411765,MultinomialNB,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,34
+30,how,0.6470588235294118,MultinomialNB,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,34
+31,how,0.7058823529411765,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,34
+32,how,0.9411764705882353,SVC,,34
+33,how,0.8823529411764706,SVC,get_root_token,34
+34,how,0.9117647058823529,SVC,get_named_enitity_types,34
+35,how,0.8823529411764706,SVC,get_head_word,34
+36,how,0.9411764705882353,SVC,get_bigrams,34
+37,how,0.9117647058823529,SVC,get_head_word_noun_phrase,34
+38,how,0.8823529411764706,SVC,get_root_token get_named_enitity_types,34
+39,how,0.8529411764705882,SVC,get_root_token get_head_word,34
+40,how,0.8823529411764706,SVC,get_root_token get_bigrams,34
+41,how,0.9117647058823529,SVC,get_root_token get_head_word_noun_phrase,34
+42,how,0.8823529411764706,SVC,get_named_enitity_types get_head_word,34
+43,how,0.9411764705882353,SVC,get_named_enitity_types get_bigrams,34
+44,how,0.8823529411764706,SVC,get_named_enitity_types get_head_word_noun_phrase,34
+45,how,0.9117647058823529,SVC,get_head_word get_bigrams,34
+46,how,0.9117647058823529,SVC,get_head_word get_head_word_noun_phrase,34
+47,how,0.9117647058823529,SVC,get_bigrams get_head_word_noun_phrase,34
+48,how,0.8529411764705882,SVC,get_root_token get_named_enitity_types get_head_word,34
+49,how,0.9117647058823529,SVC,get_root_token get_named_enitity_types get_bigrams,34
+50,how,0.8823529411764706,SVC,get_root_token get_named_enitity_types get_head_word_noun_phrase,34
+51,how,0.8823529411764706,SVC,get_root_token get_head_word get_bigrams,34
+52,how,0.8529411764705882,SVC,get_root_token get_head_word get_head_word_noun_phrase,34
+53,how,0.8823529411764706,SVC,get_root_token get_bigrams get_head_word_noun_phrase,34
+54,how,0.9117647058823529,SVC,get_named_enitity_types get_head_word get_bigrams,34
+55,how,0.9117647058823529,SVC,get_named_enitity_types get_head_word get_head_word_noun_phrase,34
+56,how,0.8823529411764706,SVC,get_named_enitity_types get_bigrams get_head_word_noun_phrase,34
+57,how,0.8823529411764706,SVC,get_head_word get_bigrams get_head_word_noun_phrase,34
+58,how,0.8529411764705882,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams,34
+59,how,0.8529411764705882,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,34
+60,how,0.8823529411764706,SVC,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,34
+61,how,0.9117647058823529,SVC,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,34
+62,how,0.8823529411764706,SVC,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,34
+63,how,0.8529411764705882,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,34
+64,who,0.9361702127659575,MultinomialNB,,47
+65,who,0.9361702127659575,MultinomialNB,get_root_token,47
+66,who,0.9361702127659575,MultinomialNB,get_named_enitity_types,47
+67,who,0.9361702127659575,MultinomialNB,get_head_word,47
+68,who,0.9574468085106383,MultinomialNB,get_bigrams,47
+69,who,0.9361702127659575,MultinomialNB,get_head_word_noun_phrase,47
+70,who,0.9361702127659575,MultinomialNB,get_root_token get_named_enitity_types,47
+71,who,0.9361702127659575,MultinomialNB,get_root_token get_head_word,47
+72,who,0.9574468085106383,MultinomialNB,get_root_token get_bigrams,47
+73,who,0.9361702127659575,MultinomialNB,get_root_token get_head_word_noun_phrase,47
+74,who,0.9361702127659575,MultinomialNB,get_named_enitity_types get_head_word,47
+75,who,0.9574468085106383,MultinomialNB,get_named_enitity_types get_bigrams,47
+76,who,0.9361702127659575,MultinomialNB,get_named_enitity_types get_head_word_noun_phrase,47
+77,who,0.9361702127659575,MultinomialNB,get_head_word get_bigrams,47
+78,who,0.9361702127659575,MultinomialNB,get_head_word get_head_word_noun_phrase,47
+79,who,0.9574468085106383,MultinomialNB,get_bigrams get_head_word_noun_phrase,47
+80,who,0.9361702127659575,MultinomialNB,get_root_token get_named_enitity_types get_head_word,47
+81,who,0.9574468085106383,MultinomialNB,get_root_token get_named_enitity_types get_bigrams,47
+82,who,0.9361702127659575,MultinomialNB,get_root_token get_named_enitity_types get_head_word_noun_phrase,47
+83,who,0.9574468085106383,MultinomialNB,get_root_token get_head_word get_bigrams,47
+84,who,0.9361702127659575,MultinomialNB,get_root_token get_head_word get_head_word_noun_phrase,47
+85,who,0.9574468085106383,MultinomialNB,get_root_token get_bigrams get_head_word_noun_phrase,47
+86,who,0.9574468085106383,MultinomialNB,get_named_enitity_types get_head_word get_bigrams,47
+87,who,0.9361702127659575,MultinomialNB,get_named_enitity_types get_head_word get_head_word_noun_phrase,47
+88,who,0.9574468085106383,MultinomialNB,get_named_enitity_types get_bigrams get_head_word_noun_phrase,47
+89,who,0.9574468085106383,MultinomialNB,get_head_word get_bigrams get_head_word_noun_phrase,47
+90,who,0.9574468085106383,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams,47
+91,who,0.9361702127659575,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,47
+92,who,0.9574468085106383,MultinomialNB,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,47
+93,who,0.9574468085106383,MultinomialNB,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,47
+94,who,0.9574468085106383,MultinomialNB,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,47
+95,who,0.9574468085106383,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,47
+96,who,0.9787234042553191,SVC,,47
+97,who,0.9787234042553191,SVC,get_root_token,47
+98,who,0.9574468085106383,SVC,get_named_enitity_types,47
+99,who,0.9787234042553191,SVC,get_head_word,47
+100,who,0.9787234042553191,SVC,get_bigrams,47
+101,who,1.0,SVC,get_head_word_noun_phrase,47
+102,who,0.9787234042553191,SVC,get_root_token get_named_enitity_types,47
+103,who,0.9787234042553191,SVC,get_root_token get_head_word,47
+104,who,0.9787234042553191,SVC,get_root_token get_bigrams,47
+105,who,1.0,SVC,get_root_token get_head_word_noun_phrase,47
+106,who,0.9574468085106383,SVC,get_named_enitity_types get_head_word,47
+107,who,0.9787234042553191,SVC,get_named_enitity_types get_bigrams,47
+108,who,1.0,SVC,get_named_enitity_types get_head_word_noun_phrase,47
+109,who,0.9787234042553191,SVC,get_head_word get_bigrams,47
+110,who,1.0,SVC,get_head_word get_head_word_noun_phrase,47
+111,who,0.9787234042553191,SVC,get_bigrams get_head_word_noun_phrase,47
+112,who,0.9787234042553191,SVC,get_root_token get_named_enitity_types get_head_word,47
+113,who,0.9787234042553191,SVC,get_root_token get_named_enitity_types get_bigrams,47
+114,who,1.0,SVC,get_root_token get_named_enitity_types get_head_word_noun_phrase,47
+115,who,0.9787234042553191,SVC,get_root_token get_head_word get_bigrams,47
+116,who,1.0,SVC,get_root_token get_head_word get_head_word_noun_phrase,47
+117,who,0.9787234042553191,SVC,get_root_token get_bigrams get_head_word_noun_phrase,47
+118,who,0.9787234042553191,SVC,get_named_enitity_types get_head_word get_bigrams,47
+119,who,1.0,SVC,get_named_enitity_types get_head_word get_head_word_noun_phrase,47
+120,who,0.9787234042553191,SVC,get_named_enitity_types get_bigrams get_head_word_noun_phrase,47
+121,who,0.9787234042553191,SVC,get_head_word get_bigrams get_head_word_noun_phrase,47
+122,who,0.9787234042553191,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams,47
+123,who,1.0,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,47
+124,who,0.9787234042553191,SVC,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,47
+125,who,0.9787234042553191,SVC,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,47
+126,who,0.9787234042553191,SVC,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,47
+127,who,0.9787234042553191,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,47
+128,when,1.0,MultinomialNB,,26
+129,when,1.0,MultinomialNB,get_root_token,26
+130,when,1.0,MultinomialNB,get_named_enitity_types,26
+131,when,1.0,MultinomialNB,get_head_word,26
+132,when,1.0,MultinomialNB,get_bigrams,26
+133,when,1.0,MultinomialNB,get_head_word_noun_phrase,26
+134,when,1.0,MultinomialNB,get_root_token get_named_enitity_types,26
+135,when,1.0,MultinomialNB,get_root_token get_head_word,26
+136,when,1.0,MultinomialNB,get_root_token get_bigrams,26
+137,when,1.0,MultinomialNB,get_root_token get_head_word_noun_phrase,26
+138,when,1.0,MultinomialNB,get_named_enitity_types get_head_word,26
+139,when,1.0,MultinomialNB,get_named_enitity_types get_bigrams,26
+140,when,1.0,MultinomialNB,get_named_enitity_types get_head_word_noun_phrase,26
+141,when,1.0,MultinomialNB,get_head_word get_bigrams,26
+142,when,1.0,MultinomialNB,get_head_word get_head_word_noun_phrase,26
+143,when,1.0,MultinomialNB,get_bigrams get_head_word_noun_phrase,26
+144,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_head_word,26
+145,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_bigrams,26
+146,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_head_word_noun_phrase,26
+147,when,1.0,MultinomialNB,get_root_token get_head_word get_bigrams,26
+148,when,1.0,MultinomialNB,get_root_token get_head_word get_head_word_noun_phrase,26
+149,when,1.0,MultinomialNB,get_root_token get_bigrams get_head_word_noun_phrase,26
+150,when,1.0,MultinomialNB,get_named_enitity_types get_head_word get_bigrams,26
+151,when,1.0,MultinomialNB,get_named_enitity_types get_head_word get_head_word_noun_phrase,26
+152,when,1.0,MultinomialNB,get_named_enitity_types get_bigrams get_head_word_noun_phrase,26
+153,when,1.0,MultinomialNB,get_head_word get_bigrams get_head_word_noun_phrase,26
+154,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams,26
+155,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,26
+156,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,26
+157,when,1.0,MultinomialNB,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,26
+158,when,1.0,MultinomialNB,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,26
+159,when,1.0,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,26
+160,when,1.0,SVC,,26
+161,when,1.0,SVC,get_root_token,26
+162,when,1.0,SVC,get_named_enitity_types,26
+163,when,1.0,SVC,get_head_word,26
+164,when,1.0,SVC,get_bigrams,26
+165,when,1.0,SVC,get_head_word_noun_phrase,26
+166,when,1.0,SVC,get_root_token get_named_enitity_types,26
+167,when,1.0,SVC,get_root_token get_head_word,26
+168,when,1.0,SVC,get_root_token get_bigrams,26
+169,when,1.0,SVC,get_root_token get_head_word_noun_phrase,26
+170,when,1.0,SVC,get_named_enitity_types get_head_word,26
+171,when,1.0,SVC,get_named_enitity_types get_bigrams,26
+172,when,1.0,SVC,get_named_enitity_types get_head_word_noun_phrase,26
+173,when,1.0,SVC,get_head_word get_bigrams,26
+174,when,1.0,SVC,get_head_word get_head_word_noun_phrase,26
+175,when,1.0,SVC,get_bigrams get_head_word_noun_phrase,26
+176,when,1.0,SVC,get_root_token get_named_enitity_types get_head_word,26
+177,when,1.0,SVC,get_root_token get_named_enitity_types get_bigrams,26
+178,when,1.0,SVC,get_root_token get_named_enitity_types get_head_word_noun_phrase,26
+179,when,1.0,SVC,get_root_token get_head_word get_bigrams,26
+180,when,1.0,SVC,get_root_token get_head_word get_head_word_noun_phrase,26
+181,when,1.0,SVC,get_root_token get_bigrams get_head_word_noun_phrase,26
+182,when,1.0,SVC,get_named_enitity_types get_head_word get_bigrams,26
+183,when,1.0,SVC,get_named_enitity_types get_head_word get_head_word_noun_phrase,26
+184,when,1.0,SVC,get_named_enitity_types get_bigrams get_head_word_noun_phrase,26
+185,when,1.0,SVC,get_head_word get_bigrams get_head_word_noun_phrase,26
+186,when,1.0,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams,26
+187,when,1.0,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,26
+188,when,1.0,SVC,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,26
+189,when,1.0,SVC,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,26
+190,when,1.0,SVC,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,26
+191,when,1.0,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,26
+192,where,0.9259259259259259,MultinomialNB,,27
+193,where,0.9259259259259259,MultinomialNB,get_root_token,27
+194,where,0.9259259259259259,MultinomialNB,get_named_enitity_types,27
+195,where,0.9259259259259259,MultinomialNB,get_head_word,27
+196,where,0.9259259259259259,MultinomialNB,get_bigrams,27
+197,where,0.9259259259259259,MultinomialNB,get_head_word_noun_phrase,27
+198,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types,27
+199,where,0.9259259259259259,MultinomialNB,get_root_token get_head_word,27
+200,where,0.9259259259259259,MultinomialNB,get_root_token get_bigrams,27
+201,where,0.9259259259259259,MultinomialNB,get_root_token get_head_word_noun_phrase,27
+202,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_head_word,27
+203,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_bigrams,27
+204,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_head_word_noun_phrase,27
+205,where,0.9259259259259259,MultinomialNB,get_head_word get_bigrams,27
+206,where,0.9259259259259259,MultinomialNB,get_head_word get_head_word_noun_phrase,27
+207,where,0.9259259259259259,MultinomialNB,get_bigrams get_head_word_noun_phrase,27
+208,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_head_word,27
+209,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_bigrams,27
+210,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_head_word_noun_phrase,27
+211,where,0.9259259259259259,MultinomialNB,get_root_token get_head_word get_bigrams,27
+212,where,0.9259259259259259,MultinomialNB,get_root_token get_head_word get_head_word_noun_phrase,27
+213,where,0.9259259259259259,MultinomialNB,get_root_token get_bigrams get_head_word_noun_phrase,27
+214,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_head_word get_bigrams,27
+215,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_head_word get_head_word_noun_phrase,27
+216,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_bigrams get_head_word_noun_phrase,27
+217,where,0.9259259259259259,MultinomialNB,get_head_word get_bigrams get_head_word_noun_phrase,27
+218,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams,27
+219,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,27
+220,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,27
+221,where,0.9259259259259259,MultinomialNB,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,27
+222,where,0.9259259259259259,MultinomialNB,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,27
+223,where,0.9259259259259259,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,27
+224,where,0.9259259259259259,SVC,,27
+225,where,0.9259259259259259,SVC,get_root_token,27
+226,where,0.9259259259259259,SVC,get_named_enitity_types,27
+227,where,0.9259259259259259,SVC,get_head_word,27
+228,where,0.9259259259259259,SVC,get_bigrams,27
+229,where,0.9259259259259259,SVC,get_head_word_noun_phrase,27
+230,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types,27
+231,where,0.9259259259259259,SVC,get_root_token get_head_word,27
+232,where,0.9259259259259259,SVC,get_root_token get_bigrams,27
+233,where,0.9259259259259259,SVC,get_root_token get_head_word_noun_phrase,27
+234,where,0.9259259259259259,SVC,get_named_enitity_types get_head_word,27
+235,where,0.9259259259259259,SVC,get_named_enitity_types get_bigrams,27
+236,where,0.9259259259259259,SVC,get_named_enitity_types get_head_word_noun_phrase,27
+237,where,0.9259259259259259,SVC,get_head_word get_bigrams,27
+238,where,0.9259259259259259,SVC,get_head_word get_head_word_noun_phrase,27
+239,where,0.9259259259259259,SVC,get_bigrams get_head_word_noun_phrase,27
+240,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_head_word,27
+241,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_bigrams,27
+242,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_head_word_noun_phrase,27
+243,where,0.9259259259259259,SVC,get_root_token get_head_word get_bigrams,27
+244,where,0.9259259259259259,SVC,get_root_token get_head_word get_head_word_noun_phrase,27
+245,where,0.9259259259259259,SVC,get_root_token get_bigrams get_head_word_noun_phrase,27
+246,where,0.9259259259259259,SVC,get_named_enitity_types get_head_word get_bigrams,27
+247,where,0.9259259259259259,SVC,get_named_enitity_types get_head_word get_head_word_noun_phrase,27
+248,where,0.9259259259259259,SVC,get_named_enitity_types get_bigrams get_head_word_noun_phrase,27
+249,where,0.9259259259259259,SVC,get_head_word get_bigrams get_head_word_noun_phrase,27
+250,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams,27
+251,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,27
+252,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,27
+253,where,0.9259259259259259,SVC,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,27
+254,where,0.9259259259259259,SVC,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,27
+255,where,0.9259259259259259,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,27
+256,which,0.36363636363636365,MultinomialNB,,11
+257,which,0.36363636363636365,MultinomialNB,get_root_token,11
+258,which,0.36363636363636365,MultinomialNB,get_named_enitity_types,11
+259,which,0.45454545454545453,MultinomialNB,get_head_word,11
+260,which,0.2727272727272727,MultinomialNB,get_bigrams,11
+261,which,0.45454545454545453,MultinomialNB,get_head_word_noun_phrase,11
+262,which,0.36363636363636365,MultinomialNB,get_root_token get_named_enitity_types,11
+263,which,0.36363636363636365,MultinomialNB,get_root_token get_head_word,11
+264,which,0.2727272727272727,MultinomialNB,get_root_token get_bigrams,11
+265,which,0.45454545454545453,MultinomialNB,get_root_token get_head_word_noun_phrase,11
+266,which,0.45454545454545453,MultinomialNB,get_named_enitity_types get_head_word,11
+267,which,0.2727272727272727,MultinomialNB,get_named_enitity_types get_bigrams,11
+268,which,0.45454545454545453,MultinomialNB,get_named_enitity_types get_head_word_noun_phrase,11
+269,which,0.36363636363636365,MultinomialNB,get_head_word get_bigrams,11
+270,which,0.5454545454545454,MultinomialNB,get_head_word get_head_word_noun_phrase,11
+271,which,0.36363636363636365,MultinomialNB,get_bigrams get_head_word_noun_phrase,11
+272,which,0.36363636363636365,MultinomialNB,get_root_token get_named_enitity_types get_head_word,11
+273,which,0.2727272727272727,MultinomialNB,get_root_token get_named_enitity_types get_bigrams,11
+274,which,0.45454545454545453,MultinomialNB,get_root_token get_named_enitity_types get_head_word_noun_phrase,11
+275,which,0.2727272727272727,MultinomialNB,get_root_token get_head_word get_bigrams,11
+276,which,0.5454545454545454,MultinomialNB,get_root_token get_head_word get_head_word_noun_phrase,11
+277,which,0.2727272727272727,MultinomialNB,get_root_token get_bigrams get_head_word_noun_phrase,11
+278,which,0.36363636363636365,MultinomialNB,get_named_enitity_types get_head_word get_bigrams,11
+279,which,0.5454545454545454,MultinomialNB,get_named_enitity_types get_head_word get_head_word_noun_phrase,11
+280,which,0.36363636363636365,MultinomialNB,get_named_enitity_types get_bigrams get_head_word_noun_phrase,11
+281,which,0.45454545454545453,MultinomialNB,get_head_word get_bigrams get_head_word_noun_phrase,11
+282,which,0.2727272727272727,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams,11
+283,which,0.45454545454545453,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,11
+284,which,0.2727272727272727,MultinomialNB,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,11
+285,which,0.45454545454545453,MultinomialNB,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,11
+286,which,0.45454545454545453,MultinomialNB,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,11
+287,which,0.45454545454545453,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,11
+288,which,0.45454545454545453,SVC,,11
+289,which,0.18181818181818182,SVC,get_root_token,11
+290,which,0.36363636363636365,SVC,get_named_enitity_types,11
+291,which,0.5454545454545454,SVC,get_head_word,11
+292,which,0.5454545454545454,SVC,get_bigrams,11
+293,which,0.5454545454545454,SVC,get_head_word_noun_phrase,11
+294,which,0.09090909090909091,SVC,get_root_token get_named_enitity_types,11
+295,which,0.45454545454545453,SVC,get_root_token get_head_word,11
+296,which,0.45454545454545453,SVC,get_root_token get_bigrams,11
+297,which,0.45454545454545453,SVC,get_root_token get_head_word_noun_phrase,11
+298,which,0.36363636363636365,SVC,get_named_enitity_types get_head_word,11
+299,which,0.45454545454545453,SVC,get_named_enitity_types get_bigrams,11
+300,which,0.45454545454545453,SVC,get_named_enitity_types get_head_word_noun_phrase,11
+301,which,0.5454545454545454,SVC,get_head_word get_bigrams,11
+302,which,0.5454545454545454,SVC,get_head_word get_head_word_noun_phrase,11
+303,which,0.5454545454545454,SVC,get_bigrams get_head_word_noun_phrase,11
+304,which,0.36363636363636365,SVC,get_root_token get_named_enitity_types get_head_word,11
+305,which,0.45454545454545453,SVC,get_root_token get_named_enitity_types get_bigrams,11
+306,which,0.45454545454545453,SVC,get_root_token get_named_enitity_types get_head_word_noun_phrase,11
+307,which,0.45454545454545453,SVC,get_root_token get_head_word get_bigrams,11
+308,which,0.45454545454545453,SVC,get_root_token get_head_word get_head_word_noun_phrase,11
+309,which,0.45454545454545453,SVC,get_root_token get_bigrams get_head_word_noun_phrase,11
+310,which,0.5454545454545454,SVC,get_named_enitity_types get_head_word get_bigrams,11
+311,which,0.5454545454545454,SVC,get_named_enitity_types get_head_word get_head_word_noun_phrase,11
+312,which,0.5454545454545454,SVC,get_named_enitity_types get_bigrams get_head_word_noun_phrase,11
+313,which,0.5454545454545454,SVC,get_head_word get_bigrams get_head_word_noun_phrase,11
+314,which,0.45454545454545453,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams,11
+315,which,0.45454545454545453,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,11
+316,which,0.45454545454545453,SVC,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,11
+317,which,0.5454545454545454,SVC,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,11
+318,which,0.5454545454545454,SVC,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,11
+319,which,0.45454545454545453,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,11
+320,what,0.5157593123209169,MultinomialNB,,349
+321,what,0.5472779369627507,MultinomialNB,get_root_token,349
+322,what,0.501432664756447,MultinomialNB,get_named_enitity_types,349
+323,what,0.5272206303724928,MultinomialNB,get_head_word,349
+324,what,0.6160458452722063,MultinomialNB,get_bigrams,349
+325,what,0.5759312320916905,MultinomialNB,get_head_word_noun_phrase,349
+326,what,0.5358166189111748,MultinomialNB,get_root_token get_named_enitity_types,349
+327,what,0.5472779369627507,MultinomialNB,get_root_token get_head_word,349
+328,what,0.6217765042979942,MultinomialNB,get_root_token get_bigrams,349
+329,what,0.5931232091690545,MultinomialNB,get_root_token get_head_word_noun_phrase,349
+330,what,0.5214899713467048,MultinomialNB,get_named_enitity_types get_head_word,349
+331,what,0.6189111747851003,MultinomialNB,get_named_enitity_types get_bigrams,349
+332,what,0.5644699140401146,MultinomialNB,get_named_enitity_types get_head_word_noun_phrase,349
+333,what,0.6246418338108882,MultinomialNB,get_head_word get_bigrams,349
+334,what,0.5759312320916905,MultinomialNB,get_head_word get_head_word_noun_phrase,349
+335,what,0.6389684813753582,MultinomialNB,get_bigrams get_head_word_noun_phrase,349
+336,what,0.5272206303724928,MultinomialNB,get_root_token get_named_enitity_types get_head_word,349
+337,what,0.6160458452722063,MultinomialNB,get_root_token get_named_enitity_types get_bigrams,349
+338,what,0.5931232091690545,MultinomialNB,get_root_token get_named_enitity_types get_head_word_noun_phrase,349
+339,what,0.6131805157593123,MultinomialNB,get_root_token get_head_word get_bigrams,349
+340,what,0.5787965616045845,MultinomialNB,get_root_token get_head_word get_head_word_noun_phrase,349
+341,what,0.6418338108882522,MultinomialNB,get_root_token get_bigrams get_head_word_noun_phrase,349
+342,what,0.6217765042979942,MultinomialNB,get_named_enitity_types get_head_word get_bigrams,349
+343,what,0.5759312320916905,MultinomialNB,get_named_enitity_types get_head_word get_head_word_noun_phrase,349
+344,what,0.6361031518624641,MultinomialNB,get_named_enitity_types get_bigrams get_head_word_noun_phrase,349
+345,what,0.6446991404011462,MultinomialNB,get_head_word get_bigrams get_head_word_noun_phrase,349
+346,what,0.6189111747851003,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams,349
+347,what,0.5787965616045845,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,349
+348,what,0.6389684813753582,MultinomialNB,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,349
+349,what,0.667621776504298,MultinomialNB,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,349
+350,what,0.6389684813753582,MultinomialNB,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,349
+351,what,0.6561604584527221,MultinomialNB,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,349
+352,what,0.7707736389684814,SVC,,349
+353,what,0.7564469914040115,SVC,get_root_token,349
+354,what,0.7707736389684814,SVC,get_named_enitity_types,349
+355,what,0.7421203438395415,SVC,get_head_word,349
+356,what,0.7564469914040115,SVC,get_bigrams,349
+357,what,0.7822349570200573,SVC,get_head_word_noun_phrase,349
+358,what,0.7564469914040115,SVC,get_root_token get_named_enitity_types,349
+359,what,0.7507163323782235,SVC,get_root_token get_head_word,349
+360,what,0.7564469914040115,SVC,get_root_token get_bigrams,349
+361,what,0.7650429799426934,SVC,get_root_token get_head_word_noun_phrase,349
+362,what,0.7392550143266475,SVC,get_named_enitity_types get_head_word,349
+363,what,0.7535816618911175,SVC,get_named_enitity_types get_bigrams,349
+364,what,0.7965616045845272,SVC,get_named_enitity_types get_head_word_noun_phrase,349
+365,what,0.7507163323782235,SVC,get_head_word get_bigrams,349
+366,what,0.8022922636103151,SVC,get_head_word get_head_word_noun_phrase,349
+367,what,0.7564469914040115,SVC,get_bigrams get_head_word_noun_phrase,349
+368,what,0.7593123209169055,SVC,get_root_token get_named_enitity_types get_head_word,349
+369,what,0.7564469914040115,SVC,get_root_token get_named_enitity_types get_bigrams,349
+370,what,0.7765042979942693,SVC,get_root_token get_named_enitity_types get_head_word_noun_phrase,349
+371,what,0.7507163323782235,SVC,get_root_token get_head_word get_bigrams,349
+372,what,0.7707736389684814,SVC,get_root_token get_head_word get_head_word_noun_phrase,349
+373,what,0.7593123209169055,SVC,get_root_token get_bigrams get_head_word_noun_phrase,349
+374,what,0.7421203438395415,SVC,get_named_enitity_types get_head_word get_bigrams,349
+375,what,0.7965616045845272,SVC,get_named_enitity_types get_head_word get_head_word_noun_phrase,349
+376,what,0.7593123209169055,SVC,get_named_enitity_types get_bigrams get_head_word_noun_phrase,349
+377,what,0.7478510028653295,SVC,get_head_word get_bigrams get_head_word_noun_phrase,349
+378,what,0.7507163323782235,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams,349
+379,what,0.7621776504297995,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,349
+380,what,0.7621776504297995,SVC,get_root_token get_named_enitity_types get_bigrams get_head_word_noun_phrase,349
+381,what,0.7535816618911175,SVC,get_root_token get_head_word get_bigrams get_head_word_noun_phrase,349
+382,what,0.7564469914040115,SVC,get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,349
+383,what,0.7593123209169055,SVC,get_root_token get_named_enitity_types get_head_word get_bigrams get_head_word_noun_phrase,349
