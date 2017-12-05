@@ -3,4 +3,4 @@ from models.answer_type import AnswerType
 
 
 def process_answer(passages: Passages, answer_type: AnswerType) -> str:
-    return "amazing answer: " + passages.passages[0]
+    return passages.get_passage_at(0).text

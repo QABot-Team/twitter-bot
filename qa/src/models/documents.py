@@ -7,3 +7,6 @@ class Documents:
 
     def add(self, doc: Document) -> None:
         self.docs.append(doc)
+
+    def get_doc_with_highest_rank(self) -> Document:
+        return self.docs[0]
