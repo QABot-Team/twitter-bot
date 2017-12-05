@@ -37,7 +37,8 @@ def process_answer(passages: Passages, answer_type: AnswerType):
 class TestQAProcess(unittest.TestCase):
 
     def test_process_pipeline(self):
-        answer = answer_question('strange question', process_question, receive_docs, receive_passages, process_answer)
+        answer = answer_question(
+            'strange question', process_question, receive_docs, receive_passages, process_answer, None)
         self.assertEqual(answer, 'amazing answer')
 
 
