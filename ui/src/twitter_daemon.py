@@ -1,11 +1,6 @@
 from tweepy import OAuthHandler, API, Stream
 from twitter_listener import TwitterListener
-
-consumer_key = "eYgDDJoYaNowTPZInYfwtwrVu"
-consumer_secret = "eTEsZlXKXNcEpZ0BpCVOYSwtyBJqxKBCa5WA9DTYv1FGzXxCQR"
-
-access_token = "833302096413937664-srib3XFTjgURkG9G4YYpxC2LEyBiuQL"
-access_token_secret = "m1yI2LIIjk2Mn7dgSsYBm4UeocrU0D9k0sL7E8gq9DQsw"
+from config import consumer_key, consumer_secret, access_token, access_token_secret, own_user_id
 
 
 def start_daemon():
@@ -24,4 +19,4 @@ def start_daemon():
 
     # init and start TwitterListener to get tweet updates
     stream = Stream(auth, listener)
-    stream.filter(follow=['833302096413937664'])
+    stream.filter(follow=[str(own_user_id)])
