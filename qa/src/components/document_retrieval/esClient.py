@@ -31,6 +31,6 @@ class EsClient:
         return docs
 
 
-esclient = EsClient()
-response = esclient.search("arnold")
-print(response[0].text)
+"""esclient = EsClient()
+response = esclient.search("arnold schwarzenegger")
+print(response.docs[1].text)"""

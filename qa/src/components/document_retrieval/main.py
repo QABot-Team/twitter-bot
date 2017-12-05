@@ -4,5 +4,4 @@ from components.document_retrieval.esClient import EsClient
 
 def receive_docs(question_model: QuestionModel) -> Documents:
     client = EsClient()
-    return client.dummy_response()
-    #return Documents()
+    return client.search(' '.join(question_model.keywords))
