@@ -10,24 +10,23 @@ def vectorize(list_of_word_score_dicts):
                 word_index_dict[key] = index
                 index = index + 1
 
-    length = len(word_index_dict)
     res = []
     for word_score_dict in list_of_word_score_dicts:
-        res.append(_build_vector_with(word_score_dict, word_index_dict, length))
+        res.append(_build_vector_with(word_score_dict, word_index_dict))
     return res
 
 
-def _build_vector_with(word_score_dict, word_index_dict, length):
-    vector = [0] * length
+def _build_vector_with(word_score_dict, word_index_dict):
+    vector = [0] * len(word_index_dict)
     for word in word_score_dict:
         vector[word_index_dict[word]] = word_score_dict[word]
     return vector
 
 
 def sim(vector_1, vector_2):
-    zaehler = _scalar_product(vector_1, vector_2)
-    nenner = _vector_length(vector_1) * _vector_length(vector_2)
-    return zaehler / nenner
+    numerator = _scalar_product(vector_1, vector_2)
+    denumerator = _vector_length(vector_1) * _vector_length(vector_2)
+    return numerator / denumerator
 
 
 def _scalar_product(vector_1, vector_2):

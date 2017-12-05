@@ -1,4 +1,5 @@
 import math
+# see: http://stevenloria.com/finding-important-words-in-a-document-using-tf-idf/
 
 
 def tf(word, list_of_words_in_doc):
