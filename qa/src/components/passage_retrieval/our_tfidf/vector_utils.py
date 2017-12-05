@@ -26,6 +26,8 @@ def _build_vector_with(word_score_dict, word_index_dict):
 def sim(vector_1, vector_2):
     numerator = _scalar_product(vector_1, vector_2)
     denumerator = _vector_length(vector_1) * _vector_length(vector_2)
+    if denumerator == 0:
+        return 0
     return numerator / denumerator
 
 
