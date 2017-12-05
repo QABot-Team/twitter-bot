@@ -7,4 +7,4 @@ def process_question(question: str) -> QPResult:
     clf_name = get_clf_name(question)
     clf = get_clf_from_disk(clf_name)
     label = get_predicted_label(question, clf)
-    return QPResult(QuestionModel(question.split()), AnswerType[label])
+    return QPResult(QuestionModel(question.split()), AnswerType[label.upper()])

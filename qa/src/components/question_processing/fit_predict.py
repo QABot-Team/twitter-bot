@@ -59,7 +59,7 @@ def get_clf_from_disk(name) -> Pipeline:
 
 def get_clf_name(question):
     doc = get_doc(question)
-    wh_word = str(get_wh_word(doc))
+    wh_word = str(get_wh_word(doc)).lower()
     if wh_word == "how":
         return SVM_CLF_NAME
     elif wh_word == "who":
