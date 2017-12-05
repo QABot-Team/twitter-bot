@@ -10,25 +10,20 @@ INDEX_NAME = "enwiki"
 
 
 class EsClient:
-    """def __init__(self):
+    def __init__(self):
         self.client = Elasticsearch()
 
-    def search(self, query):
+    def search(self, query) -> Documents:
         s = Search(using=self.client, index=INDEX_NAME) \
             .query("multi_match", query=query, fields=["title", "text"])
         response = s.execute()
         return self.parse_response(response)
 
     def parse_response(self, response):
-        output = {"results": []}
+        documents = Documents()
         for hit in response:
-            categories = [c.encode("utf-8") for c in hit.category]
-            links = [l.encode("utf-8") for l in hit.link]
-            print(links)
-            output["results"].append(
-                {"metadata": hit.meta, "title": hit.title.encode("utf-8"), "text": hit.text.encode("utf-8"),
-                 "categories": categories, "link": links})
-        return output"""
+            documents.add(Document(hit.title.encode("utf-8"), hit.text.encode("utf-8")))
+        return documents
 
     def dummy_response(self) -> Documents:
         docs = Documents()
