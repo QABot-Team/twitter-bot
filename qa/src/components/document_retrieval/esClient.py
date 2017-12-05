@@ -19,7 +19,7 @@ class EsClient:
         response = s.execute()
         return self.parse_response(response)
 
-    def parse_response(self, response):
+    def parse_response(self, response) -> Documents:
         documents = Documents()
         for hit in response:
             documents.add(Document(hit.title.encode("utf-8"), hit.text.encode("utf-8")))
@@ -31,6 +31,6 @@ class EsClient:
         return docs
 
 
-"""esclient = EsClient()
+esclient = EsClient()
 response = esclient.search("arnold")
-print(response["results"][0])"""
+print(response[0].text)
