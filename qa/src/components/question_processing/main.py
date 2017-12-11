@@ -1,8 +1,8 @@
 from models.answer_type import AnswerType
 from models.qp_result import QPResult
 from models.question_model import QuestionModel
-from utils.nlptoolkit import NLPToolkit
 from .fit_predict import get_clf_from_disk, get_predicted_label, get_clf_name
+
 
 def process_question(question: str) -> QPResult:
     clf_name = get_clf_name(question)
