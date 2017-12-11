@@ -7,3 +7,9 @@ class Passages:
 
     def add(self, passage: Passage) -> None:
         self.passages.append(passage)
+
+    def get_passage_at(self, index: int) -> Passage:
+        return self.passages[index]
+
+    def map(self, action) -> []:
+        return list(map(action, self.passages))

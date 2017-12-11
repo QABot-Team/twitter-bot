@@ -11,7 +11,7 @@ from qa_process import answer_question
 def process_question(question: str):
     if not isinstance(question, str):
         raise Exception("process_question expects parameter of type str")
-    return QPResult(QuestionModel([]), AnswerType.PERSON)
+    return QPResult(QuestionModel([]), AnswerType.HUM)
 
 
 def receive_docs(question_model: QuestionModel):
@@ -37,7 +37,8 @@ def process_answer(passages: Passages, answer_type: AnswerType):
 class TestQAProcess(unittest.TestCase):
 
     def test_process_pipeline(self):
-        answer = answer_question('strange question', process_question, receive_docs, receive_passages, process_answer)
+        answer = answer_question(
+            'strange question', process_question, receive_docs, receive_passages, process_answer, None)
         self.assertEqual(answer, 'amazing answer')
 
 

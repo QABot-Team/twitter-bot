@@ -1,0 +1,7 @@
+,wh_word,accuracy,classifier,features,#_test_questions
+32,how,0.9411764705882353,SVC,,34
+101,who,1.0,SVC,get_head_word_noun_phrase,47
+128,when,1.0,MultinomialNB,,26
+192,where,0.9259259259259259,MultinomialNB,,27
+270,which,0.5454545454545454,MultinomialNB,get_head_word get_head_word_noun_phrase,11
+366,what,0.8022922636103151,SVC,get_head_word get_head_word_noun_phrase,349

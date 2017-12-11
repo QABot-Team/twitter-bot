@@ -1,0 +1,7 @@
+,wh_word,accuracy,classifier,features,#_test_questions,Unnamed: 0
+0,how,1.0,MultinomialNB,,34,0.0
+64,who,1.0,MultinomialNB,,43,64.0
+128,when,1.0,MultinomialNB,,26,128.0
+192,where,1.0,MultinomialNB,,27,192.0
+269,which,0.6363636363636364,MultinomialNB,get_head_word get_bigrams,11,269.0
+379,what,0.8538681948424068,SVC,get_root_token get_named_enitity_types get_head_word get_head_word_noun_phrase,349,379.0
