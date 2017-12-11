@@ -2,19 +2,31 @@ from components.passage_retrieval.our_tfidf.tfidf_ranker import TfIdfRanker
 from models.passage import Passage
 from models.passages import Passages
 from models.documents import Documents
-from models.question_model import QuestionModel
+from models.qp_result import QPResult
+from models.answer_type import AnswerType
 from utils.nlptoolkit import NLPToolkit
 
+from components.passage_retrieval.passage_classifier import get_passage, get_most_similar
+from components.passage_retrieval.filter_passages import filter_passages
 
-def receive_passages(docs: Documents, question_model: QuestionModel, nlp_toolkit: NLPToolkit) -> Passages:
+def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolkit) -> Passages:
     # we use the first document
-    doc = docs.get_doc_with_highest_rank()
-    doc_sections = nlp_toolkit.text_to_sentences(str(doc.text))
+    #doc = docs.get_doc_with_highest_rank()
+    doc_sections = []
+    for doc in docs.docs:
+        _sections = nlp_toolkit.text_to_sentences(str(doc.text))
+        doc_sections += _sections
+    doc_sections = set(doc_sections)
+    doc_sections = list(doc_sections)
+    doc_sections = filter_passages(doc_sections, qp_result.answer_type, nlp_toolkit)
+    #doc_sections = nlp_toolkit.text_to_sentences(str(doc.text))
+    #get_passage(doc_sections, ' '.join(question_model.keywords))
+    get_most_similar(doc_sections, qp_result.question_model.question)
     passages = Passages()
     for section in doc_sections:
         passages.add(Passage(section))
 
-    tfidf = TfIdfRanker(nlp_toolkit.extract_stop_words)
-    ranked_passages = tfidf.calc_passage_ranks(passages, question_model)
+    tfidf = TfIdfRanker(nlp_toolkit.remove_stop_words)
+    ranked_passages = tfidf.calc_passage_ranks(passages, qp_result.question_model)
 
     return ranked_passages

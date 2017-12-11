@@ -3,8 +3,8 @@ from elasticsearch_dsl import Search
 import json
 from pprint import pprint
 
-from qa.src.models.document import Document
-from qa.src.models.documents import Documents
+from models.document import Document
+from models.documents import Documents
 
 INDEX_NAME = "enwiki"
 

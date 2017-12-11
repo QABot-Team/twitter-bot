@@ -14,3 +14,5 @@ while True:
     question = input('Enter a question: ')
     answer = process_answer_question(question)
     print('Answer: ' + answer)
+    print()
+    print()
