@@ -1,3 +1,6 @@
+# python object dump files
+*.pkl
+
 # IDE
 .idea
 .vscode
