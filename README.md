@@ -2,6 +2,27 @@
 
 Simple knowledge based question answering system for factoid questions with the help of wikipedia.
 
+## Project setup
+
+We use [pipenv](https://pypi.python.org/pypi/pipenv) to install project dependencies and manage virtual environments
+(where the dependencies will be installed).
+To install pipenv simply issue:
+
+    pip install pipenv
+
+Make sure you the terminal points to the directory where the `Pipefile` is located. Then you can install all dependencies
+listed in the `Pipfile` by executing
+
+    pipenv install
+    pipenv run python -m spacy download en
+
+The latter command downloads the spacy model into the virtual environment.
+
+Now you can execute our application with the following command:
+
+    pipenv run python src/main.py
+
+
 ## Link collection
 
 * To learn more about question answering have a look at [21 - 1 - What is Question Answering-NLP-Dan Jurafsky & Chris Manning](https://www.youtube.com/watch?v=DAHZPL6voc4) or the whole draft about [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/).
