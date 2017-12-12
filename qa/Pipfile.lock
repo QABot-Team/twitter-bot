@@ -1,20 +1,20 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7e54a89a16e0186c4f4ebb0ff8c34f88c6c715965190744c5fc1ba7aef7ea00c"
+            "sha256": "40088ea5ddbfab3b47ae27cf687df59db628a4e0de39c57d5f92c8602541da89"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
             "implementation_version": "3.6.2",
-            "os_name": "posix",
-            "platform_machine": "x86_64",
+            "os_name": "nt",
+            "platform_machine": "AMD64",
             "platform_python_implementation": "CPython",
-            "platform_release": "17.2.0",
-            "platform_system": "Darwin",
-            "platform_version": "Darwin Kernel Version 17.2.0: Fri Sep 29 18:27:05 PDT 2017; root:xnu-4570.20.62~3/RELEASE_X86_64",
+            "platform_release": "10",
+            "platform_system": "Windows",
+            "platform_version": "10.0.15063",
             "python_full_version": "3.6.2",
             "python_version": "3.6",
-            "sys_platform": "darwin"
+            "sys_platform": "win32"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -167,6 +167,12 @@
             ],
             "version": "==1.13.3"
         },
+        "oauthlib": {
+            "hashes": [
+                "sha256:ce57b501e906ff4f614e71c36a3ab9eacbb96d35c24d1970d2539bbc3ec70ce1"
+            ],
+            "version": "==2.0.6"
+        },
         "pathlib": {
             "hashes": [
                 "sha256:6940718dfc3eff4258203ad5021090933e5c04707d5ca8cc9e73c94a7894ea9f"
@@ -185,6 +191,14 @@
                 "sha256:a6b3a9e34634600e3e410ec25e0debed4b65a47eb37514a063d189d1c425b4dd"
             ],
             "version": "==1.0.0"
+        },
+        "pyreadline": {
+            "hashes": [
+                "sha256:65540c21bfe14405a3a77e4c085ecfce88724743a4ead47c66b84defcf82c32e",
+                "sha256:9ce5fa65b8992dfa373bddc5b6e0864ead8f291c94fbfec05fbd5c836162e67b",
+                "sha256:4530592fc2e85b25b1a9f79664433da09237c1a270e4d78ea5aa3a2c7229e2d1"
+            ],
+            "version": "==2.1"
         },
         "python-dateutil": {
             "hashes": [
@@ -229,6 +243,13 @@
                 "sha256:9c443e7324ba5b85070c4a818ade28bfabedf16ea10206da1132edaa6dda237e"
             ],
             "version": "==2.18.4"
+        },
+        "requests-oauthlib": {
+            "hashes": [
+                "sha256:50a8ae2ce8273e384895972b56193c7409601a66d4975774c60c2aed869639ca",
+                "sha256:883ac416757eada6d3d07054ec7092ac21c7f35cb1d2cf82faf205637081f468"
+            ],
+            "version": "==0.8.0"
         },
         "scikit-learn": {
             "hashes": [
@@ -333,6 +354,13 @@
                 "sha256:df32e6f127dc0ccbc675eadb33f749abbcb8f174c5cb9ec49c0cdb73aa737377"
             ],
             "version": "==4.19.5"
+        },
+        "tweepy": {
+            "hashes": [
+                "sha256:12449b5ca16b0be6a3ea68fb41992627227b48bbad8cd7d5912039340d36badc",
+                "sha256:f00ccf5f48c30d559ce0b750dfe3b2df6668dc799d8ce276fd90bfaa68845a58"
+            ],
+            "version": "==3.5.0"
         },
         "ujson": {
             "hashes": [

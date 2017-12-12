@@ -15,6 +15,7 @@ listed in the `Pipfile` by executing
 
     pipenv install
     pipenv run python -m spacy download en
+    pipenv run python -m nltk.downloader all
 
 The latter command downloads the spacy model into the virtual environment.
 

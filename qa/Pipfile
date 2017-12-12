@@ -13,6 +13,7 @@ spacy = "*"
 pywsd = "*"
 sklearn = "*"
 scipy = "*"
+tweepy = "*"
 
 
 [dev-packages]
