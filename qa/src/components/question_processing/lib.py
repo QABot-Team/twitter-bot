@@ -21,7 +21,7 @@ FINE_CLASSES_SYNSETS = ['abbreviation.n.01', 'formula.n.01', 'animal.n.01', 'bod
                         'size.n.01', 'weight.n.01', 'disease.n.01',  'entity.n.01', 'title.n.06', 'description.n.02', 'location.n.01',
                         'state.n.01', 'numeral.n.01']
 
-nlp = spacy.load('en')
+nlp = spacy.load('en_core_web_sm')
 
 def get_features(questions):
     feature_enriched_questions = []

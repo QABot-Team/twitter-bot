@@ -3,9 +3,9 @@ import spacy
 
 class NLPToolkit:
     def __init__(self):
-        self.nlp = spacy.load('en')
+        self.nlp = spacy.load('en_core_web_sm')
 
-    def extract_stop_words(self, text: str) -> list:
+    def remove_stop_words(self, text: str) -> list:
         doc = self.nlp(text)
         result = []
         for token in doc:
@@ -40,3 +40,21 @@ class NLPToolkit:
         doc = self.nlp(text)
 
         return [token.text + "|" + token.pos_ for token in doc]
+
+    def token_is_wh_w(self, token):
+        return token.tag_ == "WDT" or token.tag_ == "WP" or token.tag_ == "WP$" or token.tag_ == "WRB"
+
+    def get_wh_word(self, doc):
+        for token in doc:
+            if self.token_is_wh_w(token):
+                return token
+
+    def get_root_token(self, doc):
+        for token in doc:
+            if token.dep_ == "ROOT":
+                return token
+
+    def get_named_enitity_types(self, text):
+        doc = self.nlp(text)
+        ents = [(e.label_) for e in doc.ents]
+        return ents
