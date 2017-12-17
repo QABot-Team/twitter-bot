@@ -4,25 +4,19 @@ Simple knowledge based question answering system for factoid questions with the 
 
 ## Project setup
 
-We use [pipenv](https://pypi.python.org/pypi/pipenv) to install project dependencies and manage virtual environments
-(where the dependencies will be installed).
-To install pipenv simply issue:
+We document our dependencies in the [requirements.txt](./requirements.txt) file. To install all dependencies simply
+execute the following command:
 
-    pip install pipenv
+    pip install -r requirements.txt
 
-Make sure you the terminal points to the directory where the `Pipefile` is located. Then you can install all dependencies
-listed in the `Pipfile` by executing
+To download the necessary data models for spacy and nltk execute the following commands:
 
-    pipenv install
     pipenv run python -m spacy download en
     pipenv run python -m nltk.downloader all
 
-The latter command downloads the spacy model into the virtual environment.
+Then you can run our application with the following command:
 
-Now you can execute our application with the following command:
-
-    pipenv run python src/main.py
-
+    python src/main.py
 
 ## Link collection
 
