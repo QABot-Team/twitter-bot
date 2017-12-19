@@ -8,10 +8,12 @@ parser.add_argument("--twitter", help="set this option to start the app by the t
                     action="store_true")
 parser.add_argument("--log", help="set the log level threshold",
                     default="info", type=str, choices=["debug", "info", "warning", "error", "critical"])
+parser.add_argument("--logfile", help="name for the logfile",
+                    default="", type=str)
 
 args = parser.parse_args()
 
-Logger.config(args.log)
+Logger.config(args.log, args.logfile)
 
 if args.twitter:
     twitter_daemon.start_daemon()

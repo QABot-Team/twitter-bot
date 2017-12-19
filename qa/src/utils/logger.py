@@ -11,11 +11,11 @@ def get_logger():
 class Logger:
 
     @staticmethod
-    def config(loglevel):
+    def config(loglevel, filename=''):
         numeric_level = getattr(logging, loglevel.upper(), None)
         if not isinstance(numeric_level, int):
             raise ValueError('Invalid log level: %s' % loglevel)
-        logging.basicConfig(level=numeric_level)
+        logging.basicConfig(filename=filename, level=numeric_level)
 
     @staticmethod
     def debug(message):
