@@ -15,7 +15,8 @@ class Logger:
         numeric_level = getattr(logging, loglevel.upper(), None)
         if not isinstance(numeric_level, int):
             raise ValueError('Invalid log level: %s' % loglevel)
-        logging.basicConfig(filename=filename, level=numeric_level)
+        log_format = '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+        logging.basicConfig(filename=filename, level=numeric_level, format=log_format)
 
     @staticmethod
     def debug(message):
