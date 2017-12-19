@@ -1,11 +1,14 @@
 from qa_process_impl import process_answer_question
 from argparse import ArgumentParser
 from ui import twitter_daemon
+import logging
 
 parser = ArgumentParser(description="Jarvis (Question Answering System)")
 parser.add_argument("--twitter", help="set this option to start the app by the twitter daemon",
                     action="store_true")
 args = parser.parse_args()
+
+logging.basicConfig(level=logging.INFO)
 
 if args.twitter:
     twitter_daemon.start_daemon()
