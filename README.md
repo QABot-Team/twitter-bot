@@ -11,12 +11,13 @@ execute the following command:
 
 To download the necessary data models for spacy and nltk execute the following commands:
 
-    pipenv run python -m spacy download en
-    pipenv run python -m nltk.downloader all
+    python -m spacy download en
+    python -m nltk.downloader all
+    python -m spacy download en_core_web_lg
 
 Then you can run our application with the following command:
 
-    python src/main.py
+    python src/main.py [--help]
 
 ## Link collection
 
