@@ -13,6 +13,7 @@ SVM_CLF_NAME = "svm_clf"
 NB_CLF_NAME = "nb_clf"
 
 DIR = os.path.dirname(__file__)
+BUILD_PATH = os.getcwd() + '/build'
 
 TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500_second_lvl.label")
 TEST_FILE = os.path.join(DIR, "labeled_questions", "test_second_lvl.label")
@@ -47,13 +48,14 @@ def prepare_questions_from_file(filepath, feature_func = get_features, wh_words 
 
 
 def write_clf_2_disk(clf, name):
-    joblib.dump(clf, os.path.join(DIR, name + '.pkl'), compress=9)
+    joblib.dump(clf, os.path.join(BUILD_PATH, name + '.pkl'), compress=9)
 
 
 def get_clf_from_disk(name) -> Pipeline:
+    os.makedirs(BUILD_PATH, exist_ok=True)
     clf = None
     try:
-        clf = joblib.load(os.path.join(DIR, name + '.pkl'))
+        clf = joblib.load(os.path.join(BUILD_PATH, name + '.pkl'))
     except:
         if name == NB_CLF_NAME:
             clf = create_clf(NB_CLASS)

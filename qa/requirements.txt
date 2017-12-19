@@ -1,0 +1,7 @@
+elasticsearch==5.5.1
+elasticsearch-dsl==5.4.0
+pywsd==1.0.4
+scipy==1.0.0
+sklearn==0.0
+spacy==2.0.5
+tweepy==3.5.0

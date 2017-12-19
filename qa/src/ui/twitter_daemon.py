@@ -1,6 +1,6 @@
 from tweepy import OAuthHandler, API, Stream
-from twitter_listener import TwitterListener
-from config import consumer_key, consumer_secret, access_token, access_token_secret, own_user_id
+from ui.twitter_listener import TwitterListener
+from ui.config import consumer_key, consumer_secret, access_token, access_token_secret, own_user_id
 
 
 def start_daemon():
@@ -19,4 +19,5 @@ def start_daemon():
 
     # init and start TwitterListener to get tweet updates
     stream = Stream(auth, listener)
+    print("Twitter Daemon is running...")
     stream.filter(follow=[str(own_user_id)])

@@ -2,6 +2,23 @@
 
 Simple knowledge based question answering system for factoid questions with the help of wikipedia.
 
+## Project setup
+
+We document our dependencies in the [requirements.txt](./requirements.txt) file. To install all dependencies simply
+execute the following command:
+
+    pip install -r requirements.txt
+
+To download the necessary data models for spacy and nltk execute the following commands:
+
+    python -m spacy download en
+    python -m nltk.downloader all
+    python -m spacy download en_core_web_lg
+
+Then you can run our application with the following command:
+
+    python src/main.py [--help]
+
 ## Link collection
 
 * To learn more about question answering have a look at [21 - 1 - What is Question Answering-NLP-Dan Jurafsky & Chris Manning](https://www.youtube.com/watch?v=DAHZPL6voc4) or the whole draft about [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/).
