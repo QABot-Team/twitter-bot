@@ -19,6 +19,17 @@ Then you can run our application with the following command:
 
     python src/main.py [--help]
 
+## Running tests
+
+To write test cases we use the python [unittest](https://docs.python.org/3/library/unittest.html) framework.
+To run our tests simply execute the following command:
+
+    python setup.py test
+
+This uses [pytest](https://docs.pytest.org/en/latest/contents.html) as test runner. If `pytest` is not installed
+it will be downloaded automatically.
+
+
 ## Logging
 
 For logging we use the `Logger` facade class which internal uses the [python logger module](https://docs.python.org/3.6/library/logging.html).
