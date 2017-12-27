@@ -5,6 +5,9 @@ python:
 install:
   - cd qa
   - pip install -r requirements.txt
+  - python -m spacy download en
+  - python -m nltk.downloader all
+  - python -m spacy download en_core_web_lg
 # command to run tests
 script:
   - python setup.py test
