@@ -11,12 +11,45 @@ execute the following command:
 
 To download the necessary data models for spacy and nltk execute the following commands:
 
-    pipenv run python -m spacy download en
-    pipenv run python -m nltk.downloader all
+    python -m spacy download en
+    python -m nltk.downloader all
+    python -m spacy download en_core_web_lg
 
 Then you can run our application with the following command:
 
-    python src/main.py
+    python src/main.py [--help]
+
+## Running tests
+
+To write test cases we use the python [unittest](https://docs.python.org/3/library/unittest.html) framework.
+To run our tests simply execute the following command:
+
+    python setup.py test
+
+This uses [pytest](https://docs.pytest.org/en/latest/contents.html) as test runner. If `pytest` is not installed
+it will be downloaded automatically.
+
+
+## Logging
+
+For logging we use the `Logger` facade class which internal uses the [python logger module](https://docs.python.org/3.6/library/logging.html).
+Our facade automatically adds the module name from which the log message was created.
+
+Example:
+
+    from utils.logger import Logger
+    Logger.info('Start answer processing pipeline')
+
+We use different log level for different purposes.
+
+| **Level** | **When it’s used**                                                                                                                                                     | **Method call**          |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
+| DEBUG     | Detailed information, typically of interest only when diagnosing problems.                                                                                             | Logger.debug(message)    |
+| INFO      | Confirmation that things are working as expected.                                                                                                                      | Logger.info(message)     |
+| WARNING   | An indication that something unexpected happened, or indicative of some problem in the near future (e.g. ‘disk space low’). The software is still working as expected. | Logger.warning(message)  |
+| ERROR     | Due to a more serious problem, the software has not been able to perform some function.                                                                                | Logger.error(message)    |
+| CRITICAL  | A serious error, indicating that the program itself may be unable to continue running.                                                                                 | Logger.critical(message) |
+
 
 ## Link collection
 

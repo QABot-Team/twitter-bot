@@ -3,13 +3,13 @@ from models.passage import Passage
 from models.passages import Passages
 from models.documents import Documents
 from models.qp_result import QPResult
-from models.answer_type import AnswerType
+from utils.logger import Logger
 from utils.nlptoolkit import NLPToolkit
-
-from components.passage_retrieval.passage_classifier import get_passage, get_most_similar
+from components.passage_retrieval.passage_classifier import get_most_similar
 from components.passage_retrieval.filter_passages import filter_passages
 
 def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolkit) -> Passages:
+    Logger.info('started')
     # we use the first document
     #doc = docs.get_doc_with_highest_rank()
     doc_sections = []
@@ -29,4 +29,5 @@ def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolk
     tfidf = TfIdfRanker(nlp_toolkit.remove_stop_words)
     ranked_passages = tfidf.calc_passage_ranks(passages, qp_result.question_model)
 
+    Logger.info('finished')
     return ranked_passages

@@ -11,7 +11,7 @@ from qa_process import answer_question
 def process_question(question: str):
     if not isinstance(question, str):
         raise Exception("process_question expects parameter of type str")
-    return QPResult(QuestionModel([]), AnswerType.HUM)
+    return QPResult(QuestionModel([]), AnswerType.MONEY)
 
 
 def receive_docs(question_model: QuestionModel):
@@ -20,7 +20,7 @@ def receive_docs(question_model: QuestionModel):
     return Documents()
 
 
-def receive_passages(docs: Documents, question_model: QuestionModel):
+def receive_passages(docs: Documents, question_model: QuestionModel, nlp_toolkit):
     if not isinstance(docs, Documents):
         raise Exception("receive_passages expects parameter of type Documents")
     return Passages()

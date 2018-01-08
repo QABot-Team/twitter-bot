@@ -1,7 +1,7 @@
 import unittest
 
 import spacy
-
+import os
 from components.passage_retrieval.our_tfidf.tfidf_ranker import TfIdfRanker
 from models.passage import Passage
 from models.passages import Passages
@@ -9,10 +9,12 @@ from models.question_model import QuestionModel
 
 nlp = spacy.load('en')
 
+DIR = os.path.dirname(__file__)
+
 
 def read_file(filename):
     result = ""
-    file = open(filename)
+    file = open(os.path.join(DIR, filename))
     for line in file:
         result += " " + line
     file.close()
