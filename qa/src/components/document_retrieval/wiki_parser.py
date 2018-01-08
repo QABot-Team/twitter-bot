@@ -8,12 +8,7 @@ EXCLUDES = ["(disambiguation)", "(surname)"]
 class WikiParser:
 
     @staticmethod
-    def parse_source_text(es_doc) -> Document:
-        doc = Document(es_doc['title'], es_doc['text'])
-
-        src = es_doc['source_text']
-        headers = es_doc['heading']
-
+    def parse_source_text(doc: Document, src: str, headers: []) -> Document:
         # remove xml comments
         src = re.sub(r'(<!--([\s]*|.)*-->)', '', src)
         # remove references
@@ -44,11 +39,15 @@ class WikiParser:
             src = src.replace(short_desc, "")
             doc.set_sort_desc(short_desc)
 
+        # remove everything in double curly braces (e.g. {{Text}}) - do we have curly braces inside the text ??
+        # src = re.sub(r'{{([^(}})]*)}}', '', src)
+
         # parse paragraphs
         for header in headers:
             hdr = "=== " + header.strip() + " ==="
-            pos_start = src.find(hdr)
-            pos_end = src.find("===", pos_start + len(hdr))
+            match = re.search('===(\s?)' + header.strip() + '(\s?)===', src)
+            pos_start = -1 if match is None else match.start()
+            pos_end = src.find("==", pos_start + len(hdr))
             if pos_start > 0:
                 paragraph = src[pos_start:pos_end]
                 doc.add_passage(paragraph)
@@ -58,7 +57,10 @@ class WikiParser:
 
     def parse_docs(self, raw_docs: list) -> Documents:
         docs = Documents()
-        for doc in raw_docs:
-            docs.add(self.parse_source_text(doc))
+        for es_doc in raw_docs:
+            doc = Document(es_doc['title'], es_doc['source_text'])
+            src = es_doc['source_text']
+            headers = es_doc['heading']
+            docs.add(self.parse_source_text(doc, src, headers))
 
         return docs
