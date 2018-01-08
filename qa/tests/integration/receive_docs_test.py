@@ -2,8 +2,19 @@ import unittest
 
 from components import document_retrieval
 from models.question_model import QuestionModel
+import urllib3
 
 
+def elastic_connection_established():
+    try:
+        http = urllib3.PoolManager()
+        http.request('GET', 'http://localhost:9200')
+        return True
+    except Exception as err:
+        return False
+
+
+@unittest.skipUnless(elastic_connection_established(), "requires elastic connection")
 class TestReceiveDocs(unittest.TestCase):
 
     def test_returns_main_article(self):

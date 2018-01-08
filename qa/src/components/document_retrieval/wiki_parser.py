@@ -58,7 +58,7 @@ class WikiParser:
     def parse_docs(self, raw_docs: list) -> Documents:
         docs = Documents()
         for es_doc in raw_docs:
-            doc = Document(es_doc['title'], es_doc['source_text'])
+            doc = Document(es_doc['title'], es_doc['text'])
             src = es_doc['source_text']
             headers = es_doc['heading']
             docs.add(self.parse_source_text(doc, src, headers))

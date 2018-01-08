@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.6"
+# command to install dependencies
+install:
+  - cd qa
+  - pip install -r requirements.txt
+  - python -m spacy download en > /dev/null
+  - python -m nltk.downloader all > /dev/null
+  - python -m spacy download en_core_web_lg > /dev/null
+# command to run tests
+script:
+  - python setup.py test
