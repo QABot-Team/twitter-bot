@@ -11,7 +11,7 @@ from qa_process import answer_question
 def process_question(question: str):
     if not isinstance(question, str):
         raise Exception("process_question expects parameter of type str")
-    return QPResult(QuestionModel([]), AnswerType.MONEY)
+    return QPResult(QuestionModel([], ""), AnswerType.MONEY)
 
 
 def receive_docs(question_model: QuestionModel):

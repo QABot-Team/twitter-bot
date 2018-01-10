@@ -44,7 +44,8 @@ class TfIdfTest(unittest.TestCase):
         passages.add(Passage("c++ c++java java python python"))
         passages.add(Passage("loop loop code sort sort"))
         passages.add(Passage("class class code array array stack stack"))
-        question = QuestionModel(["java", "stack", "overflow"])
+        question_str = "java stack overflow"
+        question = QuestionModel(question_str.split(), question_str)
 
         tfidf = TfIdfRanker(lambda text: text.split())
         ranked_passages = tfidf.calc_passage_ranks(passages, question)
@@ -58,7 +59,8 @@ class TfIdfTest(unittest.TestCase):
         passages = Passages()
         for section in arnold_sections:
             passages.add(Passage(section))
-        question = QuestionModel(text_to_token_list("Who is the brother of Arnold Schwarzenegger"))
+        question_str = "Who is the brother of Arnold Schwarzenegger"
+        question = QuestionModel(text_to_token_list(question_str), question_str)
 
         tfidf = TfIdfRanker(text_to_token_list)
         ranked_passages = tfidf.calc_passage_ranks(passages, question)
