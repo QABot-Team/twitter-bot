@@ -1,5 +1,5 @@
 import os
-from .lib import select_questions, get_questions_and_labels, get_features, get_doc, get_wh_word
+from .lib import select_questions, get_questions_and_labels, get_features, get_doc, get_wh_word, token_is_wh_w
 from sklearn import svm
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.externals import joblib
@@ -88,6 +88,19 @@ def get_predicted_label(question, clf):
     feature_enriched_question = get_features([question])
     return clf.predict(feature_enriched_question)[0]
 
+
+def get_key_words(question):
+    doc = get_doc(question)
+    keywords = []
+    for token in doc:
+        if token_is_wh_w(token):
+            continue
+        if str(token) == "?":
+            continue
+        if token.is_stop:
+            continue
+        keywords.append(str(token))
+    return keywords
 
 def main():
     svm_clf = create_clf(SVM_CLASS)
