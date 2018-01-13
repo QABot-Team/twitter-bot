@@ -87,5 +87,5 @@ get_best_combinations(assessed)
 #coarse_best = 0.888663967611336
 #fine_best = 0.8433734939759037
 
-#assessed = pd.read_csv(os.path.join(DIR, "feature_assessment", "fine_best"))
-#print(calc_acc(assessed))
+assessed = pd.read_csv(os.path.join(DIR, "feature_assessment", "fine_best"))
+print(calc_acc(assessed))

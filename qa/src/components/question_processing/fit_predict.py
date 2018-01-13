@@ -15,8 +15,8 @@ NB_CLF_NAME = "nb_clf"
 DIR = os.path.dirname(__file__)
 BUILD_PATH = os.getcwd() + '/build'
 
-TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500_second_lvl.label")
-TEST_FILE = os.path.join(DIR, "labeled_questions", "test_second_lvl.label")
+TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500.label")
+TEST_FILE = os.path.join(DIR, "labeled_questions", "test_questions.label")
 
 
 def fit_clf(clf_class, train_qu, train_lb):

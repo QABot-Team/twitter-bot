@@ -21,7 +21,7 @@ from models.answer_type import AnswerType
 import spacy
 
 #DIR = os.path.dirname(__file__)
-nlp = spacy.load('en')
+#nlp = spacy.load('en')
 
 def prepare_trainingsdata():
     data = json.load(open('train-v1.1.json'))
@@ -91,9 +91,9 @@ def get_number_of_named_entities(passage, entity):
             count = count + 1
     return count
         
+nlp = spacy.load('en_core_web_lg')
         
 def get_most_similar(passages, question):
-    nlp = spacy.load('en_core_web_lg')
 
     q_doc = nlp(question)
     max_sim = 0.0
