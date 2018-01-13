@@ -90,11 +90,10 @@ def get_number_of_named_entities(passage, entity):
         if ent.label_ == entity:
             count = count + 1
     return count
-        
-nlp = spacy.load('en_core_web_lg')
+
         
 def get_most_similar(passages, question):
-
+    nlp = spacy.load('en_core_web_lg')
     q_doc = nlp(question)
     max_sim = 0.0
     max_sim_passage = ""
