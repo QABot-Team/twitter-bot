@@ -82,6 +82,9 @@ def get_clf_name(question):
         return NB_CLF_NAME
     elif wh_word == "what":
         return SVM_CLF_NAME
+    else:
+        return SVM_CLF_NAME
+        
 
 
 def get_predicted_label(question, clf):

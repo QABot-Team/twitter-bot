@@ -14,4 +14,4 @@ def process_question(question: str) -> QPResult:
     # print(keywords)
     # print(AnswerType[label.upper()])
     Logger.info('finished')
-    return QPResult(QuestionModel(keywords, question), AnswerType[label.upper()])
+    return QPResult(QuestionModel(keywords, question), AnswerType[label])
