@@ -15,8 +15,8 @@ NB_CLF_NAME = "nb_clf"
 
 DIR = os.path.dirname(__file__)
 
-TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500.label")
-TEST_FILE =  os.path.join(DIR, "labeled_questions", "test_questions.label")
+TRAIN_FILE = os.path.join(DIR, "labeled_questions", "train_5500_second_lvl.label")
+TEST_FILE =  os.path.join(DIR, "labeled_questions", "test_second_lvl.label")
 
 def fit_clf(clf_class, train_qu, train_lb):
     vec_clf = Pipeline([('vect', CountVectorizer()), ('clf', clf_class)])
@@ -73,6 +73,8 @@ def get_clf_name(question):
     elif wh_word == "which":
         return NB_CLF_NAME
     elif wh_word == "what":
+        return SVM_CLF_NAME
+    else:
         return SVM_CLF_NAME
 
 def get_predicted_label(question, clf):

@@ -45,9 +45,24 @@ def split_fine():
                 line_fine = ' '.join(words)
                 file_fine.write(line_fine + "\n")
 
+def write_labels_to_file():
+    file = open("labeled_questions/train_5500.label", "r")
+    file_first_lvl = open("labeled_questions/labels.label", "w+")
+    counter = 1
+    labels = []
+    for line in file:
+        words = line.split()
+        first_lvl_label, second_lvl_label = words[0].split(":")
+        label = first_lvl_label + "_" + second_lvl_label
+        labels.append(label)
+    labels = list(set(labels))
+    for label in labels:    
+        enum = label + " = " + str(counter)
+        file_first_lvl.write(enum + "\n")
+        counter += 1
 #prepare_fine(["what", "which", "when","how" , "who", "where", "why"])
 
 #prepare_coarse()
 
-split_fine()
-
+#split_fine()
+write_labels_to_file()

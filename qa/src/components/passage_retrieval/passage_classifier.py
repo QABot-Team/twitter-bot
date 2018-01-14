@@ -71,11 +71,12 @@ def split_trainingsdata_into_sentences():
          
             #trainings_data_sentence.append({'question': question, 'answers': qas, 'relevant': relevant_sentences, 'not_relevant': not_relevant_sentences})
     #with open('trainings_data_sentence.json', 'w') as outfile:
-     #   json.dump({'data': trainings_data_sentence}, outfile)   
+    #   json.dump({'data': trainings_data_sentence}, outfile)   
 def get_similiarity(question, answer):
     q_doc = nlp(question)
     q_ans = nlp(answer)
-    return q_doc.similarity(q_ans)          
+    return q_doc.similarity(q_ans)
+      
 def get_number_of_keywords(passage, keywords):
     count = 0
     passage_words = passage.split()

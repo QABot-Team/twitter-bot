@@ -23,7 +23,6 @@ from models.answer_type import AnswerType
     SUBSTANCE = 28
     FOOD = 29
     WORD = 30
-    COUNT = 31
     TEMP = 32
     SPEED = 34
     TERMEQ = 36
@@ -76,6 +75,10 @@ def filter_passages(passages, answer_type, nlp_toolkit):
             if 'QUANTITY' in named_ent_types:
                 _filtered.append(passage)
         
+        elif  answer_type == AnswerType.COUNT:
+            if 'QUANTITY' in named_ent_types or 'CARDINAL' in named_ent_types:
+                _filtered.append(passage)
+
         elif answer_type == AnswerType.GR:
             if 'ORG' in named_ent_types:
                 _filtered.append(passage)

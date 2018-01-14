@@ -4,6 +4,7 @@ import spacy
 class NLPToolkit:
     def __init__(self):
         self.nlp = spacy.load('en_core_web_sm')
+        self.ext_nlp = spacy.load('en_core_web_lg')
 
     def remove_stop_words(self, text: str) -> list:
         doc = self.nlp(text)
@@ -58,3 +59,8 @@ class NLPToolkit:
         doc = self.nlp(text)
         ents = [(e.label_) for e in doc.ents]
         return ents
+
+    def get_similiarity(self, question, answer):
+        q_doc = self.ext_nlp(question)
+        q_ans = self.ext_nlp(answer)
+        return q_doc.similarity(q_ans) 
