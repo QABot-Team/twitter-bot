@@ -5,8 +5,7 @@
 import os
 import re
 import numpy as np
-from .passage_classifier import get_similiarity
-from components.question_processing.fit_predict import get_key_words
+from utils.nlptoolkit import NLPToolkit
 
 DIR = os.path.dirname(__file__)
 
@@ -32,12 +31,12 @@ class Question(object):
         
 
     def rate_passages(self, rater):
-        #question = get_key_words(self.question)
-        #question = " ".join(question)
+        question = nlp_toolkit.get_key_words(self.question)
+        question = " ".join(question)
         for passage in self.passages:
-            #passage = get_key_words(passage)
-            #passage = " ".join(passage)
-            rating = rater(self.question, passage)
+            passage = nlp_toolkit.get_key_words(passage)
+            passage = " ".join(passage)
+            rating = rater(question, passage)
             self.passage_ratings.append(rating)
 
 class Questions(object):
@@ -75,8 +74,9 @@ class Questions(object):
             question.rate_passages(rater)
 
 if __name__ == "__main__":
+    nlp_toolkit = NLPToolkit()
     questions = Questions(os.path.join(DIR, "sentence_train"))
-    questions.rate_passages(get_similiarity)
+    questions.rate_passages(nlp_toolkit.get_similiarity)
     print("Relevant at 1: {}".format(questions.relevant_in_top_k(1)))
     print("Relevant at 2: {}".format(questions.relevant_in_top_k(2)))
     print("Relevant at 3: {}".format(questions.relevant_in_top_k(3)))

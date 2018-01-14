@@ -21,7 +21,7 @@ def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolk
     doc_sections = filter_passages(doc_sections, qp_result.answer_type, nlp_toolkit)
     #doc_sections = nlp_toolkit.text_to_sentences(str(doc.text))
     #get_passage(doc_sections, ' '.join(question_model.keywords))
-    get_most_similar(doc_sections, qp_result.question_model.question)
+    get_most_similar(doc_sections, qp_result.question_model.question, nlp_toolkit)
     passages = Passages()
     for section in doc_sections:
         passages.add(Passage(section))
