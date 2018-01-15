@@ -7,9 +7,12 @@ from utils.nlptoolkit import NLPToolkit
 from utils.logger import Logger
 from datetime import datetime
 
+Logger.config('info')
+
+nlp_toolkit = NLPToolkit()
+
 
 def process_answer_question(question):
-    nlp_toolkit = NLPToolkit()
 
     # start logging
     Logger.big_seperator()

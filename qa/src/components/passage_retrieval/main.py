@@ -18,7 +18,7 @@ def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolk
     # we use the first document
     # doc = docs.get_doc_with_highest_rank()
     doc_sections = []
-    for doc in docs.docs:
+    for doc in docs.docs[:3]:
         _sections = nlp_toolkit.text_to_sentences(str(doc.text))
         doc_sections += _sections
     doc_sections = set(doc_sections)
