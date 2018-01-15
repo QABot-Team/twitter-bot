@@ -3,7 +3,8 @@ import spacy
 
 class NLPToolkit:
     def __init__(self):
-        self.nlp = spacy.load('en_core_web_sm')
+        self._nlp = spacy.load('en_core_web_sm')
+        self.nlp = spacy.load('en_core_web_lg')
 
     def remove_stop_words(self, text: str) -> list:
         doc = self.nlp(text)
@@ -58,3 +59,21 @@ class NLPToolkit:
         doc = self.nlp(text)
         ents = [(e.label_) for e in doc.ents]
         return ents
+
+    def get_similiarity(self, question, answer):
+        q_doc = self.nlp(question)
+        q_ans = self.nlp(answer)
+        return q_doc.similarity(q_ans)
+
+    def get_key_words(self, question):
+        doc = self.nlp(question)
+        keywords = []
+        for token in doc:
+            if self.token_is_wh_w(token):
+                continue
+            if str(token) == "?":
+                continue
+            if token.is_stop:
+                continue
+            keywords.append(str(token))
+        return keywords

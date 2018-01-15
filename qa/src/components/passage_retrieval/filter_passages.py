@@ -40,43 +40,43 @@ def filter_passages(passages, answer_type, nlp_toolkit):
     _filtered = []
     for passage in passages:
         named_ent_types = nlp_toolkit.get_named_enitity_types(passage)
-        if answer_type == AnswerType.IND:
+        if answer_type == AnswerType.HUM_ind:
             if 'PERSON' in named_ent_types:
                 _filtered.append(passage)
 
-        elif answer_type == AnswerType.DATE or answer_type == AnswerType.PERIOD:
+        elif answer_type == AnswerType.NUM_date or answer_type == AnswerType.NUM_period:
             if 'DATE' in named_ent_types:
                 _filtered.append(passage)
 
-        elif answer_type == AnswerType.EVENT:
+        elif answer_type == AnswerType.ENTY_event:
             if 'EVENT' in named_ent_types:
                 _filtered.append(passage)
         
-        elif answer_type == AnswerType.MOUNT:
+        elif answer_type == AnswerType.LOC_mount:
             if 'LOC' in named_ent_types:
                 _filtered.append(passage)
         
-        elif answer_type == AnswerType.CITY or answer_type == AnswerType.COUNTRY or answer_type == AnswerType.STATE:
+        elif answer_type == AnswerType.LOC_city or answer_type == AnswerType.LOC_country or answer_type == AnswerType.LOC_state:
             if 'GPE' in named_ent_types:
                 _filtered.append(passage)
 
-        elif answer_type == AnswerType.MONEY:
+        elif answer_type == AnswerType.NUM_money:
             if 'MONEY' in named_ent_types:
                 _filtered.append(passage)
         
-        elif answer_type == AnswerType.LANG:
+        elif answer_type == AnswerType.ENTY_lang:
             if 'LANGUAGE' in named_ent_types:
                 _filtered.append(passage)
 
-        elif answer_type == AnswerType.CREMAT:
+        elif answer_type == AnswerType.ENTY_cremat:
             if 'WORK_OF_ART' in named_ent_types:
                 _filtered.append(passage)
 
-        elif answer_type == AnswerType.DIST or answer_type == AnswerType.WEIGHT:
+        elif answer_type == AnswerType.NUM_dist or answer_type == AnswerType.NUM_weight:
             if 'QUANTITY' in named_ent_types:
                 _filtered.append(passage)
         
-        elif answer_type == AnswerType.GR:
+        elif answer_type == AnswerType.HUM_gr:
             if 'ORG' in named_ent_types:
                 _filtered.append(passage)
 

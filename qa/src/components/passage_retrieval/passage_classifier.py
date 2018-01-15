@@ -21,7 +21,7 @@ from models.answer_type import AnswerType
 import spacy
 
 #DIR = os.path.dirname(__file__)
-nlp = spacy.load('en')
+#nlp = spacy.load('en')
 
 def prepare_trainingsdata():
     data = json.load(open('train-v1.1.json'))
@@ -72,10 +72,7 @@ def split_trainingsdata_into_sentences():
             #trainings_data_sentence.append({'question': question, 'answers': qas, 'relevant': relevant_sentences, 'not_relevant': not_relevant_sentences})
     #with open('trainings_data_sentence.json', 'w') as outfile:
      #   json.dump({'data': trainings_data_sentence}, outfile)   
-def get_similiarity(question, answer):
-    q_doc = nlp(question)
-    q_ans = nlp(answer)
-    return q_doc.similarity(q_ans)          
+
 def get_number_of_keywords(passage, keywords):
     count = 0
     passage_words = passage.split()
@@ -90,18 +87,15 @@ def get_number_of_named_entities(passage, entity):
         if ent.label_ == entity:
             count = count + 1
     return count
-        
-        
-def get_most_similar(passages, question):
-    nlp = spacy.load('en_core_web_lg')
 
-    q_doc = nlp(question)
+        
+def get_most_similar(passages, question, nlp_toolkit):
+    
     max_sim = 0.0
     max_sim_passage = ""
 
     for passage in passages:
-        p_doc = nlp(passage)
-        sim = q_doc.similarity(p_doc)
+        sim = nlp_toolkit.get_similiarity(question, passage)
         if sim > max_sim:
             max_sim = sim
             max_sim_passage = passage
