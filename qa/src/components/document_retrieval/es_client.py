@@ -1,5 +1,6 @@
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
+from utils.logger import Logger
 
 INDEX_NAME = "enwiki"
 
@@ -18,9 +19,12 @@ class EsClient:
         response = s.execute()
 
         docs = []
-        for doc in response:
+        for idx, doc in enumerate(response):
             if not any(excl in doc.title for excl in TITLE_EXCLUDES) and \
                not any(excl in doc.category for excl in CAT_EXCL) and \
                REFER_TEXT not in doc.text:
                 docs.append(doc)
+                Logger.info('Document ' + str(idx) + ": \"" + doc.title + '\"' +
+                            ' Scoring: ' + str(doc.meta.score) +
+                            ' Populairty: ' + str(doc.popularity_score))
         return docs

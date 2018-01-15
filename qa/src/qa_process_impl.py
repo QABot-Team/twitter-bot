@@ -5,11 +5,22 @@ from components.question_processing import process_question
 from qa_process import answer_question
 from utils.nlptoolkit import NLPToolkit
 from utils.logger import Logger
+from datetime import datetime
 
 
 def process_answer_question(question):
     nlp_toolkit = NLPToolkit()
+
+    # start logging
+    Logger.big_seperator()
     Logger.info('Start answer processing pipeline')
+    Logger.info('Question: ' + question)
+    start = datetime.now()
+
     answer = answer_question(question, process_question, receive_docs, receive_passages, process_answer, nlp_toolkit)
-    Logger.info('Finished answer processing pipeline')
+
+    # end logging
+    end = datetime.now()
+    diff = end - start
+    Logger.info('Finished answer processing pipeline (' + str(diff.seconds) + '.' + str(diff.microseconds) + ' s)')
     return answer

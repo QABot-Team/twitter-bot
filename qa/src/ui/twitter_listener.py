@@ -1,6 +1,7 @@
 from tweepy.streaming import StreamListener
 from qa_process_impl import process_answer_question
 from ui.config import own_user_name, own_user_id
+from utils.logger import Logger
 import json
 
 
@@ -17,15 +18,12 @@ class TwitterListener(StreamListener):
 
         # check if the tweet was initiated by another user or by the twitter bot
         if user_id != own_user_id:
-            print("====================================\n")
-            print("New Tweet received:\n" + str(tweet_json.get('text')) + "\n")
+            Logger.info("New Tweet received: " + str(tweet_json.get('text')))
 
             tweet_id = tweet_json.get('id')
             question = tweet_json.get('text')
             question = question.replace(own_user_name, '')
             answer = process_answer_question(question)
-
-            print("The answer is:\n" + answer + "\n")
 
             reply_text = '@' + user_name + ' The answer is: ' + answer
             self.api.update_status(reply_text, tweet_id)

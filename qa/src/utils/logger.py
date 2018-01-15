@@ -37,3 +37,12 @@ class Logger:
     @staticmethod
     def critical(message):
         get_logger().critical(message)
+
+    @staticmethod
+    def big_seperator():
+        logging.getLogger('').info('================================================================================')
+
+    @staticmethod
+    def small_seperator():
+        logging.getLogger('').info('==================================================')
+

@@ -99,7 +99,7 @@ def get_most_similar(passages, question, nlp_toolkit):
         if sim > max_sim:
             max_sim = sim
             max_sim_passage = passage
-    print(max_sim_passage)
+    return max_sim_passage
 
 def get_passage(passages, question):
     _passages = []
