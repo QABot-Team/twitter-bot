@@ -7,8 +7,6 @@ from utils.nlptoolkit import NLPToolkit
 from utils.logger import Logger
 from datetime import datetime
 
-Logger.config('info')
-
 nlp_toolkit = NLPToolkit()
 
 

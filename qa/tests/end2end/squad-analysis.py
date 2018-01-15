@@ -8,6 +8,8 @@ sys.path.append(DIR + '/../../src')
 
 from qa_process_impl import process_answer_question
 
+from utils.logger import Logger
+
 data = json.load(open('dev-v1.1.json'))
 
 
@@ -18,28 +20,30 @@ def text_contains_any_answer(text, answers):
     return False
 
 
-print("Start analysis")
+Logger.config('info')
+
+Logger.info("Start analysis")
 
 question_counter = 0
 correct_answers_counter = 0
 
 for dataset in data['data']:
     title = dataset['title']
-    print('Dataset: ' + title)
+    Logger.info('Dataset: ' + title)
 
     for paragraph in dataset['paragraphs'][:5]:
         for question_answer_set in paragraph['qas']:
             question_counter += 1
             question = question_answer_set['question']
             correct_answers = question_answer_set['answers']
-            print(question)
+            Logger.info(question)
 
             answer = process_answer_question(question)
 
-            print(answer)
-            print(correct_answers)
+            Logger.info(answer)
+            Logger.info(correct_answers)
             if text_contains_any_answer(answer, correct_answers):
                 correct_answers_counter += 1
-            print(str(correct_answers_counter) + " / " + str(question_counter))
-            print()
-            print()
+            Logger.info("Result: " + str(correct_answers_counter) + " / " + str(question_counter))
+            Logger.info('')
+            Logger.info('')
