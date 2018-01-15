@@ -55,10 +55,15 @@ class WikiParser:
 
         return doc
 
+    def remove_references(self, text):
+        paragraphs = text.split('    ')
+        return '    '.join(paragraphs[:-1])
+
     def parse_docs(self, raw_docs: list) -> Documents:
         docs = Documents()
         for es_doc in raw_docs:
-            doc = Document(es_doc['title'], es_doc['text'])
+            text = self.remove_references(es_doc['text'])
+            doc = Document(es_doc['title'], text)
             src = es_doc['source_text']
             headers = es_doc['heading']
             docs.add(self.parse_source_text(doc, src, headers))
