@@ -1,6 +1,10 @@
+import sys
+
 from models.documents import Document, Documents
 
 import re
+
+from utils.logger import Logger
 
 EXCLUDES = ["(disambiguation)", "(surname)"]
 
@@ -43,15 +47,18 @@ class WikiParser:
         # src = re.sub(r'{{([^(}})]*)}}', '', src)
 
         # parse paragraphs
-        for header in headers:
-            hdr = "=== " + header.strip() + " ==="
-            match = re.search('===(\s?)' + header.strip() + '(\s?)===', src)
-            pos_start = -1 if match is None else match.start()
-            pos_end = src.find("==", pos_start + len(hdr))
-            if pos_start > 0:
-                paragraph = src[pos_start:pos_end]
-                doc.add_passage(paragraph)
-                src = src.replace(paragraph, "")
+        try:
+            for header in headers:
+                hdr = "=== " + header.strip() + " ==="
+                match = re.search('===(\s?)' + header.strip() + '(\s?)===', src)
+                pos_start = -1 if match is None else match.start()
+                pos_end = src.find("==", pos_start + len(hdr))
+                if pos_start > 0:
+                    paragraph = src[pos_start:pos_end]
+                    doc.add_passage(paragraph)
+                    src = src.replace(paragraph, "")
+        except:
+            Logger.error("Unexpected error:" + str(sys.exc_info()[0]))
 
         return doc
 
