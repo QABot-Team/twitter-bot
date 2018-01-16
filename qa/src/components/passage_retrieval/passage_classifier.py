@@ -1,8 +1,7 @@
-import os
 import json
 import sys
-import sys
 import os
+import codecs
 DIR = os.path.dirname(__file__)
 
 
@@ -43,35 +42,66 @@ def prepare_trainingsdata():
     with open('trainings_data.json', 'w') as outfile:
         json.dump({'data': trainings_data}, outfile)
 
-def split_trainingsdata_into_sentences():
-    data = json.load(open('trainings_data.json'))
-    f = open('trainings_data_sentence','w')
+def split_trainingsdata_into_passages(passage_size, no_qa_pairs, output_file_name):
+    """
+        passage_size: number of sentences per passage
+        no_qa_pairs: number of question/answer pairs for sentence_train
+    """
+    data = json.load(open(os.path.join(DIR, 'trainings_data_new.json')))
+    f = open(os.path.join(DIR, output_file_name),'w')
     trainings_data_sentence = []
     for entry in data['data']:
         sentences = entry['text'].split('.')
         for qas in entry['qas']:
             question = qas['question']
             qp_result = process_question(question, NLPToolkit())
-            #relevant_sentences = []
-            #not_relevant_sentences = []
             keywords = qp_result.question_model.get_keywords()
             answer_type = qp_result.answer_type
-            #print(answer_type)
-            for sentence in sentences:
-                relevant = False
-                for answer in qas['answers']:
-                    if answer in sentence:
-                        relevant = True
-                    count_keywords = get_number_of_keywords(sentence, keywords)
-                    similarity = get_similiarity(question, answer)
-                    #count_named_entities = get_number_of_named_entities(sentence, answer_type)
-                    #print("Keywords: " + str(keywords))
-                    #print("NE: " + str(named_entities))
-                    f.write(question + " " + sentence + " " + str(count_keywords) + " " + str(similarity) +  " ::: " + str(relevant) + '\n')
+            passage = '' 
+            for i, sentence in enumerate(sentences): 
+                if i % passage_size == 0 and passage != '':
+                    relevant = False
+                    for answer in qas['answers']:
+                        if answer in passage:
+                            relevant = True
+                        count_keywords = get_number_of_keywords(sentence, keywords)
+                        similarity = get_similiarity(question, answer)
+                        if no_qa_pairs == 0:
+                            break
+                        #line = u' '.join((question, sentence, str(count_keywords), str(similarity), ' ::: ', str(relevant), '\n' )).encode('utf-8')
+                        f.write(str(question) + " " + str(sentence) + " " + str(count_keywords) + " " + str(similarity) +  " ::: " + str(relevant) + '\n')
+                        #f.write(line)
+                        no_qa_pairs -= 1
+                    passage = sentence
+                else:
+                    passage += sentence
+                
          
-            #trainings_data_sentence.append({'question': question, 'answers': qas, 'relevant': relevant_sentences, 'not_relevant': not_relevant_sentences})
-    #with open('trainings_data_sentence.json', 'w') as outfile:
-    #   json.dump({'data': trainings_data_sentence}, outfile)   
+def test_trainingsdata_with_different_passage_size(passage_sizes):
+    for passage_size in passage_sizes:
+        file_name = 'trainings_data_passage_' + str(passage_size)
+        split_trainingsdata_into_passages(passage_size, 10000, file_name)
+        passage_train = pd.read_csv(file_name, header=None, encoding='utf-8', sep=':::', engine='python')
+        create_classifier(passage_train, passage_size)
+
+def create_classifier(passage_train, passage_size):
+    x = passage_train.iloc[:,0].values
+    nb = Pipeline([('vect', CountVectorizer()), ('clf', MultinomialNB(alpha=1.0))])
+    y = passage_train.iloc[:, 1].values
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+    nb.fit(X_train, y_train)
+    y_predicted = nb.predict(X_test)
+
+    joblib.dump(nb, os.path.join(DIR, "nb_" + str(passage_size) + '.pkl'), compress=9)
+    ## Gütemaße ausgeben
+    print("Passage size: " + str(passage_size))
+    print("Korrektklassifizierungsrate:\n", accuracy_score(y_true=y_test, y_pred=y_predicted))
+    print("Präzision (mikro):\n", precision_score(y_true=y_test, y_pred=y_predicted, average='micro'))
+    print("Ausbeute (mikro):\n", recall_score(y_true=y_test, y_pred=y_predicted, average='micro'))
+    print("F1 (mikro):\n", f1_score(y_true=y_test, y_pred=y_predicted, average='micro'))
+    print("Kofusionsmatrix:\n", confusion_matrix(y_true=y_test, y_pred=y_predicted))
+    print("Konfusionsmatrix: \n", pd.crosstab(y_test, y_predicted))
+
 def get_similiarity(question, answer):
     q_doc = nlp(question)
     q_ans = nlp(answer)
@@ -124,23 +154,10 @@ def get_passage(passages, question):
             print()
     
 def main():
-    #split_trainingsdata_into_sentences()
-    sentence_train = pd.read_csv('sentence_train', header=None, encoding='utf-8', sep=':::', engine='python')
-    x = sentence_train.iloc[:,0].values
-    nb = Pipeline([('vect', CountVectorizer()), ('clf', MultinomialNB(alpha=1.0))])
-    y = sentence_train.iloc[:, 1].values
-    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
-    nb.fit(X_train, y_train)
-    y_predicted = nb.predict(X_test)
-
-    joblib.dump(nb, os.path.join(DIR, "nb" + '.pkl'), compress=9)
-    ## Gütemaße ausgeben
-    print("Korrektklassifizierungsrate:\n", accuracy_score(y_true=y_test, y_pred=y_predicted))
-    print("Präzision (mikro):\n", precision_score(y_true=y_test, y_pred=y_predicted, average='micro'))
-    print("Ausbeute (mikro):\n", recall_score(y_true=y_test, y_pred=y_predicted, average='micro'))
-    print("F1 (mikro):\n", f1_score(y_true=y_test, y_pred=y_predicted, average='micro'))
-    print("Kofusionsmatrix:\n", confusion_matrix(y_true=y_test, y_pred=y_predicted))
-    print("Konfusionsmatrix: \n", pd.crosstab(y_test, y_predicted))
+    #prepare_trainingsdata()
+    passage_sizes = [1,2,3,4,5,6,7,8,9,10]
+    test_trainingsdata_with_different_passage_size(passage_sizes)
+    
 
 if __name__ == "__main__":
     main()
