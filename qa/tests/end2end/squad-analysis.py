@@ -26,6 +26,7 @@ Logger.info("Start analysis")
 
 question_counter = 0
 correct_answers_counter = 0
+error_counter = 0
 
 for dataset in data['data']:
     title = dataset['title']
@@ -38,12 +39,18 @@ for dataset in data['data']:
             correct_answers = question_answer_set['answers']
             Logger.info(question)
 
-            answer = process_answer_question(question)
+            answer = ""
+
+            try:
+                answer = process_answer_question(question)
+            except:
+                error_counter += 1
 
             Logger.info(answer)
             Logger.info(correct_answers)
             if text_contains_any_answer(answer, correct_answers):
                 correct_answers_counter += 1
             Logger.info("Result: " + str(correct_answers_counter) + " / " + str(question_counter))
+            Logger.info("Failed: " + str(error_counter))
             Logger.info('')
             Logger.info('')

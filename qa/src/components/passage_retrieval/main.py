@@ -8,12 +8,21 @@ from utils.nlptoolkit import NLPToolkit
 from components.passage_retrieval.passage_classifier import get_most_similar
 from components.passage_retrieval.filter_passages import filter_passages
 from datetime import datetime
+import os
 
 
 def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolkit) -> Passages:
     # start logging
     Logger.info('started')
     start = datetime.now()
+
+    if os.environ['USE_DRQA'] == "TRUE":
+        from components.passage_retrieval.drqa_doc_reader import get_answer
+        Logger.info('use DrQA document reader')
+        answer = get_answer(docs.docs[0].text, qp_result.question_model.question)
+        passages = Passages()
+        passages.add(Passage(answer))
+        return passages
 
     # we use the first document
     # doc = docs.get_doc_with_highest_rank()
