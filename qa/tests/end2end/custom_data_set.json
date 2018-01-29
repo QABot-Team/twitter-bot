@@ -1,0 +1,51 @@
+{"data": [
+  {"title": "Michael Jackson", "paragraphs": [{"context": "", "qas": [{
+  "answers": [{"text": "Thriller"}],
+  "question": "Which is the best selling album of all time from Michael Jackson?", "id": "11"}, {
+    "answers": [{"text": "August 29, 1958"}, {"text": "29.08.1958"}, {"text": "29 August 1958"}, {"text": "08.29.1958"}],
+    "question": "When was Michael Jackson born?",  "id": "12"}, {
+    "answers": [{"text": "American singer"}, {"text": "singer"}, {"text": "songwriter"}, {"text": "dancer"}, {"text": "King of Pop"}],
+    "question": "Who was Michael Jackson?", "id": "13"}]
+}]},
+  {"title": "Germany", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "16"}],
+    "question": "How many states does Germany have?", "id": "21"}, {
+    "answers": [{"text": "82 million"}, {"text": "82 million inhabitants"}, {"text": "82000000"}],
+    "question": "How many inhabitants does Germany have?", "id": "22"}, {
+    "answers": [{"text": "Berlin"}],
+    "question": "What is the capital of Germany?", "id": "23"}
+  ]
+  }]},
+  {"title": "Eiffel Tower", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "324 metres"}, {"text": "1,063 ft"}, {"text": "324"}],
+    "question": "How tall is the Eiffel Tower?", "id": "31"}, {
+    "answers": [{"text": "Paris"}, {"text": "France"}],
+    "question": "Where is the Eiffel Tower?", "id": "32"}, {
+    "answers": [{"text": "three level"}, {"text": "3"}, {"text": "three"}],
+    "question": "How many levels does the Eiffel Tower have for visitors?", "id": "33"}
+  ]}]},
+  {"title": "Intel", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "July 18, 1968"}, {"text": "18.07.1968"}, {"text": "07.18.1968"}, {"text": "1968"}],
+    "question": "When was Intel founded?", "id": "41"}, {
+    "answers": [{"text": "Santa Clara"}, {"text": "California"}, {"text": "Silicon Valley"}],
+    "question": "Where is Intel headquatered?", "id": "42"}, {
+    "answers": [{"text": "company"}, {"text": "multinational corporation"}, {"text": "technology company"}],
+    "question": "What is Intel?", "id": "43"}
+  ]}]},
+  {"title": "Angela Merkel", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "17 July 1954"}, {"text": "17.07.1954"}, {"text": "July 17, 1954"}, {"text": "1954"}, {"text": "07.17.1954"}],
+    "question": "When was Angela Merkel born?", "id": "51"}, {
+    "answers": [{"text": "Hamburg"}],
+    "question": "Where was Angela Merkel born?", "id": "52"}, {
+    "answers": [{"text": "2005"}],
+    "question": "Since when is Angela Merkel Chancellor of Germany?", "id": "53"}
+  ]}]},
+  {"title": "Eintracht Frankfurt", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "Bundesliga"}],
+    "question": "In which football league is Eintracht Frankfurt currently playing?", "id": "61"}, {
+    "answers": [{"text": "one"}, {"text": "1"}],
+    "question": "How many times has Eintracht Frankfurt won the German championship?", "id": "62"}, {
+    "answers": [{"text": "red"}, {"text": "black"}],
+    "question": "What are the official club colours of Eintracht Frankfurt?", "id": "63"}
+  ]}]}
+]}
