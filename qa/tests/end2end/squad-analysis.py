@@ -20,30 +20,30 @@ def text_contains_any_answer(text, answers):
     return False
 
 
-Logger.config('info')
+Logger.config('error')
 
-Logger.info("Start analysis")
+Logger.error("Start analysis")
 
 question_counter = 0
 correct_answers_counter = 0
 
 for dataset in data['data']:
     title = dataset['title']
-    Logger.info('Dataset: ' + title)
+    Logger.error('Dataset: ' + title)
 
     for paragraph in dataset['paragraphs'][:5]:
         for question_answer_set in paragraph['qas']:
             question_counter += 1
             question = question_answer_set['question']
             correct_answers = question_answer_set['answers']
-            Logger.info(question)
+            Logger.error(question)
 
             answer = process_answer_question(question)
 
-            Logger.info(answer)
-            Logger.info(correct_answers)
+            Logger.error(answer)
+            Logger.error(correct_answers)
             if text_contains_any_answer(answer, correct_answers):
                 correct_answers_counter += 1
-            Logger.info("Result: " + str(correct_answers_counter) + " / " + str(question_counter))
-            Logger.info('')
-            Logger.info('')
+            Logger.error("Result: " + str(correct_answers_counter) + " / " + str(question_counter))
+            Logger.error('')
+            Logger.error('')
