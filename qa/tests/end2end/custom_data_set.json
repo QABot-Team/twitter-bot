@@ -1,12 +1,30 @@
 {"data": [
+  {"title": "Barack Obama", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "August 4, 1961"}, {"text": "4.8.1961"}, {"text": "04.08.1961"}, {"text": "08.04,1961"}],
+    "question": "When was Barack Obama born?", "id": "81"}, {
+    "answers": [{"text": "Honolulu"}, {"text": "Hawaii"}],
+    "question": "Where was Barack Obama born?", "id": "82"}, {
+    "answers": [{"text": "January 20, 2009"}, {"text": "2009"}, {"text": "20.01.2009"}],
+    "question": "When did the inauguration of Barack Obama as the 44th President took place?", "id": "83"}
+  ]}]},
+  {"title": "Arnold Schwarzenegger", "paragraphs": [{"context": "", "qas": [{
+    "answers": [{"text": "15"}],
+    "question": "At what age did Arnold Schwarzenegger began his weight training?", "id": "71"},{
+    "answers": [{"text": "Conan the Barbarian"}],
+    "question": "What was Arnold Schwarzeneggers breakthrough film?", "id": "72"}, {
+    "answers": [{"text": "October 7, 2003"}, {"text": "7.10.2003"}, {"text": "07.10.2003"}, {"text": "10.07.2003"}],
+    "question": "When was Arnold Schwarzenegger first elected as Republican?", "id": "73"}, {
+    "answers": [{"text": "bought a refrigerator"}, {"text": "refrigerator"}],
+    "question": "What was one of the highlights in the youth of Arnold Schwarzenegger?", "id": "74"}
+  ]}]},
   {"title": "Michael Jackson", "paragraphs": [{"context": "", "qas": [{
   "answers": [{"text": "Thriller"}],
   "question": "Which is the best selling album of all time from Michael Jackson?", "id": "11"}, {
     "answers": [{"text": "August 29, 1958"}, {"text": "29.08.1958"}, {"text": "29 August 1958"}, {"text": "08.29.1958"}],
     "question": "When was Michael Jackson born?",  "id": "12"}, {
     "answers": [{"text": "American singer"}, {"text": "singer"}, {"text": "songwriter"}, {"text": "dancer"}, {"text": "King of Pop"}],
-    "question": "Who was Michael Jackson?", "id": "13"}]
-}]},
+    "question": "Who was Michael Jackson?", "id": "13"}
+  ]}]},
   {"title": "Germany", "paragraphs": [{"context": "", "qas": [{
     "answers": [{"text": "16"}],
     "question": "How many states does Germany have?", "id": "21"}, {
@@ -43,7 +61,7 @@
   {"title": "Eintracht Frankfurt", "paragraphs": [{"context": "", "qas": [{
     "answers": [{"text": "Bundesliga"}],
     "question": "In which football league is Eintracht Frankfurt currently playing?", "id": "61"}, {
-    "answers": [{"text": "one"}, {"text": "1"}],
+    "answers": [{"text": "one"}],
     "question": "How many times has Eintracht Frankfurt won the German championship?", "id": "62"}, {
     "answers": [{"text": "red"}, {"text": "black"}],
     "question": "What are the official club colours of Eintracht Frankfurt?", "id": "63"}
