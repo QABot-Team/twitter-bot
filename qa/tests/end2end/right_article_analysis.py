@@ -17,7 +17,8 @@ from components.question_processing.main import process_question
 from components.passage_retrieval.main import receive_passages
 from components.answer_processing.main import process_answer
 
-data = json.load(open('dev-v1.1.json'))
+#data = json.load(open('dev-v1.1.json'))
+data = json.load(open('custom_data_set.json'))
 
 
 def text_contains_any_answer(text, answers):
