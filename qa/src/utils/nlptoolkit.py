@@ -77,3 +77,20 @@ class NLPToolkit:
                 continue
             keywords.append(str(token))
         return keywords
+
+    def get_headwords(self, question):
+        doc = self.nlp(question)
+        headwords = []
+        for sent in doc.sents:
+            for token in sent:
+                if self.token_is_wh_w(token):
+                    continue
+                if str(token) == "?":
+                    continue
+                if token.is_stop:
+                    continue
+                # if (token.dep_ in ['nsubj', 'attr', 'pobj']) and (token.pos_ in ['NOUN', 'PROPN']):
+                if token.pos_ in ['NOUN', 'PROPN', 'NUM']:
+                    headwords.append(token.text)
+
+        return headwords
