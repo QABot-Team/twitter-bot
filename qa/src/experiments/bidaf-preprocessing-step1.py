@@ -5,6 +5,8 @@ from allennlp.data import Vocabulary
 from allennlp.models import load_archive
 from torch.autograd import Variable
 
+from experiments.read_vocab import VocabReader
+
 
 def _remove_pretrained_embedding_params(params: Params):
     keys = params.keys()
@@ -17,11 +19,14 @@ def _remove_pretrained_embedding_params(params: Params):
 
 archive = load_archive("https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz")
 
+vocab_directory = '/Users/felix/Development/htw/pim-projekt/bidaf-model/vocabulary'
 model_params = archive.config.get('model')
 _remove_pretrained_embedding_params(model_params)
-vocabulary = Vocabulary.from_files('/Users/felix/Development/htw/pim-projekt/bidaf-model/vocabulary')
+vocabulary = Vocabulary.from_files(vocab_directory)
 
 # --------------------
+
+vocab_reader = VocabReader(vocab_directory + '/tokens.txt')
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -37,7 +42,7 @@ def tokenize(string):
 def tokens_to_tensor(tokens):
     indizes = []
     for token in tokens:
-        token_index = vocabulary.get_token_index(token.text.lower())
+        token_index = vocab_reader.get_token_index(token.text)
         indizes.append(token_index)
     return Variable(torch.LongTensor([indizes]))
 
