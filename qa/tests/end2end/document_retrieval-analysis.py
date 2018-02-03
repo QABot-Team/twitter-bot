@@ -2,18 +2,13 @@ import os
 import sys
 import json
 
+from models.question_model import QuestionModel
+from components.document_retrieval import receive_docs
+from utils.logger import Logger
+from utils.nlptoolkit import NLPToolkit
+
 DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(DIR + '/../../src')
-
-from qa_process_impl import process_answer_question
-
-from utils.logger import Logger
-
-from components.document_retrieval.main import receive_docs
-
-from utils.nlptoolkit import NLPToolkit
-from models.question_model import QuestionModel
-
 data = json.load(open('dev-v1.1.json'))
 
 
@@ -24,54 +19,73 @@ def text_contains_any_answer(text, answers):
     return False
 
 
-def is_correct_article(title, correct_title) -> bool:
-    if title == correct_title.replace("_", " "):
-        return True
-    else:
-        return False
-
-
 Logger.config('error')
 
-Logger.info("Start document_retrieval analysis")
+Logger.error("Start analysis")
 
-nlpToolkit = NLPToolkit()
+nlp = NLPToolkit()
 question_counter = 0
-correct_article_counter = 0
-correct_firstArticle_counter = 0
-correct_secondArticle_counter = 0
-correct_thirdArticle_counter = 0
+correct_answers_counter = 0
+correct_answer_dict = {
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0
+}
+
+false_answer = 0
 
 for dataset in data['data']:
     title = dataset['title']
-    Logger.info('Dataset: ' + title)
+    title_ext = title.replace('_', ' ')
+    Logger.error('Dataset: ' + title)
 
     for paragraph in dataset['paragraphs'][:5]:
         for question_answer_set in paragraph['qas']:
+            Logger.error('####################################################')
+            Logger.error('Question ' + str(question_counter))
+            Logger.error('')
             question_counter += 1
             question = question_answer_set['question']
-
+            correct_answers = question_answer_set['answers']
             Logger.error(question)
 
-            question_model = QuestionModel(nlpToolkit.get_key_words(question), question)
-            docs = receive_docs(question_model)
-            Logger.error("Dataset Title: " + title)
-            for idx, doc in enumerate(docs.docs[:3]):
-                isCorrectTitle = is_correct_article(doc.title, title)
-                if isCorrectTitle:
-                    Logger.error("Article found on Index: " + str(idx) + ": " + doc.title)
-                    correct_article_counter += 1
-                    if idx == 0:
-                        correct_firstArticle_counter += 1
-                    elif idx == 1:
-                        correct_secondArticle_counter += 1
-                    elif idx == 2:
-                        correct_thirdArticle_counter += 1
-                else:
-                    Logger.error("Article not found in " + str(idx))
-            Logger.error("Result: " + str(correct_article_counter) + " / " + str(question_counter))
-            Logger.error("Result first Article: " + str(correct_firstArticle_counter) + " / " + str(question_counter))
-            Logger.error("Result second Article: " + str(correct_secondArticle_counter) + " / " + str(question_counter))
-            Logger.error("Result third Article: " + str(correct_thirdArticle_counter) + " / " + str(question_counter))
+            # answer = process_answer_question(question)
+
+            keywords = nlp.get_headwords(question)
+            Logger.error('Headwords: ' + ', '.join(keywords))
+            keywords.append(title_ext)
+            qm = QuestionModel(keywords, question)
+            # error("Keywords: " + ', '.join(keywords))
+            docs = receive_docs(qm, nlp)
+            Logger.error("Correct Doc: " + title_ext)
+
+            found = False
+            for idx, doc in enumerate(docs.docs[:5]):
+                if doc.title in title_ext:
+                    correct_answer_dict[idx] += 1
+                    found = True
+                    break
+
+            if not found:
+                Logger.error("No Matching Doc found: ")
+                Logger.error("Docs: " + docs.get_doc(1).title + ", " +
+                             docs.get_doc(2).title + ", " + docs.get_doc(3).title)
+                false_answer += 1
+
             Logger.error('')
-            Logger.error('')
+
+    Logger.error("Result: ")
+    Logger.error('Correct Article 1: ' + str(correct_answer_dict[0]))
+    Logger.error('Correct Article 2: ' + str(correct_answer_dict[1]))
+    Logger.error('Correct Article 3: ' + str(correct_answer_dict[2]))
+    Logger.error('Correct Article 4: ' + str(correct_answer_dict[3]))
+    Logger.error('Correct Article 5: ' + str(correct_answer_dict[4]))
+    Logger.error('')
+    Logger.error('Correct Articles: ' +
+                 str(correct_answer_dict[0] + correct_answer_dict[1] + correct_answer_dict[2] +
+                     correct_answer_dict[3] + correct_answer_dict[4]) + ' / ' +
+                 str(question_counter))
+    Logger.error('####################################################################################################')
+    break

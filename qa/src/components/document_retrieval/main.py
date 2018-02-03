@@ -3,10 +3,11 @@ from models.question_model import QuestionModel
 from components.document_retrieval.es_client import EsClient
 from components.document_retrieval.wiki_parser import WikiParser
 from utils.logger import Logger
-from datetime import datetime, timedelta, time
+from datetime import datetime
+from utils.nlptoolkit import NLPToolkit
 
 
-def receive_docs(question_model: QuestionModel) -> Documents:
+def receive_docs(question_model: QuestionModel, nlp_toolkit: NLPToolkit) -> Documents:
     # start logging
     Logger.info('started')
     start = datetime.now()
