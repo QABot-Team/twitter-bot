@@ -8,6 +8,16 @@ from utils.nlptoolkit import NLPToolkit
 _MODEL_ARCHIVE = 'https://s3-us-west-2.amazonaws.com/allennlp/models/bidaf-model-2017.09.15-charpad.tar.gz'
 
 
+def char_to_int(c):
+    int_repr = ord(c)
+    if 8207 < int_repr < 8214:
+        return 45
+    if int_repr > 500:
+        print(str(int_repr) + ' -> ' + str(c))
+        return 0
+    return int_repr
+
+
 class AnswerPredictor:
 
     def __init__(self, nlp_toolkit: NLPToolkit):
@@ -61,7 +71,7 @@ class AnswerPredictor:
     def _token_to_charnum_list(token, length):
         chars = [259]
         for c in token.text:
-            chars.append(ord(c) + 1)
+            chars.append(char_to_int(c) + 1)
         chars.append(260)
         chars += [0] * (length - len(chars))
         return chars
