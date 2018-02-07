@@ -12,9 +12,9 @@ def preprocessing_pipeline(docs: Documents, qp_result: QPResult, nlp_toolkit: NL
     processed_docs = []
     # we use all docs in the moment and evaluate based on the probability distribution available through softmax
     for doc in docs.docs:
-        sentences = nlp_toolkit.text_to_sentences(doc)
+        sentences = nlp_toolkit.text_to_sentences(doc.text)
         filtered_sentences = \
             [sentence for sentence in sentences if filter_passages(sentence, qp_result.answer_type, nlp_toolkit)]
-        processed_docs.append(filtered_sentences.join())
+        processed_docs.append(' '.join(filtered_sentences))
 
     return processed_docs
