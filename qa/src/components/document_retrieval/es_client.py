@@ -23,6 +23,8 @@ class EsClient:
             if not any(excl in doc.title for excl in TITLE_EXCLUDES) and \
                not any(excl in doc.category for excl in CAT_EXCL) and \
                REFER_TEXT not in doc.text:
+                doc.text = str(str(doc.text).encode('utf-8'))
+                doc.title = str(str(doc.title).encode('utf-8'))
                 docs.append(doc)
                 Logger.info('Document ' + str(idx) + ": \"" + doc.title + '\"' +
                             ' Scoring: ' + str(doc.meta.score) +
