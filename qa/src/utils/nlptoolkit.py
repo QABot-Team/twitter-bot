@@ -6,6 +6,13 @@ class NLPToolkit:
         self._nlp = spacy.load('en_core_web_sm')
         self.nlp = spacy.load('en_core_web_lg')
 
+    def tokenize(self, text: str) -> list:
+        doc = self.nlp(text)
+        tokens = []
+        for token in doc:
+            tokens.append(token)
+        return tokens
+
     def remove_stop_words(self, text: str) -> list:
         doc = self.nlp(text)
         result = []
