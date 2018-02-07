@@ -8,13 +8,13 @@ from models.question_model import QuestionModel
 from qa_process import answer_question
 
 
-def process_question(question: str):
+def process_question(question: str, nlp_toolkit):
     if not isinstance(question, str):
         raise Exception("process_question expects parameter of type str")
     return QPResult(QuestionModel([], ""), AnswerType.HUM_ind)
 
 
-def receive_docs(question_model: QuestionModel):
+def receive_docs(question_model: QuestionModel, nlp_toolkit):
     if not isinstance(question_model, QuestionModel):
         raise Exception("receive_docs expects parameter of type QuestionModel")
     return Documents()
