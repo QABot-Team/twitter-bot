@@ -2,12 +2,9 @@ from models.passages import Passages, Passage
 
 
 class Document:
-    def __init__(self, title: str, text: str, passages: Passages = None,
-                 infobox: str = "", short_desc: str = "") -> None:
+    def __init__(self, title: str, text: str, passages: Passages = None) -> None:
         self.title = title
         self.text = text
-        self.infobox = infobox
-        self.short_desc = short_desc
         self.passages = Passages() if passages is None else passages
 
     def add_passage(self, passage: Passage):
@@ -15,9 +12,3 @@ class Document:
 
     def get_passages(self):
         return self.passages
-
-    def set_infobox(self, infobox: str):
-        self.infobox = infobox
-
-    def set_sort_desc(self, short_desc: str):
-        self.short_desc = short_desc
