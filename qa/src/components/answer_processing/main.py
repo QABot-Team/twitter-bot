@@ -1,16 +1,42 @@
+from components.answer_processing.bidaf import AnswerPredictor
 from models.passages import Passages
-from models.answer_type import AnswerType
+from models.qp_result import QPResult
 from utils.logger import Logger
 from datetime import datetime
 
+from utils.nlptoolkit import NLPToolkit
 
-def process_answer(passages: Passages, answer_type: AnswerType) -> str:
+
+def prediction_pipeline(passages: Passages, question: str, nlp_toolkit: NLPToolkit):
+    predictor = AnswerPredictor(nlp_toolkit)
+    predictions = []
+    for passage in passages:
+        if passage.text:
+            prediction = predictor.predict(passage.text, question)
+            predictions.append(prediction)
+    return predictions
+
+
+def get_best_answer(predictions):
+    best_answer = ''
+    best_confidence = -1
+    for prediction in predictions:
+        answer = prediction['answer']
+        confidence = prediction['confidence']
+        print(answer + ' with confidence: ' + str(confidence))
+        if confidence > best_confidence:
+            best_confidence = confidence
+            best_answer = answer
+    return best_answer
+
+
+def process_answer(passages: Passages, qp_result: QPResult, nlp_toolkit: NLPToolkit) -> str:
     # start logging
     Logger.info('started')
     start = datetime.now()
 
-    # start answer processing
-    result = passages.get_passage_at(0).text
+    predictions = prediction_pipeline(passages, qp_result.question_model.question, nlp_toolkit)
+    result = get_best_answer(predictions)
 
     # end logging
     end = datetime.now()

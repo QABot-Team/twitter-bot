@@ -26,10 +26,10 @@ def receive_passages(docs: Documents, question_model: QuestionModel, nlp_toolkit
     return Passages()
 
 
-def process_answer(passages: Passages, answer_type: AnswerType):
+def process_answer(passages: Passages, qp_result: QPResult, nlp_toolkit):
     if not isinstance(passages, Passages):
         raise Exception("process_answer expects parameter of type Passages")
-    if not isinstance(answer_type, AnswerType):
+    if not isinstance(qp_result, QPResult):
         raise Exception("process_answer expects parameter of type AnswerType")
     return 'amazing answer'
 

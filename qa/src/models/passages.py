@@ -13,3 +13,6 @@ class Passages:
 
     def map(self, action) -> []:
         return list(map(action, self.passages))
+
+    def __iter__(self):
+        return iter(self.passages)
