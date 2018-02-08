@@ -12,8 +12,7 @@ def char_to_int(c):
     int_repr = ord(c)
     if 8207 < int_repr < 8214:
         return 45
-    if int_repr > 500:
-        print(str(int_repr) + ' -> ' + str(c))
+    if int_repr > 122:  # equals 'z'
         return 0
     return int_repr
 
