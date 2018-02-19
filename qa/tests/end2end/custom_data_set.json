@@ -26,7 +26,7 @@
     "question": "Who was Michael Jackson?", "id": "13"}
   ]}]},
   {"title": "Germany", "paragraphs": [{"context": "", "qas": [{
-    "answers": [{"text": "16"}],
+    "answers": [{"text": "16"}, {"text": "sixteen"}],
     "question": "How many states does Germany have?", "id": "21"}, {
     "answers": [{"text": "82 million"}, {"text": "82 million inhabitants"}, {"text": "82000000"}],
     "question": "How many inhabitants does Germany have?", "id": "22"}, {
