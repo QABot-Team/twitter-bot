@@ -3,8 +3,8 @@ import spacy
 
 class NLPToolkit:
     def __init__(self):
-        self._nlp = spacy.load('en_core_web_sm')
-        self.nlp = spacy.load('en_core_web_lg')
+        self.nlp = spacy.load('en_core_web_sm')
+        # self.nlp = spacy.load('en_core_web_lg')
 
     def tokenize(self, text: str) -> list:
         doc = self.nlp(text)
