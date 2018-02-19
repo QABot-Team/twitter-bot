@@ -6,11 +6,13 @@ from datetime import datetime
 
 from utils.nlptoolkit import NLPToolkit
 
+TOP_N_PASSAGES = 10
+
 
 def prediction_pipeline(passages: Passages, question: str, nlp_toolkit: NLPToolkit):
     predictor = AnswerPredictor(nlp_toolkit)
     predictions = []
-    for passage in passages:
+    for passage in passages.passages[:TOP_N_PASSAGES]:
         if passage.text:
             prediction = predictor.predict(passage.text, question)
             predictions.append(prediction)
