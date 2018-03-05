@@ -52,10 +52,13 @@ class AnswerPredictor:
         end_confidence = float(torch.topk(res['span_end_probs'], 1)[0].data.cpu())
         confidence = start_confidence * end_confidence
 
-        answer = self._best_span_to_answer(passage, res['best_span'], self._get_token_offsets(p_tokens))
+        start_offset, end_offset = self._best_span_to_offsets(res['best_span'], self._get_token_offsets(p_tokens))
+        answer = passage[start_offset:end_offset]
+        context = self._get_context_of_best_span(passage, start_offset, end_offset)
 
         return {
             'answer': answer,
+            'context': context,
             'confidence': confidence
         }
 
@@ -92,8 +95,21 @@ class AnswerPredictor:
         return offsets
 
     @staticmethod
-    def _best_span_to_answer(passage_str, best_spans, offsets):
+    def _best_span_to_offsets(best_spans, offsets):
         predicted_span = tuple(best_spans[0].data.cpu().numpy())
         start_offset = offsets[predicted_span[0]][0]
         end_offset = offsets[predicted_span[1]][1]
-        return passage_str[start_offset:end_offset]
+        return start_offset, end_offset
+
+    def _get_context_of_best_span(self, passage_str, start_offset, end_offset):
+        context_arr = []
+        sentences = self.nlp_toolkit.text_to_sentences_with_offsets(passage_str)
+        context_started = False
+        for sent in sentences:
+            if sent['start'] <= start_offset <= sent['end']:
+                context_started = True
+            if context_started:
+                context_arr.append(sent['text'])
+            if sent['end'] >= end_offset:
+                break
+        return ' '.join(context_arr)

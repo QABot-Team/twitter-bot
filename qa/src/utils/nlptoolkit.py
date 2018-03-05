@@ -44,6 +44,19 @@ class NLPToolkit:
 
         return [sent.string.strip() for sent in doc.sents]
 
+    def text_to_sentences_with_offsets(self, text) -> list:
+        doc = self.nlp(text)
+
+        return [self._sentence_span_to_dict_with_offsets(sent) for sent in doc.sents]
+
+    @staticmethod
+    def _sentence_span_to_dict_with_offsets(sent_span):
+        return {
+            'text': sent_span.string.strip(),
+            'start': sent_span.start_char,
+            'end': sent_span.end_char
+        }
+
     def add_pos_tags(self, text) -> list:
         doc = self.nlp(text)
 
