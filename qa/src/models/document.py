@@ -2,7 +2,7 @@ from models.passages import Passages, Passage
 
 
 class Document:
-    def __init__(self, title: str, text: str, elastic_score: float, passages: Passages = None) -> None:
+    def __init__(self, title: str, text: str, elastic_score: float = 0, passages: Passages = None) -> None:
         self.title = title
         self.text = text
         self.elastic_score = elastic_score

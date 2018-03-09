@@ -1,5 +1,5 @@
 class Passage:
-    def __init__(self, text, elastic_score, parent_doc) -> None:
+    def __init__(self, text, elastic_score=0, parent_doc=None) -> None:
         self.text = text
         self.parent_doc = parent_doc
         self.elastic_score = elastic_score
