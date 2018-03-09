@@ -9,3 +9,5 @@ pandas==0.20.3
 tensorflow==1.1.0
 prettytable==0.7.2
 allennlp==0.3.0
+tensorboard==1.0.0a6
+tensorboardX==1.0
