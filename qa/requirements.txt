@@ -8,3 +8,4 @@ tweepy==3.5.0
 pandas==0.20.3
 tensorflow==1.1.0
 prettytable==0.7.2
+allennlp==0.3.0
