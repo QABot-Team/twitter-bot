@@ -1,20 +1,14 @@
-from models.documents import Document, Documents
+from models.documents import Documents
 from models.passage import Passage
 
 
 class WikiParser:
     @staticmethod
-    def parse_docs(raw_docs: list) -> Documents:
-        docs = Documents()
-        for es_doc in raw_docs:
-            text = es_doc['text']
-            doc = Document(es_doc['title'], text)
+    def add_passages(raw_docs: Documents):
+        for doc in raw_docs:
+            text = doc.text
 
             paragraphs = text.split('    ')
             for p in paragraphs[:-1]:
                 if p.strip() != "":
-                    doc.add_passage(Passage(p))
-
-            docs.add(doc)
-
-        return docs
+                    doc.add_passage(Passage(p, doc.elastic_score))

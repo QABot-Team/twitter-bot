@@ -5,6 +5,7 @@ from components.document_retrieval.wiki_parser import WikiParser
 from utils.logger import Logger
 from datetime import datetime
 from utils.nlptoolkit import NLPToolkit
+from utils.scorer import Scorer
 
 
 def receive_docs(question_model: QuestionModel, nlp_toolkit: NLPToolkit) -> Documents:
@@ -16,11 +17,15 @@ def receive_docs(question_model: QuestionModel, nlp_toolkit: NLPToolkit) -> Docu
     keywords = ' '.join(question_model.keywords)
     Logger.info('Query Keywords: ' + keywords)
     client = EsClient()
-    raw_docs = client.search(keywords)
+    docs = client.search(keywords)
+
+    # min-max-normalization of elastic score
+    scorer = Scorer()
+    scorer.min_max_norm(docs)
 
     # parse documents by Wiki MarkUp
     parser = WikiParser()
-    docs = parser.parse_docs(raw_docs)
+    parser.add_passages(docs)
 
     # end logging
     end = datetime.now()

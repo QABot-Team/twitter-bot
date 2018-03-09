@@ -1,7 +1,8 @@
+from models.iterable import Iterable
 from models.passage import Passage
 
 
-class Passages:
+class Passages(Iterable):
     def __init__(self) -> None:
         self.passages = []
 
@@ -16,3 +17,9 @@ class Passages:
 
     def __iter__(self):
         return iter(self.passages)
+
+    def get_score(self, psg: Passage):
+        return psg.tfidf_score
+
+    def set_score(self, psg: Passage, score: float):
+        psg.tfidf_score = score
