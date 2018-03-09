@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 
 from components.answer_processing.bidaf import AnswerPredictor
 from components.passage_retrieval.filter_passages import filter_passages
-from config import BIDAF_WEIGHT, PASSAGE_WEIGHT, TOP_N_PASSAGES, SCORE_FOR_BEST_ANSWER
+from config import TOP_N_PASSAGES, SCORE_FOR_BEST_ANSWER
 from models.answer_type import AnswerType
 from models.passages import Passages
 from models.prediction import Prediction
@@ -27,7 +27,7 @@ def prediction_pipeline(passages: Passages, question: str, nlp_toolkit: NLPToolk
                 passage.parent_doc.title,
                 passage.elastic_score,
                 passage.tfidf_score,
-                passage.get_rank(),
+                passage.get_passage_score(),
                 pred['confidence']
             )
             predictions.add(prediction)

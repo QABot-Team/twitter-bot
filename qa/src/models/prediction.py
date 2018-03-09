@@ -12,4 +12,4 @@ class Prediction:
         self.bidaf_score = bidaf_score
 
     def calc_final_score(self):
-        return (PASSAGE_WEIGHT * self.passage_score) * (BIDAF_WEIGHT * self.bidaf_score)
+        return (PASSAGE_WEIGHT * self.passage_score) + (BIDAF_WEIGHT * self.bidaf_score)

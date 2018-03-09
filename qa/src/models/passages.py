@@ -23,3 +23,10 @@ class Passages(Iterable):
 
     def set_score(self, psg: Passage, score: float):
         psg.tfidf_score = score
+
+    def sort(self):
+        self.passages = sorted(
+            self.passages,
+            key=lambda passage: passage.get_passage_score(),
+            reverse=True
+        )

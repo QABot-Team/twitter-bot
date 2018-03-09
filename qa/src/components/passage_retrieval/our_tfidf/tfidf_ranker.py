@@ -1,14 +1,13 @@
 from components.passage_retrieval.our_tfidf import tfidf, vectorize, sim
 from models.passages import Passages
 from models.question_model import QuestionModel
-from models.ranked_passages import RankedPassages
 
 
 class TfIdfRanker:
     def __init__(self, convert_text_to_token_list):
         self.convert_text_to_token_list = convert_text_to_token_list
 
-    def calc_passage_ranks(self, passages: Passages, question_model: QuestionModel) -> RankedPassages:
+    def calc_passage_ranks(self, passages: Passages, question_model: QuestionModel) -> Passages:
         query_vector = question_model.get_keywords()
         list_of_passage_tokens = passages.map(lambda passage: self.convert_text_to_token_list(passage.text))
 
@@ -48,10 +47,11 @@ class TfIdfRanker:
         return res
 
     @staticmethod
-    def _build_ranked_passages_from(passages: Passages, similarities_array: list) -> RankedPassages:
-        ranked_passages = RankedPassages()
+    def _build_ranked_passages_from(passages: Passages, similarities_array: list) -> Passages:
+        ranked_passages = Passages()
         for i, similarity in enumerate(similarities_array):
             passage = passages.get_passage_at(i)
-            ranked_passages.add_passage(passage, similarity)
+            passage.tfidf_score = similarity
+            ranked_passages.add(passage)
         return ranked_passages
 
