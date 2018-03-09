@@ -3,7 +3,7 @@ elasticsearch-dsl==5.4.0
 pywsd==1.0.4
 scipy==1.0.0
 sklearn==0.0
-spacy==2.0.5
+spacy==2.0.9
 tweepy==3.5.0
 pandas==0.20.3
 tensorflow==1.1.0

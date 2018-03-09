@@ -67,7 +67,7 @@ class TfIdfTest(unittest.TestCase):
 
         self.assertTrue(ranked_passages.get_passage_at(0).text.find('Meinhard') != -1)
         for p in ranked_passages.passages:
-            print(str(p.rank) + ': ' + p.text)
+            print(str(p.tfidf_score) + ': ' + p.text)
 
 
 if __name__ == '__main__':
