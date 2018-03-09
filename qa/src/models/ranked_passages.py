@@ -8,7 +8,7 @@ class RankedPassages(Passages):
         super(RankedPassages, self).__init__()
 
     def add_passage(self, passage: Passage, rank: float):
-        self.add(RankedPassage(passage.text, rank))
+        self.add(RankedPassage(passage, rank))
 
     def add(self, passage: RankedPassage) -> None:
         if not isinstance(passage, RankedPassage):
