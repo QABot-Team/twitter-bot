@@ -16,4 +16,7 @@ class RankedPassages(Passages):
         super(RankedPassages, self).add(passage)
 
     def sort(self):
-        self.passages = sorted(self.passages, key=lambda ranked_passage: ranked_passage.rank, reverse=True)
+        self.passages = sorted(
+            self.passages,
+            key=lambda ranked_passage: ranked_passage.get_rank(),
+            reverse=True)

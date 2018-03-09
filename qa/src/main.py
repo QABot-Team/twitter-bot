@@ -2,6 +2,7 @@ from qa_process_impl import process_answer_question
 from argparse import ArgumentParser
 from ui import twitter_daemon
 from utils.logger import Logger
+import logging
 
 parser = ArgumentParser(description="Jarvis (Question Answering System)")
 parser.add_argument("--twitter", help="set this option to start the app by the twitter daemon",
@@ -14,6 +15,10 @@ parser.add_argument("--logfile", help="name for the logfile",
 args = parser.parse_args()
 
 Logger.config(args.log, args.logfile)
+
+logging.getLogger('allennlp.data.vocabulary').setLevel(logging.ERROR)
+logging.getLogger('allennlp.common.params').setLevel(logging.ERROR)
+logging.getLogger('allennlp.nn.initializers').setLevel(logging.ERROR)
 
 if args.twitter:
     twitter_daemon.start_daemon()

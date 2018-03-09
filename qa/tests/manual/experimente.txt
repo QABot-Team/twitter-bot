@@ -1,0 +1,178 @@
+At what age did Arnold Schwarzenegger began his weight training? --> 15
++---------------+-----------------------+---------------+-------------+-------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | bidaf-score |
++---------------+-----------------------+---------------+-------------+-------------+
+|     1970s     |    Weight training    |     -1.00     |     0.26    |     0.75    |
+| Weight tra... |    Weight training    |     -1.00     |     0.21    |     0.23    |
+| 80s and 90... |    Weight training    |     -1.00     |     0.20    |     0.82    |
+|       21      | Arnold Schwarzenegger |     -1.00     |     0.14    |     0.23    |
+|       23      | Arnold Schwarzenegger |     -1.00     |     0.13    |     0.82    |
+|      2015     | Arnold Schwarzenegger |     -1.00     |     0.12    |     0.75    |
+| 65. Some a... |    Weight training    |     -1.00     |     0.12    |     0.08    |
+|       15      | Arnold Schwarzenegger |     -1.00     |     0.11    |     0.97    |
+|       14      | Arnold Schwarzenegger |     -1.00     |     0.11    |     0.07    |
+|       30      | Arnold Schwarzenegger |     -1.00     |     0.08    |     0.76    |
++---------------+-----------------------+---------------+-------------+-------------+
+
+
++---------------+-----------------------+---------------+-------------+-------------+-------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | bidaf-score | final-score |
++---------------+-----------------------+---------------+-------------+-------------+-------------+
+|     1970s     |    Weight training    |      0.64     |     1.00    |     0.43    |     0.27    |
+| Weight tra... |    Weight training    |      0.64     |     0.80    |     0.00    |     0.00    |
+| 80s and 90... |    Weight training    |      0.64     |     0.78    |     0.73    |     0.36    |
+|       21      | Arnold Schwarzenegger |      1.00     |     0.55    |     0.74    |     0.41    |
+|    1971–74    | Arnold Schwarzenegger |      1.00     |     0.49    |     0.16    |     0.08    |
+|      2012     | Arnold Schwarzenegger |      1.00     |     0.48    |     0.18    |     0.09    |
+| 5 to 20 mi... |    Weight training    |      0.64     |     0.48    |     0.00    |     0.00    |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     1.00    |     0.43    |
+|       14      | Arnold Schwarzenegger |      1.00     |     0.43    |     0.11    |     0.05    |
+|       30      | Arnold Schwarzenegger |      1.00     |     0.31    |     0.40    |     0.13    |
++---------------+-----------------------+---------------+-------------+-------------+-------------+
+
+
+Elastic hat nun Einfluss auf Ranking: rank = elastic-score * tfidf-score
+
++---------------+-----------------------+---------------+-------------+-------------+-------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | bidaf-score | final-score |
++---------------+-----------------------+---------------+-------------+-------------+-------------+
+|     1970s     |    Weight training    |      0.64     |     1.00    |     0.86    |     0.55    |
+|       21      | Arnold Schwarzenegger |      1.00     |     0.55    |     0.69    |     0.38    |
+| Weight tra... |    Weight training    |      0.64     |     0.80    |     0.00    |     0.00    |
+| 80s and 90... |    Weight training    |      0.64     |     0.78    |     0.34    |     0.17    |
+|       23      | Arnold Schwarzenegger |      1.00     |     0.49    |     0.46    |     0.22    |
+|      2015     | Arnold Schwarzenegger |      1.00     |     0.48    |     0.62    |     0.30    |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     1.00    |     0.43    |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     0.16    |     0.07    |
+|       30      | Arnold Schwarzenegger |      1.00     |     0.31    |     0.96    |     0.30    |
+| 5 to 20 mi... |    Weight training    |      0.64     |     0.48    |     0.16    |     0.05    |
++---------------+-----------------------+---------------+-------------+-------------+-------------+
+
+
+Elastic score hat mehr Einfluss auf Ranking: rank = 5/8 elastic_score + 3/8 tfidf-score
+
++-----------+-----------------------+---------------+-------------+--------------+-------------+-------------+
+|   Answer  |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score |
++-----------+-----------------------+---------------+-------------+--------------+-------------+-------------+
+|     10    | Arnold Schwarzenegger |      1.00     |     0.55    |     0.83     |     0.21    |     0.12    |
+|     23    | Arnold Schwarzenegger |      1.00     |     0.49    |     0.81     |     0.52    |     0.25    |
+|    2015   | Arnold Schwarzenegger |      1.00     |     0.48    |     0.81     |     0.76    |     0.36    |
+|     15    | Arnold Schwarzenegger |      1.00     |     0.43    |     0.79     |     1.00    |     0.43    |
+|     15    | Arnold Schwarzenegger |      1.00     |     0.43    |     0.79     |     0.28    |     0.12    |
+|     30    | Arnold Schwarzenegger |      1.00     |     0.31    |     0.74     |     0.86    |     0.27    |
+|    2017   | Arnold Schwarzenegger |      1.00     |     0.27    |     0.73     |     0.01    |     0.00    |
+| early age | Arnold Schwarzenegger |      1.00     |     0.22    |     0.71     |     0.25    |     0.06    |
+|    1973   | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.00    |     0.00    |
+|    2006   | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.33    |     0.06    |
++-----------+-----------------------+---------------+-------------+--------------+-------------+-------------+
+
+gleiches setting:
+
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+
+|       21      | Arnold Schwarzenegger |      1.00     |     0.55    |     0.83     |     0.70    |     0.39    |
+|    1971–74    | Arnold Schwarzenegger |      1.00     |     0.49    |     0.81     |     0.25    |     0.12    |
+| 2015 secur... | Arnold Schwarzenegger |      1.00     |     0.48    |     0.81     |     0.09    |     0.04    |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     0.79     |     1.00    |     0.43    |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     0.79     |     0.26    |     0.11    |
+|      1968     | Arnold Schwarzenegger |      1.00     |     0.31    |     0.74     |     0.34    |     0.11    |
+| seven or e... | Arnold Schwarzenegger |      1.00     |     0.27    |     0.73     |     0.00    |     0.00    |
+|      1983     | Arnold Schwarzenegger |      1.00     |     0.22    |     0.71     |     0.19    |     0.04    |
+|      1976     | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.18    |     0.03    |
+| October 7,... | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.15    |     0.03    |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+
+
+final-score: elastic-score * tfidf-score * bidaf-score 
+
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score | final-score-2 |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|       21      | Arnold Schwarzenegger |      1.00     |     0.55    |     0.83     |     0.21    |     0.11    |      0.17     |
+|       23      | Arnold Schwarzenegger |      1.00     |     0.49    |     0.81     |     0.51    |     0.25    |      0.41     |
+|      2015     | Arnold Schwarzenegger |      1.00     |     0.48    |     0.81     |     0.71    |     0.34    |      0.57     |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     0.79     |     1.00    |     0.43    |      0.79     |
+|       15      | Arnold Schwarzenegger |      1.00     |     0.43    |     0.79     |     0.40    |     0.17    |      0.31     |
+|       30      | Arnold Schwarzenegger |      1.00     |     0.31    |     0.74     |     0.04    |     0.01    |      0.03     |
+|      2017     | Arnold Schwarzenegger |      1.00     |     0.27    |     0.73     |     0.05    |     0.01    |      0.04     |
+|   early age   | Arnold Schwarzenegger |      1.00     |     0.22    |     0.71     |     0.44    |     0.10    |      0.31     |
+|     1980s     | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.00    |     0.00    |      0.00     |
+| November 7... | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.34    |     0.06    |      0.23     |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+
+
+gleiches setting, andere Frage: SUPER ERGEBNIS!
+What was Arnold Schwarzenegger's breakthrough film? --> Conan the Barbarian
+
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score | final-score-2 |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+| the sword-... | Arnold Schwarzenegger |      1.00     |     1.00    |     1.00     |     0.34    |     0.34    |      0.34     |
+|     Junior    | Arnold Schwarzenegger |      1.00     |     0.84    |     0.94     |     0.18    |     0.15    |      0.17     |
+| Conan the ... | Arnold Schwarzenegger |      1.00     |     0.70    |     0.89     |     0.91    |     0.63    |      0.81     |
+| climate ch... | Arnold Schwarzenegger |      1.00     |     0.41    |     0.78     |     0.23    |     0.09    |      0.18     |
+| Around the... | Arnold Schwarzenegger |      1.00     |     0.26    |     0.72     |     0.05    |     0.01    |      0.04     |
+| Pumping Ir... | Arnold Schwarzenegger |      1.00     |     0.23    |     0.71     |     0.27    |     0.06    |      0.19     |
+|   John Wayne  | Arnold Schwarzenegger |      1.00     |     0.19    |     0.70     |     0.44    |     0.08    |      0.31     |
+|     career    | Arnold Schwarzenegger |      1.00     |     0.16    |     0.68     |     0.36    |     0.06    |      0.24     |
+| Pumping Ir... | Arnold Schwarzenegger |      1.00     |     0.13    |     0.67     |     1.00    |     0.13    |      0.67     |
+| Arnold Cla... | Arnold Schwarzenegger |      1.00     |     0.13    |     0.67     |     0.00    |     0.00    |      0.00     |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+
+
+Beispiel-Ergebis für unser Score ist schlechter als rein auf Bidaf zu schauen:
+When was Arnold Schwarzenegger first elected as Republican? --> October 7, 2003
+
+
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|     Answer    |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score | final-score-2 |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|      2016     | Arnold Schwarzenegger |      1.00     |     1.00    |     1.00     |     0.94    |     0.94    |      0.94     |
+|      2004     | Arnold Schwarzenegger |      1.00     |     0.88    |     0.95     |     0.62    |     0.55    |      0.60     |
+| October 7,... | Arnold Schwarzenegger |      1.00     |     0.38    |     0.77     |     0.89    |     0.34    |      0.68     |
+|      1988     | Arnold Schwarzenegger |      1.00     |     0.36    |     0.76     |     0.48    |     0.17    |      0.36     |
+| October 7,... | Arnold Schwarzenegger |      1.00     |     0.31    |     0.74     |     1.00    |     0.31    |      0.74     |
+| September ... | Arnold Schwarzenegger |      1.00     |     0.30    |     0.74     |     0.23    |     0.07    |      0.17     |
+|    Shortly    | Arnold Schwarzenegger |      1.00     |     0.25    |     0.72     |     0.00    |     0.00    |      0.00     |
+|      2008     | Arnold Schwarzenegger |      1.00     |     0.21    |     0.71     |     0.21    |     0.05    |      0.15     |
+| August 17,... | Arnold Schwarzenegger |      1.00     |     0.21    |     0.70     |     0.58    |     0.12    |      0.40     |
+|      1970     | Arnold Schwarzenegger |      1.00     |     0.16    |     0.68     |     0.18    |     0.03    |      0.12     |
++---------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+
+es ist aber nicht deterministisch... trotzdem falsch...:
+
++-------------------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|          Answer         |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score | final-score-2 |
++-------------------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|           2016          | Arnold Schwarzenegger |      1.00     |     1.00    |     1.00     |     0.17    |     0.17    |      0.17     |
+|           2004          | Arnold Schwarzenegger |      1.00     |     0.88    |     0.95     |     0.82    |     0.72    |      0.78     |
+|     October 7, 2003     | Arnold Schwarzenegger |      1.00     |     0.38    |     0.77     |     0.84    |     0.32    |      0.64     |
+|           1988          | Arnold Schwarzenegger |      1.00     |     0.36    |     0.76     |     0.28    |     0.10    |      0.21     |
+|     October 7, 2003     | Arnold Schwarzenegger |      1.00     |     0.31    |     0.74     |     1.00    |     0.31    |      0.74     |
+|    September 17, 1983   | Arnold Schwarzenegger |      1.00     |     0.30    |     0.74     |     0.72    |     0.21    |      0.53     |
+| 1970, at age 23, he ... | Arnold Schwarzenegger |      1.00     |     0.25    |     0.72     |     0.02    |     0.01    |      0.02     |
+|           2008          | Arnold Schwarzenegger |      1.00     |     0.21    |     0.71     |     0.35    |     0.08    |      0.25     |
+|           1967          | Arnold Schwarzenegger |      1.00     |     0.21    |     0.70     |     0.08    |     0.02    |      0.06     |
+|           1983          | Arnold Schwarzenegger |      1.00     |     0.16    |     0.68     |     0.00    |     0.00    |      0.00     |
++-------------------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+
+nach dem dritten Versuch ist der final score dann auch der beste...:
+
+
++--------------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|       Answer       |       doc-title       | elastic-score | tfidf-score | passage_rank | bidaf-score | final-score | final-score-2 |
++--------------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+|        1983        | Arnold Schwarzenegger |      1.00     |     1.00    |     1.00     |     0.14    |     0.14    |      0.14     |
+|        2004        | Arnold Schwarzenegger |      1.00     |     0.88    |     0.95     |     0.59    |     0.52    |      0.56     |
+|  October 7, 2003   | Arnold Schwarzenegger |      1.00     |     0.38    |     0.77     |     0.56    |     0.21    |      0.43     |
+|        1988        | Arnold Schwarzenegger |      1.00     |     0.36    |     0.76     |     0.35    |     0.13    |      0.27     |
+|  October 7, 2003   | Arnold Schwarzenegger |      1.00     |     0.31    |     0.74     |     1.00    |     0.31    |      0.74     |
+| September 17, 1983 | Arnold Schwarzenegger |      1.00     |     0.30    |     0.74     |     0.47    |     0.14    |      0.35     |
+|        1970        | Arnold Schwarzenegger |      1.00     |     0.25    |     0.72     |     0.00    |     0.00    |      0.00     |
+|        2007        | Arnold Schwarzenegger |      1.00     |     0.21    |     0.71     |     0.11    |     0.02    |      0.08     |
+|        1967        | Arnold Schwarzenegger |      1.00     |     0.21    |     0.70     |     0.27    |     0.06    |      0.19     |
+|        1983        | Arnold Schwarzenegger |      1.00     |     0.16    |     0.68     |     0.06    |     0.01    |      0.04     |
++--------------------+-----------------------+---------------+-------------+--------------+-------------+-------------+---------------+
+
+
+

@@ -18,5 +18,5 @@ class Scorer:
 
         for it in iterables:
             tmp_score = iterables.get_score(it)
-            new_score = (tmp_score - min_val)/(max_val - min_val)
+            new_score = 1 if max_val == min_val else (tmp_score - min_val)/(max_val - min_val)
             iterables.set_score(it, new_score)

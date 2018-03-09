@@ -24,6 +24,7 @@ def process_question(question: str, nlp_toolkit: NLPToolkit) -> QPResult:
     # end logging
     end = datetime.now()
     diff = end - start
+    Logger.info('AnswerType: ' + str(AnswerType[label]))
     Logger.info('finished (' + str(diff.seconds) + '.' + str(diff.microseconds)[0:2] + ' s)')
     Logger.small_seperator()
 

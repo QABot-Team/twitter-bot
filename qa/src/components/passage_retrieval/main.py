@@ -1,13 +1,13 @@
 from datetime import datetime
 
 from components.passage_retrieval.our_tfidf.tfidf_ranker import TfIdfRanker
+from config import TOP_N_DOCS
 from models.passages import Passages
 from models.documents import Documents
 from models.qp_result import QPResult
 from utils.logger import Logger
 from utils.nlptoolkit import NLPToolkit
-
-TOP_N_DOCS = 3
+from utils.scorer import Scorer
 
 
 def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolkit) -> Passages:
@@ -24,6 +24,8 @@ def receive_passages(docs: Documents, qp_result: QPResult, nlp_toolkit: NLPToolk
     tfidf = TfIdfRanker(nlp_toolkit.remove_stop_words)
     ranked_passages = tfidf.calc_passage_ranks(passages, qp_result.question_model)
     Logger.info('#Passages: ' + str(len(ranked_passages.passages)))
+    scorer = Scorer()
+    scorer.min_max_norm(ranked_passages)
 
     end = datetime.now()
     diff = end - start
