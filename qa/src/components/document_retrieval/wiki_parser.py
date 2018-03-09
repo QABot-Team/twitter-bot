@@ -11,4 +11,4 @@ class WikiParser:
             paragraphs = text.split('    ')
             for p in paragraphs[:-1]:
                 if p.strip() != "":
-                    doc.add_passage(Passage(p, doc.elastic_score))
+                    doc.add_passage(Passage(p, doc.elastic_score, doc))
