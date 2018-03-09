@@ -5,6 +5,7 @@ python:
 install:
   - cd qa
   - ./install.sh > /dev/null
+  - pip freeze
 # command to run tests
 script:
   - python3 setup.py test
