@@ -16,10 +16,6 @@ args = parser.parse_args()
 
 Logger.config(args.log, args.logfile)
 
-logging.getLogger('allennlp.data.vocabulary').setLevel(logging.ERROR)
-logging.getLogger('allennlp.common.params').setLevel(logging.ERROR)
-logging.getLogger('allennlp.nn.initializers').setLevel(logging.ERROR)
-
 if args.twitter:
     twitter_daemon.start_daemon()
 else:

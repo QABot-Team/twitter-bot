@@ -18,6 +18,10 @@ class Logger:
         log_format = '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
         logging.basicConfig(filename=filename, level=numeric_level, format=log_format)
 
+        logging.getLogger('allennlp.data.vocabulary').setLevel(logging.ERROR)
+        logging.getLogger('allennlp.common.params').setLevel(logging.ERROR)
+        logging.getLogger('allennlp.nn.initializers').setLevel(logging.ERROR)
+
     @staticmethod
     def debug(message):
         get_logger().debug(message)
