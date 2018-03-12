@@ -19,8 +19,8 @@ class EsClient:
         self.client = Elasticsearch()
 
     def search(self, query) -> Documents:
-        title_boost = 'title^' + ELASTIC_TITLE_BOOST
-        text_boost = 'text^' + ELASTIC_TEXT_BOOST
+        title_boost = 'title^' + str(ELASTIC_TITLE_BOOST)
+        text_boost = 'text^' + str(ELASTIC_TEXT_BOOST)
         s = Search(using=self.client, index=INDEX_NAME) \
             .query("multi_match", query=query, fields=[title_boost, text_boost])
         response = s.execute()
