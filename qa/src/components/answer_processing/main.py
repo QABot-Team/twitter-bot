@@ -76,7 +76,7 @@ def get_best_answer(predictions: Predictions):
         if score > best_score:
             best_score = score
             best_answer = answer
-    print(table)
+    Logger.info('Predictions:\n' + str(table))
     return best_answer
 
 
