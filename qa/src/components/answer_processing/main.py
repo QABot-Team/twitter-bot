@@ -20,6 +20,7 @@ def prediction_pipeline(passages: Passages, question: str, nlp_toolkit: NLPToolk
     predictions = Predictions()
     for index, passage in enumerate(passages.passages[:TOP_N_PASSAGES]):
         if passage.text:
+            Logger.debug('Send (passage,question) to bidaf: (' + passage.text + ',' + question + ')')
             pred = predictor.predict(passage.text, question)
             prediction = Prediction(
                 pred['answer'],

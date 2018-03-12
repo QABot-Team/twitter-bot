@@ -27,7 +27,7 @@ def is_correct_article(title, correct_title) -> bool:
         return False
 
 
-Logger.config('error')
+Logger.config('info')
 
 Logger.info("Start document_retrieval analysis")
 
