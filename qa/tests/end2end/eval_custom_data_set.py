@@ -10,7 +10,7 @@ from qa_process_impl import process_answer_question
 from utils.logger import Logger
 
 
-data = json.load(open('custom_data_set.json'))
+data = json.load(open(DIR + '/custom_data_set.json'))
 
 
 def text_contains_any_answer(text, answers):
