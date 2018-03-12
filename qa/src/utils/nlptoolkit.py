@@ -1,10 +1,21 @@
 import spacy
 
 
-class NLPToolkit:
+class Singleton(object):
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(Singleton, cls).__new__(cls)
+        return cls._instance
+
+
+class NLPToolkit(Singleton):
     def __init__(self):
         self.nlp = spacy.load('en_core_web_sm')
-        # self.nlp = spacy.load('en_core_web_lg')
+
+    def get_doc(self, str):
+        return self.nlp(str)
 
     def tokenize(self, text: str) -> list:
         doc = self.nlp(text)
@@ -62,7 +73,8 @@ class NLPToolkit:
 
         return [token.text + "|" + token.pos_ for token in doc]
 
-    def token_is_wh_w(self, token):
+    @staticmethod
+    def token_is_wh_w(token):
         return token.tag_ == "WDT" or token.tag_ == "WP" or token.tag_ == "WP$" or token.tag_ == "WRB"
 
     def get_wh_word(self, doc):
@@ -70,14 +82,15 @@ class NLPToolkit:
             if self.token_is_wh_w(token):
                 return token
 
-    def get_root_token(self, doc):
+    @staticmethod
+    def get_root_token(doc):
         for token in doc:
             if token.dep_ == "ROOT":
                 return token
 
     def get_named_enitity_types(self, text):
         doc = self.nlp(text)
-        ents = [(e.label_) for e in doc.ents]
+        ents = [e.label_ for e in doc.ents]
         return ents
 
     def get_similiarity(self, question, answer):
