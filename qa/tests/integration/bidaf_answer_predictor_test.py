@@ -1,7 +1,20 @@
 import unittest
+import os
 
 from components.answer_processing.bidaf import AnswerPredictor
 from utils.nlptoolkit import NLPToolkit
+
+DIR = os.path.dirname(__file__)
+
+
+def read_file(filename):
+    result = ""
+    file = open(os.path.join(DIR, filename))
+    for line in file:
+        result += " " + line
+    file.close()
+    return result
+
 
 passage = "A reusable launch system (RLS, or reusable launch vehicle, RLV) is a launch system which is " \
                   "capable of launching a payload into space more than once. This contrasts with expendable launch " \
@@ -34,6 +47,11 @@ class TestReceiveDocs(unittest.TestCase):
         result = answer_predictor.predict(passage, question)
 
         self.assertEqual(result['context'], correct_context)
+
+    def test_can_handle_long_passages(self):
+        answer_predictor = AnswerPredictor(NLPToolkit())
+        long_passage = read_file('long_passage.txt')
+        answer_predictor.predict(long_passage, 'When was Barack Obama born?')
 
 
 if __name__ == '__main__':
