@@ -30,7 +30,8 @@ def filter_passages(passage, answer_type, nlp_toolkit):
         return 'EVENT' in named_ent_types
     elif answer_type == AnswerType.LOC_mount:
         return'LOC' in named_ent_types
-    elif answer_type == AnswerType.LOC_city or answer_type == AnswerType.LOC_country or answer_type == AnswerType.LOC_state:
+    elif answer_type == AnswerType.LOC_city or answer_type == AnswerType.LOC_country \
+            or answer_type == AnswerType.LOC_state or answer_type == AnswerType.LOC_other:
         return 'GPE' in named_ent_types
     elif answer_type == AnswerType.NUM_money:
         return 'MONEY' in named_ent_types
@@ -41,7 +42,7 @@ def filter_passages(passage, answer_type, nlp_toolkit):
     elif answer_type == AnswerType.NUM_dist or answer_type == AnswerType.NUM_weight \
          or answer_type == AnswerType.NUM_count or answer_type == AnswerType.NUM_temp \
          or answer_type == AnswerType.NUM_speed:
-        return 'QUANTITY' in named_ent_types
+        return 'QUANTITY' in named_ent_types or 'CARDINAL' in named_ent_types
     elif answer_type == AnswerType.HUM_gr:
         return 'ORG' in named_ent_types
     elif answer_type == AnswerType.ENTY_plant:

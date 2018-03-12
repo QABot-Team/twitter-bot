@@ -2,6 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 from prettytable import PrettyTable
 
+from config import ELASTIC_TITLE_BOOST, ELASTIC_TEXT_BOOST
 from utils.logger import Logger
 from models.documents import Documents
 from models.document import Document
@@ -18,8 +19,10 @@ class EsClient:
         self.client = Elasticsearch()
 
     def search(self, query) -> Documents:
+        title_boost = 'title^' + ELASTIC_TITLE_BOOST
+        text_boost = 'text^' + ELASTIC_TEXT_BOOST
         s = Search(using=self.client, index=INDEX_NAME) \
-            .query("multi_match", query=query, fields=["title^5", "text"])  # boost title by 5
+            .query("multi_match", query=query, fields=[title_boost, text_boost])
         response = s.execute()
 
         table = PrettyTable(['Index', 'Title', 'Score', 'Popularity'])
