@@ -1,5 +1,8 @@
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
+from prettytable import PrettyTable
+
+from config import ELASTIC_TITLE_BOOST, ELASTIC_TEXT_BOOST
 from utils.logger import Logger
 from models.documents import Documents
 from models.document import Document
@@ -16,11 +19,15 @@ class EsClient:
         self.client = Elasticsearch()
 
     def search(self, query) -> Documents:
+        title_boost = 'title^' + ELASTIC_TITLE_BOOST
+        text_boost = 'text^' + ELASTIC_TEXT_BOOST
         s = Search(using=self.client, index=INDEX_NAME) \
-            .query("multi_match", query=query, fields=["title^5", "text"])  # boost title by 5
+            .query("multi_match", query=query, fields=[title_boost, text_boost])
         response = s.execute()
 
+        table = PrettyTable(['Index', 'Title', 'Score', 'Popularity'])
         docs = Documents()
+        skip_count = 0
         for idx, doc in enumerate(response):
             if not any(excl in doc.title for excl in TITLE_EXCLUDES) and \
                not any(excl in doc.category for excl in CAT_EXCL) and \
@@ -30,7 +37,10 @@ class EsClient:
                 doc.text = str.encode(doc.text, encoding='utf-8').decode(encoding='utf-8')
 
                 docs.add(Document(doc.title, doc.text, doc.meta.score))
-                Logger.info('Document ' + str(idx) + ": \"" + doc.title + '\"' +
-                            ' Scoring: ' + str(doc.meta.score) +
-                            ' Populairty: ' + str(doc.popularity_score))
+                format_num = lambda x: '{0:.2f}'.format(x)
+                table.add_row([idx, doc.title, format_num(doc.meta.score), doc.popularity_score])
+            else:
+                skip_count += 1
+        Logger.info('Elastic result:\n' + str(table))
+        Logger.info(str(skip_count) + ' elastic results were skipped')
         return docs

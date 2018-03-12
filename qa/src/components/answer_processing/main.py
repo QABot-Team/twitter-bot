@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 
 from components.answer_processing.bidaf import AnswerPredictor
 from components.passage_retrieval.filter_passages import filter_passages
-from config import TOP_N_PASSAGES, SCORE_FOR_BEST_ANSWER
+from config import TOP_N_PASSAGES, SCORE_FOR_BEST_ANSWER, USE_ANSWER_TYPE
 from models.answer_type import AnswerType
 from models.passages import Passages
 from models.prediction import Prediction
@@ -76,7 +76,7 @@ def get_best_answer(predictions: Predictions):
         if score > best_score:
             best_score = score
             best_answer = answer
-    print(table)
+    Logger.info('Predictions:\n' + str(table))
     return best_answer
 
 
@@ -86,7 +86,8 @@ def process_answer(passages: Passages, qp_result: QPResult, nlp_toolkit: NLPTool
     start = datetime.now()
 
     predictions = prediction_pipeline(passages, qp_result.question_model.question, nlp_toolkit)
-    # filtered_predections = filter_predictions(predictions, qp_result.answer_type, nlp_toolkit)
+    if USE_ANSWER_TYPE:
+        predictions = filter_predictions(predictions, qp_result.answer_type, nlp_toolkit)
     result = get_best_answer(predictions)
 
     # end logging
