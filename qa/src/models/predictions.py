@@ -20,3 +20,10 @@ class Predictions(Iterable):
 
     def set_score(self, prediction: Prediction, score: float):
         prediction.bidaf_score = score
+
+    def sort(self):
+        self.predictions = sorted(
+            self.predictions,
+            key=lambda pred: pred.calc_final_score(),
+            reverse=True
+        )

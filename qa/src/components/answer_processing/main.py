@@ -63,7 +63,7 @@ def print_prediction(prediction: Prediction, table):
 
 
 def get_best_answer(predictions: Predictions):
-    best_answer = ''
+    best_answer = 'Sorry, I don\'t know :-('
     best_score = -1
     table = setup_table()
     for prediction in predictions:
@@ -88,6 +88,7 @@ def process_answer(passages: Passages, qp_result: QPResult, nlp_toolkit: NLPTool
     start = datetime.now()
 
     predictions = prediction_pipeline(passages, qp_result.question_model.question, nlp_toolkit)
+    predictions.sort()
     if USE_ANSWER_TYPE:
         predictions = filter_predictions(predictions, qp_result.answer_type, nlp_toolkit)
     result = get_best_answer(predictions)
