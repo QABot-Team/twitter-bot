@@ -20,7 +20,9 @@ class WikiParser:
             text = doc.text
 
             paragraphs = text.split('    ')
+            passage_idx = 0
             for p_large in paragraphs[:-1]:
                 for p in split_larg_paragraphs(p_large, MAX_PASSAGE_LENGTH):
                     if p.strip() != "":
-                        doc.add_passage(Passage(p, doc.elastic_score, doc))
+                        doc.add_passage(Passage(p, doc.elastic_score, doc, passage_idx))
+                        passage_idx += 1

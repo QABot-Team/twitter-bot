@@ -36,7 +36,7 @@ class EsClient:
                 doc.title = str.encode(doc.title, encoding='utf-8').decode(encoding='utf-8')
                 doc.text = str.encode(doc.text, encoding='utf-8').decode(encoding='utf-8')
 
-                docs.add(Document(doc.title, doc.text, doc.meta.score))
+                docs.add(Document(doc.title, doc.text, doc.meta.score, idx))
                 format_num = lambda x: '{0:.2f}'.format(x)
                 table.add_row([idx, doc.title, format_num(doc.meta.score), doc.popularity_score])
             else:

@@ -26,6 +26,7 @@ def prediction_pipeline(passages: Passages, question: str, nlp_toolkit: NLPToolk
                 pred['answer'],
                 pred['context'],
                 passage.parent_doc.title,
+                passage.get_id(),
                 passage.elastic_score,
                 passage.tfidf_score,
                 passage.get_passage_score(),
@@ -42,8 +43,8 @@ def filter_predictions(predictions: Predictions, answer_type: AnswerType, nlp_to
 
 
 def setup_table():
-    table = PrettyTable(['Answer', 'doc-title', 'elastic-score', 'tfidf-score', 'passage_rank', 'bidaf-score',
-                         'final-score'])
+    table = PrettyTable(['Answer', 'doc-title', 'passage-id', 'elastic-score', 'tfidf-score', 'passage_rank',
+                         'bidaf-score', 'final-score'])
     return table
 
 
@@ -57,8 +58,8 @@ def print_prediction(prediction: Prediction, table):
     bidaf_score = prediction.bidaf_score
     final_score = prediction.calc_final_score()
     format_num = lambda x: '{0:.2f}'.format(x)
-    table.add_row([answer, doc_title, format_num(elastic_score), format_num(tfidf_score), format_num(passage_score),
-                   format_num(bidaf_score), format_num(final_score)])
+    table.add_row([answer, doc_title, prediction.passage_id, format_num(elastic_score), format_num(tfidf_score),
+                   format_num(passage_score), format_num(bidaf_score), format_num(final_score)])
 
 
 def get_best_answer(predictions: Predictions):
