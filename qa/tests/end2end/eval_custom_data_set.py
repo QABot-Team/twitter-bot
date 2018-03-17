@@ -8,6 +8,7 @@ sys.path.append(DIR + '/../../src')
 from qa_process_impl import process_answer_question
 
 from utils.logger import Logger
+from utils.log_config import log_config
 
 
 data = json.load(open(DIR + '/custom_data_set.json'))
@@ -30,6 +31,8 @@ def is_correct_article(title, correct_title) -> bool:
 Logger.config('info')
 
 Logger.info("Start document_retrieval analysis")
+
+log_config()
 
 question_counter = 0
 correct_answers_counter = 0

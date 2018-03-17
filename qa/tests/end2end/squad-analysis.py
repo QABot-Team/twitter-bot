@@ -9,6 +9,7 @@ sys.path.append(DIR + '/../../src')
 from qa_process_impl import process_answer_question
 
 from utils.logger import Logger
+from utils.log_config import log_config
 
 data = json.load(open('dev-v1.1.json'))
 
@@ -23,6 +24,7 @@ def text_contains_any_answer(text, answers):
 Logger.config('error')
 
 Logger.error("Start analysis")
+log_config()
 
 question_counter = 0
 correct_answers_counter = 0

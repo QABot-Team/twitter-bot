@@ -1,6 +1,7 @@
 from qa_process_impl import process_answer_question
 from argparse import ArgumentParser
 from ui import twitter_daemon
+from utils.log_config import log_config
 from utils.logger import Logger
 
 parser = ArgumentParser(description="Jarvis (Question Answering System)")
@@ -14,6 +15,8 @@ parser.add_argument("--logfile", help="name for the logfile",
 args = parser.parse_args()
 
 Logger.config(args.log, args.logfile)
+
+log_config()
 
 if args.twitter:
     twitter_daemon.start_daemon()

@@ -4,8 +4,13 @@ python:
 # command to install dependencies
 install:
   - cd qa
-  - ./install.sh > /dev/null
+  - pip install -r requirements.txt
+  - pip install http://download.pytorch.org/whl/cu80/torch-0.3.1-cp36-cp36m-linux_x86_64.whl > /dev/null
+  - pip install torchvision > /dev/null
+  - python -m spacy download en > /dev/null
+  - python -m nltk.downloader all > /dev/null
+  - python -m spacy download en_core_web_lg > /dev/null
   - pip freeze
 # command to run tests
 script:
-  - python3 setup.py test
+  - python setup.py test
