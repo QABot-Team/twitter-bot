@@ -2,18 +2,16 @@
 
 Simple knowledge based question answering system for factoid questions with the help of wikipedia.
 
-## Project setup
+## Getting started
 
-We document our dependencies in the [requirements.txt](./requirements.txt) file. To install all dependencies simply
-execute the following command:
+First clone our repository:
 
-    pip install -r requirements.txt
+    git clone --depth 1 https://github.com/QABot-Team/twitter-bot.git --branch master --single-branch
+    
+Switch to the main project directory and install all dependencies:
 
-To download the necessary data models for spacy and nltk execute the following commands:
-
-    python -m spacy download en
-    python -m nltk.downloader all
-    python -m spacy download en_core_web_lg
+    cd twitter-bot/qa
+    ./install.sh
 
 Then you can run our application with the following command:
 
