@@ -2,12 +2,10 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 from prettytable import PrettyTable
 
-from config import ELASTIC_TITLE_BOOST, ELASTIC_TEXT_BOOST
+from config import ELASTIC_TITLE_BOOST, ELASTIC_TEXT_BOOST, ELASTIC_HOST, ELASTIC_PORT, INDEX_NAME
 from utils.logger import Logger
 from models.documents import Documents
 from models.document import Document
-
-INDEX_NAME = "enwiki"
 
 TITLE_EXCLUDES = ["(disambiguation)", "(surname)"]
 REFER_TEXT = "may refer to"
@@ -16,7 +14,11 @@ CAT_EXCL = ["Disambiguation pages"]
 
 class EsClient:
     def __init__(self):
-        self.client = Elasticsearch()
+        host = {
+            'host': ELASTIC_HOST,
+            'port': ELASTIC_PORT
+        }
+        self.client = Elasticsearch([host])
 
     def search(self, query) -> Documents:
         title_boost = 'title^' + str(ELASTIC_TITLE_BOOST)

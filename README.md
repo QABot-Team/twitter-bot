@@ -16,6 +16,11 @@ Switch to the main project directory and install all dependencies:
 Then you can run our application with the following command:
 
     python src/main.py [--help]
+    
+## External dependencies
+
+The application requires a running elastic search instance with a indexed wikipedia dump. Host, port and index name of
+the elastic instance can be configured in our [`config.py`](./qa/src/config.py).
 
 ## Running tests
 

@@ -21,7 +21,7 @@ def text_contains_any_answer(text, answers):
     return False
 
 
-Logger.config('error')
+Logger.config('info')
 
 Logger.error("Start analysis")
 log_config()
