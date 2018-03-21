@@ -1,4 +1,4 @@
-# twitter-bot
+# twitter-bot [![Build Status](https://travis-ci.org/QABot-Team/twitter-bot.svg?branch=master)](https://travis-ci.org/QABot-Team/twitter-bot)
 
 Simple knowledge based question answering system for factoid questions with the help of wikipedia.
 
