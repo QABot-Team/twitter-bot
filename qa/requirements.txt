@@ -6,7 +6,7 @@ sklearn==0.0
 spacy==2.0.9
 tweepy==3.5.0
 pandas==0.20.3
-tensorflow==1.1.0
+tensorflow==2.6.4
 prettytable==0.7.2
 allennlp==0.3.0
 tensorboard==1.0.0a6
